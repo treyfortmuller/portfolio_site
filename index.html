@@ -27,6 +27,11 @@ sitemap:
 
 				<!-- Intro -->
 					<div id="intro">
+
+			<!-- Profile picture -->
+			<div><img src="/images/id_photo.jpg" alt="" class="image main profile"></div>
+
+			<!-- Title -->
             <h1>{{site.title}}</h1>
 						<h2>Project Portfolio</h2>
 						<p>I'm a 3rd year Engineering Physics major at UC Berkeley. My interests are robotics, mechanical design, and control.</p>
@@ -53,6 +58,7 @@ sitemap:
 
 				<!-- Main -->
 					<div id="main">
+
 						<!-- Featured Post -->
 							<article class="post featured">
 								<header class="major">
@@ -72,35 +78,7 @@ sitemap:
 								 </p>
 
 							</article>
-
-						<!-- Posts -->
-							<section class="posts">
-                {% for post in site.posts limit:3 %}
-                {% assign mod3 = forloop.index | modulo: 3 %}
-  								<article>
-  									<header>
-  										<span class="date">{{ post.date | date_to_string }}</span>
-  										<h2><a href="{{ post.url | absolute_url }}">{{ post.title }}</h2>
-  									</header>
-  									<a href="{{ post.url | absolute_url }}" class="image fit"><img src="{{ post.image | absolute_url }}" alt="" /></a>
-  									<p>{{ post.excerpt }}</p>
-  									<ul class="actions">
-  										<li><a href="{{ post.url | absolute_url }}" class="button">Full Story</a></li>
-  									</ul>
-  								</article>
-                  {% if mod3 == 0 %}
-                  <article>
-  									<header>
-  										<h2><a href="#">Sponsored</h2>
-  									</header>
-
-  								</article>
-                  {% endif %}
-                {% endfor %}
-
-							</section>
-
-						<!-- Footer -->
+							
 							<footer>
                 <ul class="actions">
                   <li><a href="{{ "/blog/" | absolute_url }}" class="button">Projects</a></li>

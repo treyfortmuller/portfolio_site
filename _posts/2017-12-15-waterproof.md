@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Welcome to Massively: The Jekyll Theme!"
-date:   2017-10-31
-excerpt: "Huge thanks to HTML5 UP for making this awesome template! Let's see what it can do"
+title:  "Waterproof Quadcopter Build"
+date:   2017-12-15
+excerpt: "A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches."
 image: "/images/pic02.jpg"
 ---
 

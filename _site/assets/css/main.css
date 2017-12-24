@@ -2470,6 +2470,12 @@
 				width: 100%;
 			}
 
+			.image.main.profile {
+				border-radius: 50%;
+				margin: 0 auto 50px auto;
+				width: 50%;
+			}
+
 		@media screen and (max-width: 736px) {
 
 			.image.fit {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-23T20:58:17-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Welcome to Massively: The Jekyll Theme!</title><link href="/blog/welcome-to-massively-the-jekyll-theme/" rel="alternate" type="text/html" title="Welcome to Massively: The Jekyll Theme!" /><published>2017-10-31T00:00:00-07:00</published><updated>2017-10-31T00:00:00-07:00</updated><id>/blog/welcome-to-massively-the-jekyll-theme</id><content type="html" xml:base="/blog/welcome-to-massively-the-jekyll-theme/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-24T02:14:46-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
 &lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
 
 &lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
@@ -17,4 +17,130 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">Huge thanks to HTML5 UP for making this awesome template! Let's see what it can do</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry></feed>
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Crazyflie Quadcopter Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Quadcopter Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
+&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A cascased controller implementation for autonomous loitering with Crazyflie quadcopter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Photogrammetry 3D Scanner</title><link href="/blog/3d-scanner/" rel="alternate" type="text/html" title="Photogrammetry 3D Scanner" /><published>2017-10-08T00:00:00-07:00</published><updated>2017-10-08T00:00:00-07:00</updated><id>/blog/3d-scanner</id><content type="html" xml:base="/blog/3d-scanner/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
+&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Custom Electric Longboard</title><link href="/blog/e-board/" rel="alternate" type="text/html" title="Custom Electric Longboard" /><published>2017-07-15T00:00:00-07:00</published><updated>2017-07-15T00:00:00-07:00</updated><id>/blog/e-board</id><content type="html" xml:base="/blog/e-board/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
+&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">An electric longboard with a handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
+&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/custom-drone-transmitter/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/custom-drone-transmitter</id><content type="html" xml:base="/blog/custom-drone-transmitter/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
+&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Robot Learning Lab</title><link href="/blog/rll/" rel="alternate" type="text/html" title="Robot Learning Lab" /><published>2016-09-01T00:00:00-07:00</published><updated>2016-09-01T00:00:00-07:00</updated><id>/blog/rll</id><content type="html" xml:base="/blog/rll/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
+&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">Part of my responsibilities as an undergraduate research assisstant in Pieter Abbeel's RLL at UC Berkeley.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">FPV Racing Quadcopters</title><link href="/blog/fpv/" rel="alternate" type="text/html" title="FPV Racing Quadcopters" /><published>2015-08-01T00:00:00-07:00</published><updated>2015-08-01T00:00:00-07:00</updated><id>/blog/fpv</id><content type="html" xml:base="/blog/fpv/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+
+&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+
+&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+
+&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+
+&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
+
+&lt;h3 id=&quot;formspree-integration&quot;&gt;Formspree integration&lt;/h3&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">My project is super awesome and special, hire me!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry></feed>
