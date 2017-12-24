@@ -1,9 +1,12 @@
 # Site
-title:              Massively
+title:              Trey Fortmuller
 bio:                'Jekyll version of the Massively theme by HTML5UP'
 description:        "Jekyll version of the Massively theme by HTML5UP"
 locale:             en_US
-baseurl: "" # the subpath of your site, e.g. /blog
+
+# baseurl is the subpath of your site, e.g. /blog
+baseurl: "" # seems to work for offline work with jekyll serve
+# baseurl: "/portfolio_site" # works for gh-pages serving
 url: "" # the base hostname & protocol for your site
 
 defaults:
@@ -30,20 +33,17 @@ sass:
   sass_dir:         _sass
   style:            compressed
 
-# Comments
-disqus_shortname:   default
-
 # Social
 analytics-id:       "default"
-twitter:            default
-facebook:           default
-instagram:          default
-github:             default
+# twitter:            default
+facebook:           trey.fortmuller
+# instagram:          default
+github:             treyfortmuller
 
 # personal
-location:           Los Angeles, CA
-phone:              310-318-5555
-email:              info@default.com
+location:           Berkeley, CA
+phone:              123-456-7890
+email:              tfortmuller@berkeley.edu
 
 # Gems
 gems:
