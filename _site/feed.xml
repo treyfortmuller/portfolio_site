@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-27T23:26:58-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;inspiration&quot;&gt;Inspiration&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-28T02:04:09-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor Mark Mueller recruited my lab team to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
 
@@ -13,10 +13,13 @@
 		&lt;li&gt;Compact, less than 200mm motor shaft to motor shaft&lt;/li&gt;
 		&lt;li&gt;Agile, at least a 2:1 thust to weight ratio&lt;/li&gt;
 		&lt;li&gt;Operate down to 3m of depth&lt;/li&gt;
+		&lt;li&gt;Full battery voltage telemetry&lt;/li&gt;
 	&lt;/ul&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;component-specification&quot;&gt;Component Specification&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof6.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;Systems engineering for a multirotor is a large optimization problem including factors such as motor stator size, motor KV, prop diameter and airfoil, battery voltage and capacity, and aircraft size, weight, and configuration. Thankfully the requirements for the platform narrowed down our choices.&lt;/p&gt;
 
@@ -76,7 +79,41 @@
 	&lt;/table&gt;
 &lt;/div&gt;
 
-&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Crazyflie Quadcopter Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Quadcopter Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof4.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The main design constraint was the requirement that the vehicle must be submersible. Brushless motors are “waterproof” out of the box due to the insulating enamel applied to the wires of the motor winding in the stator, so those can operate underwater without issue. Everything else (flight controller, ESCs, localization module, voltage regulator, battery) would have to somehow be waterproofed or inside a watertight container.&lt;/p&gt;
+
+&lt;p&gt;David, Joey, and I ideated on how we might protect the sensitive PCBs from the elements with a container of sorts. For the sake of preserving an ideal center of mass, close to the geometric center of the vehicle, we decided on two cases which sandwhich the frame of the quadcopter. The top case contains all the sensitive PCBs and the battery is protected by the bottom case. A hole is cut in the frame for the battery lead to reach the ESCs and regulator in the top case. 20+ hours of CADing in Fusion 360 later, I completed the full vehicle assembly including a custom frame, top and bottom cases, as well as gaskets to seal the cases against the frame. I included every single PCB as each would be mounted in the case and designed the cases around the components. This ensured a reasonable fit as well as the accuracy of the inertia tensor of the vehicle, an input to the PX4 firmware the lab had running onbaord the Crazyflies for flight control.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof_main2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The electronics are mounted inside the top case using TPE mounting solutions, CA glue, heavy duty double sided foam tape, and M2 fasteners. There are 4 holes in the top case which allow the motor wires to reach the ESC board inside the case. Those holes would be filled with a rubbery silicon caulking with the wires threaded through.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabrication&quot;&gt;Fabrication&lt;/h2&gt;
+
+&lt;h3 id=&quot;watertight-cases&quot;&gt;Watertight Cases&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;3D printing was the natural choice for frabrication of the custom cases, but normal FDM prints are not watertight. Small gaps between layers can allow some water to permeate even a thick shell of typical 3D printing plastics. SLA type prints (laser/projection based resin curing processes) are bound at a molecular level, so those are watertight. Thankfully at Jacobs Hall on campus at UC Berkeley, we had access to a Carbon3D printer for us to fabricate the cases. I had never printed anything with an SLA printer before, it was definitely a learning curve. This printing process has its own intricacies, there are different issues to debug than I was used to. It took 3 or 4 iterations before I figured out how to avoid vacuum pockets forming in the print, and how to arrange the support structure to avoid warping. Once I was happy with the part and its fabrication, I printed a top and bottom case in black “rigid polyurethane” on the Carbon 3D. All the Carbon3D resin chemistries are proprietary so beyond “polyurethane,” I really have no idea what the parts are made of, they were super durable though and I was happy.&lt;/p&gt;
+
+&lt;h3 id=&quot;tpe-gaskets&quot;&gt;TPE Gaskets&lt;/h3&gt;
+&lt;p&gt;The weakness of our double case sandwich approach is the potential leak at the interface between the cases and the frame. We had seen rubber gaskets used in other systems at an interface which needed to be watertight. A flexible 3D printing filament called thermal polyurethane (TPE) came to mind. I designed some gaskets which fit along the footprint of the top and bottom case along the frame. They are meant to be compressed when the top and bottom plate sandwich the frame using a few M2 nuts and bolts. I printed the gaskets in orange &lt;a href=&quot;https://www.amazon.com/NinjaFlex-TPU-3D-Printing-Filament/dp/B01LXZYJ3R/ref=sr_1_1?ie=UTF8&amp;amp;qid=1514450027&amp;amp;sr=8-1&amp;amp;keywords=ninjaflex&quot;&gt;NinjaFlex&lt;/a&gt; TPE on my personal Printrbot Simple and over-extruded the prints pretty severely to ensure better-than-average layer adhesion. The gaskets would be adhered to the cases with CA glue with the exposed interface between the case and gasket covered in watertight &lt;a href=&quot;https://www.amazon.com/MG-Chemicals-Silicone-Modified-Conformal/dp/B008O9YIV6/ref=sr_1_1?s=industrial&amp;amp;ie=UTF8&amp;amp;qid=1514450052&amp;amp;sr=1-1&amp;amp;keywords=silicon+conformal+coating&quot;&gt;silicon conformal coating.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;frame&quot;&gt;Frame&lt;/h3&gt;
+&lt;p&gt;Ideally, the custom frame would be cut from a 3mm thick plate of carbon fiber. It would be rigid, light weight, and durable. We had the carbon purchased, but unfortunately we were finishing this project towards the end of the semester. During the last week of class, the waterjet we needed to access in order to safety CNC cut the carbon was all booked up due to other class projects being due for many other students. Cutting the carbon on a typical CNC mill would be a hard sell to the machineshop technicians as carbon fiber dust is one of the last things you’d like in your lungs. 3D printing to the rescue again… we recruited our good friend Eric to complete a speciality print for us. Eric owns a printer with a number of upgrades allowing him to print abrasive and high temperature filaments. He printed us a frame out of 3mm of carbon-reinforced nylon, and extremely durable material. It’s not as clean as the carbon fiber plate we planned on, but it’s rigid enough to be flight worthy.&lt;/p&gt;
+
+&lt;h2 id=&quot;assembly-and-delivery&quot;&gt;Assembly and Delivery&lt;/h2&gt;
+
+&lt;p&gt;After removing excess pins, direct soldering all the components together, and installing a voltage divider for stepping down the input to the VBAT sensor, we covered all the electronics in 2 coats of silicon conformal coating for safety in the off chance that any moisture got inside the case.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof3.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Modification to the PX4 firmware running on the Crazyflie is necessary in order for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hardcoded scaling factor to read the correct battery voltage from our new VBAT sensing resisor values.&lt;/p&gt;
+
+&lt;p&gt;This project was certainly a design challenge and introduced me to an entirely different addative manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future.&lt;/p&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/waterproof/waterproof_main.jpg" /></entry><entry><title type="html">Crazyflie Quadcopter Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Quadcopter Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
 &lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
 
 &lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
