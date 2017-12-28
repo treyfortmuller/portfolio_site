@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-28T02:04:09-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-28T05:44:43-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor Mark Mueller recruited my lab team to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
 
@@ -113,33 +113,38 @@
 
 &lt;p&gt;Modification to the PX4 firmware running on the Crazyflie is necessary in order for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hardcoded scaling factor to read the correct battery voltage from our new VBAT sensing resisor values.&lt;/p&gt;
 
-&lt;p&gt;This project was certainly a design challenge and introduced me to an entirely different addative manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future.&lt;/p&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/waterproof/waterproof_main.jpg" /></entry><entry><title type="html">Crazyflie Quadcopter Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Quadcopter Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
-&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+&lt;p&gt;This project was certainly a design challenge and introduced me to an entirely different addative manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future.&lt;/p&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/waterproof/waterproof_main.jpg" /></entry><entry><title type="html">Crazyflie Quadcopter Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Quadcopter Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;me136-introduction-to-control-of-unmanned-aerial-vehicles&quot;&gt;ME136: Introduction to Control of Unmanned Aerial Vehicles&lt;/h2&gt;
+&lt;p&gt;My lab group’s controller is available on &lt;a href=&quot;https://github.com/treyfortmuller/ME136&quot;&gt;my GitHub&lt;/a&gt;, along with the full PX4 firmware, ready to be flashed to a Crazyflie.&lt;/p&gt;
 
-&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
-
-&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
-
-&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
-
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
-&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
-&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
-    priority: 0.7
-    lastmod: 2017-11-02
-    changefreq: weekly
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;course-description&quot;&gt;Course Description&lt;/h3&gt;
+&lt;div class=&quot;box&quot;&gt;
+  &lt;p&gt;
+  	This course introduces students to the control of unmanned aerial vehicles (UAVs). The course will cover modeling and dynamics of aerial vehicles, and common control strategies. Laboratory exercises allow students to apply knowledge on a real system, by programming a microcontroller to control a UAV.
+  &lt;/p&gt;
+  &lt;p style=&quot;text-align:right&quot;&gt;
+  	- me.berkeley.edu
+  &lt;/p&gt;
 &lt;/div&gt;
-&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A cascased controller implementation for autonomous loitering with Crazyflie quadcopter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Photogrammetry 3D Scanner</title><link href="/blog/3d-scanner/" rel="alternate" type="text/html" title="Photogrammetry 3D Scanner" /><published>2017-10-08T00:00:00-07:00</published><updated>2017-10-08T00:00:00-07:00</updated><id>/blog/3d-scanner</id><content type="html" xml:base="/blog/3d-scanner/">&lt;p&gt;I built this project with my friends Suneel and Nathan for UC Berkeley’s hackathon: &lt;a href=&quot;https://calhacks.io/&quot;&gt;Cal Hacks&lt;/a&gt;, one of the largest hackathons in the world. The event featured 1,700 hackers from 100 schools and 5 countries building projects for 36 striaght hours. It was an increidble experience, and a very professionally run event. After we submitted and presented our work, in a Redbull driven haze, we found out that we were one of six teams to win the Cal Hacks fellowship award.&lt;/p&gt;
+
+&lt;h2 id=&quot;parametrizing-the-system&quot;&gt;Parametrizing the System&lt;/h2&gt;
+
+&lt;h2 id=&quot;state-estimation&quot;&gt;State Estimation&lt;/h2&gt;
+
+&lt;h2 id=&quot;controller&quot;&gt;Controller&lt;/h2&gt;
+
+&lt;h2 id=&quot;flight-competition&quot;&gt;Flight Competition&lt;/h2&gt;
+
+&lt;p&gt;We achieved 105 seconds of flight before crashing into the net, withstanding the fan for 15 seconds.&lt;/p&gt;</content><summary type="html">A cascased controller implementation for autonomous loitering with a Crazyflie quadcopter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/cf-flight-controls/cf_main.jpg" /></entry><entry><title type="html">Photogrammetry 3D Scanner</title><link href="/blog/3d-scanner/" rel="alternate" type="text/html" title="Photogrammetry 3D Scanner" /><published>2017-10-08T00:00:00-07:00</published><updated>2017-10-08T00:00:00-07:00</updated><id>/blog/3d-scanner</id><content type="html" xml:base="/blog/3d-scanner/">&lt;p&gt;I built this project with my friends Suneel and Nathan for UC Berkeley’s hackathon: &lt;a href=&quot;https://calhacks.io/&quot;&gt;Cal Hacks&lt;/a&gt;, one of the largest hackathons in the world. The event featured 1,700 hackers from 100 schools and 5 countries building projects for 36 striaght hours. It was an increidble experience, and a very professionally run event. After we submitted and presented our work, in a Redbull driven haze, we found out that we were one of six teams to win the Cal Hacks fellowship award.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-cal-hacks-fellowship&quot;&gt;The Cal Hacks Fellowship&lt;/h3&gt;
 &lt;div class=&quot;box&quot;&gt;
   &lt;p&gt;
   	Why do you have to stop when the hackathon is over? We’re introducing the Cal Hacks Fellowship, a program that accepts 5 hackathon teams to continue their projects beyond the hackathon. We plan to continue improving your project and move it past its initial stage so you can continue adding onto it, while receiving the same support from a hackathon.&lt;/p&gt;
   &lt;p&gt;
-	This includes: One-on-one director mentorship, Work with industry professionals and venture capitalists, Receive support from The House Founders program, Gain access to future hack nights and unlimited amount of free resources. - calhacks.io
+	This includes: One-on-one director mentorship, Work with industry professionals and venture capitalists, Receive support from The House Founders program, Gain access to future hack nights and unlimited amount of free resources.
+  &lt;/p&gt;
+  &lt;p style=&quot;text-align:right&quot;&gt;
+  	- calhacks.io
   &lt;/p&gt;
 &lt;/div&gt;
 
@@ -223,26 +228,98 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/custom-drone-transmitter/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/custom-drone-transmitter</id><content type="html" xml:base="/blog/custom-drone-transmitter/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
-&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/drone-tx/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/drone-tx</id><content type="html" xml:base="/blog/drone-tx/">&lt;h2 id=&quot;design-innovation-22&quot;&gt;Design Innovation 22&lt;/h2&gt;
+&lt;p&gt;I took Design Innovation 22 in the Fall of my sophmore year. I thoroughly enjoyed it and gained a lot of exposure to modern CNC fabricatino methodologies. Design and analysis is much more rewarding when you get to actually build the thing you designed and analyzed. For my final project in the class, my lab partner Kireet and I built a custom quadcopter frame and and our own RC transmitter to control it. The STM F3-based flight controller onboard the quadcopter is running an opensource firmware called &lt;a href=&quot;https://github.com/betaflight/betaflight&quot;&gt;Betaflight&lt;/a&gt;. The reciever and transmitter are implemented with Arduino microcontrollers and 2.4Ghz RF modules.&lt;/p&gt;
 
-&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
-
-&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
-
-&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
-
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
-&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
-&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
-    priority: 0.7
-    lastmod: 2017-11-02
-    changefreq: weekly
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;course-description&quot;&gt;Course Description&lt;/h3&gt;
+&lt;div class=&quot;box&quot;&gt;
+  	&lt;p&gt;
+  		This course teaches concepts, skills and methods required to design, prototype, and fabricate physical objects. Each week relevant techniques in 2D and 3D modeling and fabrication are presented along with basic electronics and circuit design. Projects are assigned that cover the weekly course material. Topics include a range of prototyping and fabrication techniques including laser­cutting, 3D modeling and 3D printing, soldering, basic circuits, microcontrollers, sensors and actuators, and interface mockups.
+  	&lt;/p&gt;
+  	&lt;p style=&quot;text-align:right&quot;&gt;
+  		- jacobsinstitute.berkeley.edu
+  	&lt;/p&gt;
 &lt;/div&gt;
-&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Robot Learning Lab</title><link href="/blog/rll/" rel="alternate" type="text/html" title="Robot Learning Lab" /><published>2016-09-01T00:00:00-07:00</published><updated>2016-09-01T00:00:00-07:00</updated><id>/blog/rll</id><content type="html" xml:base="/blog/rll/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+
+&lt;h2 id=&quot;project-description&quot;&gt;Project Description&lt;/h2&gt;
+
+&lt;p&gt;A quadcopter along with a remote control, using two gimbal joysticks, two transceiver modules, an Arduino Uno, and an Arduino Nano. The radio control was implemented in house, we receive 2-axis potentiometer values from the gimbals, transmit them, map them to PWM microsecond values, and generate a PPM signal to send to the flight controller. Both the remote control and the quad include laser cut plates separated by aluminum stand offs and 3D printed component mounting pieces. The quadcopter also features a small first person view camera that transmits a live analog video feed to a monitor allowing the quad to be piloted without line of sight. &lt;a href=&quot;https://github.com/treyfortmuller/Drone-Rx-Tx&quot;&gt;Here’s&lt;/a&gt; the GitHub repo for the project, and &lt;a href=&quot;https://devpost.com/software/drone-transmitter&quot;&gt;here&lt;/a&gt; is the original DevPost for the project.&lt;/p&gt;
+
+&lt;div class=&quot;video-wrapper&quot;&gt;
+	&lt;div class=&quot;video-responsive&quot;&gt;
+		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/jWmNdqT4Q9A?rel=0&quot; frameborder=&quot;0&quot; gesture=&quot;media&quot; allow=&quot;encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;development-lifecycle&quot;&gt;Development Lifecycle&lt;/h2&gt;
+
+&lt;h4 id=&quot;week-1&quot;&gt;Week 1&lt;/h4&gt;
+
+&lt;p&gt;A low fidelity 3D printed chassis with motors properly representing the size and weight of the first draft of our quadcopter including the component mounting for the flight stack.&lt;/p&gt;
+
+&lt;h4 id=&quot;week-2&quot;&gt;Week 2&lt;/h4&gt;
+
+&lt;p&gt;First working model of the quadcopter utilizing 2.5” props and two laser cut plates that surround the props to allow for safer indoor flight. This version utilized a proprietary transmitter and receiver (as well as RF protocol) for control.&lt;/p&gt;
+
+&lt;h4 id=&quot;week-3&quot;&gt;Week 3&lt;/h4&gt;
+
+&lt;p&gt;Many body options were explored this week, we settled on a wrap of kerfed laser cut wood that we brought to medium fidelity. The addition further protected the motors but required iteration in terms of sizing and fit.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/drone1.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;week-4&quot;&gt;Week 4&lt;/h4&gt;
+
+&lt;p&gt;The first 3D printable design for a custom transmitter was fabricated as well as a high fidelity version of the wrap using lighter chipboard that fit the frame properly and was painted red for a finished look. We ended up abandoning the wrap idea when we heavily modified the frame for the final version of our quadcopter for the sake of performance improvements.&lt;/p&gt;
+
+&lt;h4 id=&quot;week-5&quot;&gt;Week 5&lt;/h4&gt;
+
+&lt;p&gt;Nearly all the components were included in a CAD model for the final quadcopter and transmitter. The quad received a chassis redesign which is larger allowing for brushless motors with a larger stator to be mounted so that we can swing larger props and thus achieve more thrust, as our current set up was plagued with weight issues. The new frame design also considered wire routing, and component mounting with more fidelity. The landing gear which straps to the battery was designed and 3D printed on this iteration as well as the “hood” piece which serves as our body, it houses the Arduino Nano, an nRF24 transceiver module, and the FPV camera is perched on top. The transmitter was redesigned to be either more 3D printable or laser cut. We ended up laser cutting the final iteration without losing much of the ergonomics of the device. We also had to design around large gimbal joysticks which are mounted with stand offs on the flanges of the transmitter which gave great control resolution and linearity as compared to previous designs which utilized cheaper game controller type joysticks.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx1.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bill-of-materials&quot;&gt;Bill of Materials&lt;/h2&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;
+	&lt;table&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;LiPo battery&lt;/td&gt;
+				&lt;td&gt;3S 800mAh pack for power with JST connector&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Brushless motors&lt;/td&gt;
+				&lt;td&gt;3600KV DYS 1407 stator size motors&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Piko BLX Flight Controller&lt;/td&gt;
+				&lt;td&gt;STM F3 microcontroller based flight controller&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;ESCs&lt;/td&gt;
+				&lt;td&gt;LittleBee Pro 20A opto speed controllers for brushless motors&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Arduino Uno&lt;/td&gt;
+				&lt;td&gt;Micro controller utilized on the controller (runs transmit.ino)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Arduino Nano&lt;/td&gt;
+				&lt;td&gt;Micro controller utilized on the quad (runs receive.ino)&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;nRf24L01 Transeivers&lt;/td&gt;
+				&lt;td&gt;Transceiver modules utilized in our custom transmitter and receiver set&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/drone-tx/tx_main.jpg" /></entry><entry><title type="html">Robot Learning Lab</title><link href="/blog/rll/" rel="alternate" type="text/html" title="Robot Learning Lab" /><published>2016-09-01T00:00:00-07:00</published><updated>2016-09-01T00:00:00-07:00</updated><id>/blog/rll</id><content type="html" xml:base="/blog/rll/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
 &lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
 
 &lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;

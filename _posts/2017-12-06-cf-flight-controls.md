@@ -2,27 +2,29 @@
 layout: post
 title:  "Crazyflie Quadcopter Flight Controls"
 date:   2017-12-06
-excerpt: "A cascased controller implementation for autonomous loitering with Crazyflie quadcopter."
-image: "/images/pic02.jpg"
+excerpt: "A cascased controller implementation for autonomous loitering with a Crazyflie quadcopter."
+image: "/images/cf-flight-controls/cf_main.jpg"
 ---
 
-## How to Use This Theme
-Just go ahead and read up on [how to install Jekyll](https://jekyllrb.com/). It's not too hard I promise!
+## ME136: Introduction to Control of Unmanned Aerial Vehicles
+My lab group's controller is available on <a href="https://github.com/treyfortmuller/ME136">my GitHub</a>, along with the full PX4 firmware, ready to be flashed to a Crazyflie.
 
-Download this repository [here](https://github.com/iwiedenm/jekyll-theme-massively) and save it to any folder you want.
+### Course Description
+<div class="box">
+  <p>
+  	This course introduces students to the control of unmanned aerial vehicles (UAVs). The course will cover modeling and dynamics of aerial vehicles, and common control strategies. Laboratory exercises allow students to apply knowledge on a real system, by programming a microcontroller to control a UAV.
+  </p>
+  <p style="text-align:right">
+  	- me.berkeley.edu
+  </p>
+</div>
 
-Open a terminal window or a command line and ```cd``` to that location.
+## Parametrizing the System
 
-Then enter: ```bundle exec jekyll serve```. You can now access your new Jekyll site from [http://127.0.0.1:4000/](http://127.0.0.1:4000/). Have fun exploring your new site!
+## State Estimation
 
-## Features
-### Auto-Generating Sitemap
-The sitemap is auto generated! Just simply change the front matter of each site. It looks like so...
-```
-sitemap:
-    priority: 0.7
-    lastmod: 2017-11-02
-    changefreq: weekly
-```
-### Formspring integration
-The contact form below each page on the footer actually collects information! Just change your email address in the ```_config.yml``` file!
+## Controller
+
+## Flight Competition
+
+We achieved 105 seconds of flight before crashing into the net, withstanding the fan for 15 seconds.
