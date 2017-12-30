@@ -11,7 +11,7 @@ sitemap:
 
 <span class="image left"><img src="{{ "/images/drums.jpg" | absolute_url }}" alt="" /></span>
 
-Making steady content and conveying it well takes a great deal of research and, hence, time and exertion. Building a profound established comprehension of your target customer needs is critical as your principle objective ought to be to fulfill their requirements as awesome content. You should need to enhance their lives. Having significant content like this may not be simple by any methods. Be that as it may, in any case, it's a fundamental apparatus in the event that you expect to grow a fruitful and supportable business in the present web focused world.
+I'm funny, smart, smooth with the ladies, artisitic, inuitive, super rythmic, passionate about many areas of subject, and ahhhh, great character and morals, hardworking, disciplined, and all around great guy.
 
 <span class="image right"><img src="{{ "/images/uav_exec.jpg" | absolute_url }}" alt="" /></span>
 

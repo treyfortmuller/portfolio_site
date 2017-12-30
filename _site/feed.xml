@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-28T05:44:43-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-30T03:53:47-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor Mark Mueller recruited my lab team to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
 
@@ -114,7 +114,16 @@
 &lt;p&gt;Modification to the PX4 firmware running on the Crazyflie is necessary in order for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hardcoded scaling factor to read the correct battery voltage from our new VBAT sensing resisor values.&lt;/p&gt;
 
 &lt;p&gt;This project was certainly a design challenge and introduced me to an entirely different addative manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future.&lt;/p&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/waterproof/waterproof_main.jpg" /></entry><entry><title type="html">Crazyflie Quadcopter Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Quadcopter Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;me136-introduction-to-control-of-unmanned-aerial-vehicles&quot;&gt;ME136: Introduction to Control of Unmanned Aerial Vehicles&lt;/h2&gt;
-&lt;p&gt;My lab group’s controller is available on &lt;a href=&quot;https://github.com/treyfortmuller/ME136&quot;&gt;my GitHub&lt;/a&gt;, along with the full PX4 firmware, ready to be flashed to a Crazyflie.&lt;/p&gt;
+
+&lt;p&gt;I took this course in the Fall of 2017, my junior year. When I took it, it was a brand new class, the first time it had been offered at Berkeley, as well as the first ever class taught by a new faculty member Mark Mueller. I recognized Professor Mueller from ETH Zurich’s Institute for Dynamic Systems and Control, the birthplace of the PX4 project and cool videos like &lt;a href=&quot;https://www.youtube.com/watch?v=3CR5y8qZf0Y&quot;&gt;this&lt;/a&gt;. I hadn’t taken any of the prerequisites for the class but decided to go for it anyway. A whole bunch of UAVs@Berkeley personnel would be accompanying me and figured I could make up for a lack of preprequisite classes with obsessive love for working on drones.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/cf-flight-controls/cf2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The class started with a seven week long deep dive into the dynamics of multirotors in the fully abstract tensor formalism. We started with aerodynamical models for propellors and ended with a mixer matrix, the basis for our attitude controller. While the lecture of the course focused on theory and analysis in dynamics, estimation, and control, the lab section focused on implementing a hover controller from scratch. The class was split into groups of 3 or 4 and each group was given a &lt;a href=&quot;https://www.bitcraze.io/crazyflie-2/&quot;&gt;Crazyflie&lt;/a&gt; quadcopter to implement their controller on.&lt;/p&gt;
+
+&lt;p&gt;The Crazyflie is a tiny brushed quadcopter powered by a 1S LiPo. It has an STM32F4 microcontroller running &lt;a href=&quot;http://www.nuttx.org/&quot;&gt;NuttX&lt;/a&gt;. The PCB that the microcontroller sits on doubles as a rigid frame for the quadcopter. The hardware (mostly the motors) leave something to be desired, but the firmware interface was really easy to work with. The class was given an Ubuntu virtual machine’s disk image to run in VirtualBox which had all the required dependencies installed. In the virtual machine, we compiled and flashed our custom firmware (all written in C++) to the board using the Ecplise IDE.&lt;/p&gt;
+
+&lt;p&gt;The final lab of the semester was a flight competition. Each group was pitted against eachother to see who built the best performing controller. Long story short, we won, but more on that later. My lab group’s controller is available on &lt;a href=&quot;https://github.com/treyfortmuller/ME136&quot;&gt;my GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;course-description&quot;&gt;Course Description&lt;/h3&gt;
 &lt;div class=&quot;box&quot;&gt;
@@ -126,15 +135,121 @@
   &lt;/p&gt;
 &lt;/div&gt;
 
+&lt;h2 id=&quot;full-system-block-diagram&quot;&gt;Full System Block Diagram&lt;/h2&gt;
+
+&lt;p&gt;Here is the entire quadcopter controller represented in a block diagram as provided by our professor. Red ellipses represent hardware, shaded triangles represent simple summations and mulitplications, and rectangles represent system parametrizations and dynamics, or estimation and control algorithms we built up in lab sections.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/cf-flight-controls/block_diagram.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;parametrizing-the-system&quot;&gt;Parametrizing the System&lt;/h2&gt;
+
+&lt;p&gt;We started the lab section of the class by finding some scaling factors for the physical system empiracally. Ultimately we needed the transformation from the PWM command we could dictate as an output of our control, to the thrust produced the motor. The thrust produced at each motor creates a moment about the vehicle’s center of mass and contributes to the total normalized thurst. We find this transformation in two steps:&lt;/p&gt;
+
+&lt;h4 id=&quot;motor-pwm-to-propellor-angular-velocity&quot;&gt;Motor PWM to Propellor Angular Velocity&lt;/h4&gt;
+
+&lt;p&gt;We needed to know how PWM commands from the flight controller to the motors affect the angular velocity of the propellors. We took a photo laser &lt;a href=&quot;https://www.amazon.com/Digital-Photo-Laser-Tachometer-Contact/dp/B001N4QY66/ref=sr_1_1_sspa?ie=UTF8&amp;amp;qid=1514604195&amp;amp;sr=8-1-spons&amp;amp;keywords=tachometer&amp;amp;psc=1&quot;&gt;tachometer&lt;/a&gt; and measured the propellor RPMs at various PWM commands and derived a linear relationsip.&lt;/p&gt;
+
+&lt;h4 id=&quot;propellor-angular-velocity-to-thrust&quot;&gt;Propellor Angular Velocity to Thrust&lt;/h4&gt;
+
+&lt;p&gt;The class didn’t have any thrust stands available, so the GSIs got creative and gave each team a lever made from laser cut acrylic that the Crazyflie could be fastened to with M2 screws. The lever was fixed to the edge of a table with tape. We commanded various propellor angular velocities (using our new PWM to angular velocity relationship) and logged the accelerometer data to find the average angle that the quadcopter arrived at. Then we solved the statics problem embodied by the free body diagram to determine the thrust force that each propellor was producing. We derived a quadratic relationship here.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/cf-flight-controls/cf_lever.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;state-estimation&quot;&gt;State Estimation&lt;/h2&gt;
 
+&lt;h4 id=&quot;attitude-estimator&quot;&gt;Attitude Estimator&lt;/h4&gt;
+
+&lt;p&gt;The attitude estimator obtains the orientation of the quadcopter (pitch, roll, yaw) in the body frame of the vehicle. It uses the sensor data from the IMU (a rate gyroscope and an accelerometer). We parametrized the rotations (a frighteningly rich topic that I was not aware of before taking this class) of the vehicle using Euler angles. I recognize that this choice makes us look like we’ve learned nothing from &lt;a href=&quot;https://en.wikipedia.org/wiki/Gimbal_lock#On_Apollo_11&quot;&gt;Apollo 11&lt;/a&gt;. We implemented rotations using Euler angles because they are intuitive and easy to visualize, but they do suffer from singularities (gimbal lock, wrist flip, etc. depending on who you talk to), and some computational slowness. This was acceptable since we were looking to contol about a hover, if our quadcopter passed through 90 degrees in pitch, something bad happened. Quaternions of rotation (not the hypercomplex ‘Quaternions’), are the best choice for rotation parametrization because they do not suffer from singularities are not computationally intensive. Quaternion parametrization was introduced at the end of the class, and redo-ing our entire attitude estimator using quaternions in the week before the class competition seemed unwise.&lt;/p&gt;
+
+&lt;p&gt;Here’s the estimator as it was originally designed in lab, notice we use a trade-off factor &lt;code&gt;p = 0.01&lt;/code&gt; so we heavily favor the gyroscope, but supplement it with the accelerometer data to prevent drift.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//***Gyro + accelerometer attitude estimator***
+estRoll = (1.0f-p)*(estRoll + dt*rateGyro_corr.x) + p*(in.imuMeasurement.accelerometer.y / gravity);
+estPitch = (1.0f-p)*(estPitch + dt*rateGyro_corr.y) + p*(in.imuMeasurement.accelerometer.x / -gravity);
+estYaw = estYaw + dt*rateGyro_corr.z;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In preparation for the final competition we decided to eliminate the small angle approximations, sacrificing ease of computation for a more accurate estimator. It improved performance and stability in some scenarios.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// ***Gyro + accelerometer attitude estimator + no small angle aprroximations***
+AngVel.x = rateGyro_corr.x + rateGyro_corr.y*(sinf(estRoll)*tanf(estPitch)) + rateGyro_corr.z*(cosf(estRoll)*tanf(estPitch));
+AngVel.y = rateGyro_corr.y*cosf(estRoll) - rateGyro_corr.z*sinf(estRoll);
+AngVel.z = rateGyro_corr.y*((sinf(estRoll))/(cosf(estPitch))) + rateGyro_corr.z*((cosf(estRoll))/(cosf(estPitch)));
+
+// beware accelerometer and gyro measurements on different axis can reflect the same motion
+estRoll = (1.0f-p)*(estRoll + dt*AngVel.x) + p*(asinf( in.imuMeasurement.accelerometer.y / (gravity*cosf(estPitch))));
+estPitch = (1.0f-p)*(estPitch + dt*AngVel.y) + p*(asinf( in.imuMeasurement.accelerometer.x / -gravity));
+estYaw = estYaw + dt*AngVel.z;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;height-estimator&quot;&gt;Height Estimator&lt;/h4&gt;
+
+&lt;p&gt;The height estimator relies only on a range sensor below the quadcopter. This is a noisey sensor so we’ve implemented some checks to throw out bad data. It’s also a slow sensor so it doesn’t update at every call to our main loop. The one subtlety in working with this sensor is that a change in pitch or roll angle will cause the detected distance to the ground to change. We account for this in &lt;code&gt;hMeas&lt;/code&gt;, and mix this value with &lt;code&gt;estHieght&lt;/code&gt; which updates with an estimated velocity based on the height deltas between sucessive calls to the main loop.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// height estimator:
+// prediction step:
+estHeight = estHeight + estVelocity_3 * dt;
+
+// correction step, directly after the prediction step:
+float const mixHeight = 0.3f;
+if (in.heightSensor.updated) {
+
+	// check that the measurement is reasonable
+	if (in.heightSensor.value &amp;lt; 2.0f) {
+		float hMeas = in.heightSensor.value * cosf(estRoll) * cosf(estPitch);
+		estHeight = (1 - mixHeight) * estHeight + mixHeight * hMeas;
+
+		float v3Meas = (hMeas - lastHeightMeas_meas) / (in.currentTime - lastHeightMeas_time);
+
+		estVelocity_3 = (1- mixHeight) * estVelocity_3 + mixHeight * v3Meas;
+		// store this measurement for the next velocity update
+		lastHeightMeas_meas = hMeas;
+		lastHeightMeas_time = in.currentTime;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;horizontal-estimator&quot;&gt;Horizontal Estimator&lt;/h4&gt;
+
+&lt;p&gt;The horizontal estimator is very similar to the height estimator in that we have to account for pitch and roll changes past some small angle. We augment the optical flow sensor outputs &lt;code&gt;sigma_1, sigma_2&lt;/code&gt; with rate gyro data in pitch and roll. Note here that optical flow only gives us information on horizontal velocity (hence “flow”) so we’ve got to integrate to get an estimated position.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;float const mixHorizVel = 0.5f;
+if (in.opticalFlowSensor.updated) {
+	float sigma_1 = -in.opticalFlowSensor.value_x;
+	float sigma_2 = -in.opticalFlowSensor.value_y;
+
+	float div = (cosf(estRoll) * cosf(estPitch));
+
+	if (div &amp;gt; 0.5f) {
+		float deltaPredict = estHeight / div;
+
+		float v1Meas = (-sigma_1 + in.imuMeasurement.rateGyro.y) * deltaPredict;
+		float v2Meas = (-sigma_2 - in.imuMeasurement.rateGyro.x) * deltaPredict;
+
+		estVelocity_1 = (1.0f - mixHorizVel) * estVelocity_1 + mixHorizVel * v1Meas;
+		estVelocity_2 = (1.0f - mixHorizVel) * estVelocity_2 + mixHorizVel * v2Meas;
+	}
+}
+
+estPos_1 = estPos_1 + (dt * estVelocity_1);
+estPos_2 = estPos_2 + (dt * estVelocity_2);
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&quot;controller&quot;&gt;Controller&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/cf-flight-controls/cf1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;I struggled with how to talk about the controller on my website in just a few paragraphs. I feel like I’d have to write a few thousand words to offer any more insight than the source code alone can provide. If staring at the source code interests you, then by all means &lt;a href=&quot;https://github.com/treyfortmuller/ME136/blob/master/UserCode.cpp&quot;&gt;check it out&lt;/a&gt;. Basically, the controller takes our state estimation to be truth and controls around a flat, zero-velocity state for the quadcopter, i.e. hovering at about half a meter off the ground. The approach is cascaded (so rate control is more aggresive than angle controls for example) and time constants are chosen so that nested controllers at each stage can be considered instantaneous.&lt;/p&gt;
 
 &lt;h2 id=&quot;flight-competition&quot;&gt;Flight Competition&lt;/h2&gt;
 
-&lt;p&gt;We achieved 105 seconds of flight before crashing into the net, withstanding the fan for 15 seconds.&lt;/p&gt;</content><summary type="html">A cascased controller implementation for autonomous loitering with a Crazyflie quadcopter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/cf-flight-controls/cf_main.jpg" /></entry><entry><title type="html">Photogrammetry 3D Scanner</title><link href="/blog/3d-scanner/" rel="alternate" type="text/html" title="Photogrammetry 3D Scanner" /><published>2017-10-08T00:00:00-07:00</published><updated>2017-10-08T00:00:00-07:00</updated><id>/blog/3d-scanner</id><content type="html" xml:base="/blog/3d-scanner/">&lt;p&gt;I built this project with my friends Suneel and Nathan for UC Berkeley’s hackathon: &lt;a href=&quot;https://calhacks.io/&quot;&gt;Cal Hacks&lt;/a&gt;, one of the largest hackathons in the world. The event featured 1,700 hackers from 100 schools and 5 countries building projects for 36 striaght hours. It was an increidble experience, and a very professionally run event. After we submitted and presented our work, in a Redbull driven haze, we found out that we were one of six teams to win the Cal Hacks fellowship award.&lt;/p&gt;
+&lt;p&gt;The last lab section of the course was a hovering contest among the 20 or so lab groups. A net was set up in the middle of the room, enclosing a 6ft by 8ft rectangular prism, about 8ft high. You could place your quadcopter on the ground anywhere inside the netting but then you had to pass your XBox controller off to a GSI who would press the red button to start your main loop and begin your autonomous hover (hopefully). Each team was given 8 minutes to run as many flights as possible, the longest flight wins! Our actual lab grade depended on how we ranked against the other teams so the stakes were high. There was one catch: after 90 seconds of flight, one of the GSIs would turn on a fan inside the netting in an attempt to destabilize the controller or blow the quad into a net.&lt;/p&gt;
+
+&lt;p&gt;My team (David, Joey, and I) was the only team to reach 90 seconds of flight and have the fan turn on. On our longest run we achieved 105 seconds of flight before crashing into the net, withstanding the fan for 15 seconds. We were excited, I wish I had footage of the event but we had pulled an all-nighter before the competition tuning and perfecting the controller and it slipped my barely functional mind at the time. There were a number of modifications we made to the stock controller which allowed us to achieve this performance. We eliminated small angle approximations from our estimators and controllers, we implemented position control as well as an &lt;a href=&quot;https://en.wikipedia.org/wiki/Absement&quot;&gt;absition&lt;/a&gt; feedforward (the integral of position is called “absition” or “absement,” it’s a thing). We added height setpoint scheduling for a smooth takeoff as well as hardcoded gain scheduling on the attitude controller. These changes, along with fine tuning our time constants through many hours of flight tests, allowed us to stay in the air for longer than we expected. &lt;a href=&quot;https://kittyhawk.aero/&quot;&gt;Kitty Hawk&lt;/a&gt; ended up sponsoring the competition with a DJI Spark drone for each member of the winning team. Here we are on zero hours of sleep, but very gratified. Left to right Professor Mueller, David, Joey, and yours truly.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/cf-flight-controls/cf3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;ME136 was a challenge but definitely cemented my interest in controls. Of all the all-nighters I’ve pulled, the one before this class competition was one of the most worth it.&lt;/p&gt;</content><summary type="html">A cascased controller implementation for autonomous loitering with a Crazyflie quadcopter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/cf-flight-controls/cf_main.jpg" /></entry><entry><title type="html">Photogrammetry 3D Scanner</title><link href="/blog/3d-scanner/" rel="alternate" type="text/html" title="Photogrammetry 3D Scanner" /><published>2017-10-08T00:00:00-07:00</published><updated>2017-10-08T00:00:00-07:00</updated><id>/blog/3d-scanner</id><content type="html" xml:base="/blog/3d-scanner/">&lt;p&gt;I built this project with my friends Suneel and Nathan for UC Berkeley’s hackathon: &lt;a href=&quot;https://calhacks.io/&quot;&gt;Cal Hacks&lt;/a&gt;, one of the largest hackathons in the world. The event featured 1,700 hackers from 100 schools and 5 countries building projects for 36 striaght hours. It was an increidble experience, and a very professionally run event. After we submitted and presented our work, in a Redbull driven haze, we found out that we were one of six teams to win the Cal Hacks fellowship award.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-cal-hacks-fellowship&quot;&gt;The Cal Hacks Fellowship&lt;/h3&gt;
 &lt;div class=&quot;box&quot;&gt;
@@ -190,26 +305,17 @@
 			&lt;li&gt;CUDA&lt;/li&gt;
 		&lt;/ul&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</content><summary type="html">A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/3d-scanner/greg9.JPG" /></entry><entry><title type="html">Custom Electric Longboard</title><link href="/blog/e-board/" rel="alternate" type="text/html" title="Custom Electric Longboard" /><published>2017-07-15T00:00:00-07:00</published><updated>2017-07-15T00:00:00-07:00</updated><id>/blog/e-board</id><content type="html" xml:base="/blog/e-board/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
-&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+&lt;/div&gt;</content><summary type="html">A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/3d-scanner/greg9.JPG" /></entry><entry><title type="html">Custom Electric Longboard</title><link href="/blog/e-board/" rel="alternate" type="text/html" title="Custom Electric Longboard" /><published>2017-07-15T00:00:00-07:00</published><updated>2017-07-15T00:00:00-07:00</updated><id>/blog/e-board</id><content type="html" xml:base="/blog/e-board/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
-&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+&lt;h2 id=&quot;drivetrain-specification&quot;&gt;Drivetrain Specification&lt;/h2&gt;
 
-&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
 
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
-&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
-&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
-    priority: 0.7
-    lastmod: 2017-11-02
-    changefreq: weekly
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">An electric longboard with a handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;h3 id=&quot;the-board&quot;&gt;The Board&lt;/h3&gt;
+
+&lt;h3 id=&quot;the-handheld-remote&quot;&gt;The Handheld Remote&lt;/h3&gt;</content><summary type="html">IN PROGRESS: An electric longboard with a handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/e-board/board_main.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
 &lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
 
 &lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
@@ -350,4 +456,4 @@
 &lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
 
 &lt;h3 id=&quot;formspree-integration&quot;&gt;Formspree integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">My project is super awesome and special, hire me!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry></feed>
+&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">I build acrobatic FPV enabled quadcopters for racing and freestyle flight.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry></feed>
