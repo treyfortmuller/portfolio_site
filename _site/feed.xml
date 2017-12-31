@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-30T03:53:47-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2017-12-30T22:32:46-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor Mark Mueller recruited my lab team to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
 
@@ -307,34 +307,133 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 	&lt;/div&gt;
 &lt;/div&gt;</content><summary type="html">A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/3d-scanner/greg9.JPG" /></entry><entry><title type="html">Custom Electric Longboard</title><link href="/blog/e-board/" rel="alternate" type="text/html" title="Custom Electric Longboard" /><published>2017-07-15T00:00:00-07:00</published><updated>2017-07-15T00:00:00-07:00</updated><id>/blog/e-board</id><content type="html" xml:base="/blog/e-board/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
+&lt;p&gt;I go to school in Berkeley, CA. The whole place is built on a hill, so it’s hard to get from point A to point B if point B is East of point A at all. Electric vehicles are, of course, the future of personal transportation, but I’m on a budget so a Tesla isn’t an option. In fact even a $1,400 Boosted Board is a little pricey. I decided to build my own electric longboard to get around the Berkeley hills, I wanted all the torque I could muster whilst keeping the cost down. I’m looking to be finished with this project before the Spring 2018 semester starts, so I can get around the hills of Berkeley without my calves burning.&lt;/p&gt;
+
+&lt;p&gt;I started this project at the end of my Sophmore year, but finally have the time to finish it up now over the holidays during my Junior year. The project has been on my to do list for too many months and I’m looking forward to its completion.&lt;/p&gt;
+
 &lt;h2 id=&quot;drivetrain-specification&quot;&gt;Drivetrain Specification&lt;/h2&gt;
 
+&lt;p&gt;I knew I wanted to use two 4S LiPos in series to run my powertrain on 8S power because I can still use 4S batteries for other projects (flying drones, field charging other LiPos, etc.). With 8S voltage decided, what KV motor should I buy and what gear reduction should take place between the motor and the wheels?&lt;/p&gt;
+
+&lt;p&gt;Beyond the hills being hard to conquer, the pavement in Berkeley is trecherous. Big wheels makes clearing gaps and cracks in the asphalt a little easier and the largest, easily found longboard wheels are 90mm in diameter. I do value my physical safety, so I decided on a top speed of 20mph. Upon doing some research, I found gear reductions on electric longboards to be anywhere from 1.8 to 2.5, I went with a 3:1 gear reduction to optimize for torque rather than top speed. We do some math to find the required motor KV.&lt;/p&gt;
+
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The best brushless outrunner motor candidate I could find was &lt;a href=&quot;https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2&quot;&gt;this&lt;/a&gt; 192KV Turnigy off HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide so it should fit nicely under the deck.&lt;/p&gt;
 
 &lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
 
 &lt;h3 id=&quot;the-board&quot;&gt;The Board&lt;/h3&gt;
 
-&lt;h3 id=&quot;the-handheld-remote&quot;&gt;The Handheld Remote&lt;/h3&gt;</content><summary type="html">IN PROGRESS: An electric longboard with a handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/e-board/board_main.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
-&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/render1.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
+&lt;p&gt;I designed the deck itself from scratch. This was an awesome excuse to get my hands dirty with a piece of fabrication equipment I had not gotten to interact with so far, the ShopBot CNC Router. This is an 8 foot by 6 foot behemoth of a CNC machine available to me in Jacobs Hall on campus at UC Berkeley. I modeled the splines of the deck after other off the shelf designs I had seen for longboards. I purchased an 8 foot by 6 foot piece of 3/4inch plywood for the project (it cost me $16) and was able to cut of decks out of it, $3.20 for a longboard deck is a hilariously low price.&lt;/p&gt;
 
-&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
+&lt;p&gt;My design features a divet in the underside of the deck for low profile mounting of electrionics, inset mounting for the trucks, and a filleted underside edge. It took 8 hours to cut all 5 decks using 4 tool changes on the ShopBot. This was also my first experiencing generating gcode for the ShopBot in Autodesk Fusion 360’s CAM workspace. The toolpath simulations and automatic collision/interfence warnings were super useful, and definitely prevented me from destroying a CNC machine worth more than my car. Here’s the tool paths outlined in Fusion:&lt;/p&gt;
 
-&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/board_fab1.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
-&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
-&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
-    priority: 0.7
-    lastmod: 2017-11-02
-    changefreq: weekly
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/board_fab2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/shopbot.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/e-board/cover.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;I designed and printed some covers which wrap over the divet in four pieces to protect the electronics bay from moisture or gravel. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. I’m brainstorming now how I might fabricate a mechanism to more easily remove and reattach them when I need to access the bay to charge batteries. The final products will be printed out of Nylon for durability.&lt;/p&gt;
+
+&lt;p&gt;Longboards are typically made from bamboo, maple, birch, or composite materials. I made mine from a low grade plywood without paying much attention to the load carrying capacity of my design. Upon hopping on for the first time, I felt an uneasy sinking at the center of the board under my weight rather than the springy feel of manufactured boards. I compensated with an aluminum beam spanning the electronics bay and it felt much safer.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/board1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;I sourced a few off the shelf parts from &lt;a href=&quot;https://diyelectricskateboard.com/&quot;&gt;DIY Electric Skateboard&lt;/a&gt; for gears, pulleys, and a motor mount. This simplified the build quite a bit but I still had to modify my rear trucks meticulously with a file to mount the motor properly. Using the cast aluminum parts for the critical drivetrain components probably boosts my safety rating a bit.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motors.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-handheld-remote&quot;&gt;The Handheld Remote&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/transmit1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Mechanical design for the handheld remote is underway now. I’ve got to fit an Arduino Nano, a 9V battery, an nRF24 transiever module, a dead man’s switch, and potiometer for throttle control inside an ergonomic 3D printed case. I’ve got the electronics finished and code ready to be tested.&lt;/p&gt;</content><summary type="html">IN PROGRESS: An electric longboard with a handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/e-board/board_main.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The Midair Hotswap is a project I did within the UAVs@Berkeley student organization campus at Cal which I now lead as President. I began this project at the start of my sophmore year as a Team Lead. We started with about 12 people and over the course of the 3 semesters we worked on this project, we ended up with a team of 5 dedicated undergraduate engineering students who stuck it out til the bitter end. This project was incredibly rewarding to work on. Not only did my technical knowledge, prototyping intuition, and design methodology strengthen over the course of the 3 semesters, my understanding of how to work in a team grew enormously. From simple face to face communication on technical topics, to delegating tasks that play to the strengths of each team member, to maintaining a unified vision, and even keeping my team motivated and inspired to pursue this project, I couldn’t have asked for a better platform to grow as a future professional engineer. Enough philosiphising… what the hell is a “hotswap” anyway?&lt;/p&gt;
+
+&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;In response to growing popularity in UAVs, drone manufacturers and developers are increasingly putting efforts into improving the performance and capabilities of their products. One of the most important metrics for multirotor performance is flight time, how long the vehicle can stay in the air before its battery dies. The longest flight time among consumer UAVs only reach up to half an hour. Researchers across the globe are seeking to improve battery chemistries and UAV flight efficiency. The Midair Hotswap project approaches this problem from another angle, replacing the battery of a drone with a new one, without touching the ground.&lt;/p&gt;
+
+&lt;h2 id=&quot;project-description&quot;&gt;Project Description&lt;/h2&gt;
+
+&lt;p&gt;The Midair Hotswap consists of two UAVs. One larger hexacopter and a smaller quadcopter. The small quadcopter lands on top of the larger hexacopter while both are hovering the air. Mechatronics onboard the landing platform which rests on top of the hexacopter then swap out the battery of the quadcopter. The quadcopter can then take off again with a fully charged battery, having never landed on the ground and had its battery manually replaced.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/hotswap/full.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;subsystems&quot;&gt;Subsystems&lt;/h3&gt;
+
+&lt;div class=&quot;table-wrapper&quot;&gt;
+	&lt;table&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td nowrap=&quot;&quot;&gt;&lt;b&gt;Quadcopter&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;The target of our battery swap. Runs the Betaflight firmware on a Naze32 flight controller. 3D printed cones secure to the motor mounts and the battery slides into the underside of drone.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td nowrap=&quot;&quot;&gt;&lt;b&gt;The Hexacopter&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;The large payload carrier which hovers our landing platform and swapping system. It runs iNavigation firmware on an SPF3 Mini flight controller and can autonomously loiter.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td nowrap=&quot;&quot;&gt;&lt;b&gt;Battery case and interface&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;A hobbyist LiPo battery fits inside a case which exposes its power leads on flat copper plates. This case slides into the quadcopter interface which powers the drone from the battery via spring loaded contacts. The battery is locked inside the interface during quadcopter flight by an interference joint.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td nowrap=&quot;&quot;&gt;&lt;b&gt;Landing platform&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;The laser cut wooden platform which rests on top of the hexacopter and the “megaphone” cones which guide the quadcopter into the correct position every time it lands.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td nowrap=&quot;&quot;&gt;&lt;b&gt;Linear slide rig&lt;/b&gt;&lt;/td&gt;
+				&lt;td&gt;Consisting of chrome rods, linear bearings, a stepper motor and battery carriage, this automated system carries out the battery swap. An Arduino controls the rig and endstop switches placed in the 3D printed mounts for the chrome rods allow us to calibrate the motion of the carriage before every swap.&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
 &lt;/div&gt;
-&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/drone-tx/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/drone-tx</id><content type="html" xml:base="/blog/drone-tx/">&lt;h2 id=&quot;design-innovation-22&quot;&gt;Design Innovation 22&lt;/h2&gt;
+
+&lt;h2 id=&quot;challenges&quot;&gt;Challenges&lt;/h2&gt;
+
+&lt;h4 id=&quot;battery-case-and-latch-mechanism&quot;&gt;Battery case and latch mechanism&lt;/h4&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/hotswap/batt.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The main challenge here was finding the right balance between simplicity (minimal motors) and the security of the locking mechanism during flight. We solved this with an interference joint on our battery case to lock it perfectly in place.&lt;/p&gt;
+
+&lt;h4 id=&quot;swapping-mechanism&quot;&gt;Swapping mechanism&lt;/h4&gt;
+&lt;p&gt;We use a linear sliding rail to push out the old battery case and simultaneously slide in a new one. This requires only one stepper motor and 2 limit switches for precision alignment. The automation of the swapping is handled by an arduino uno. One current limitation of the approach is not being able to perform more than one battery hotswap for a single flight of the hex. We considered many battery magazine approaches as well, but we decided this functionality is not necessary for the sake of simplicity.&lt;/p&gt;
+
+&lt;h4 id=&quot;landing-guidance-system&quot;&gt;Landing guidance system&lt;/h4&gt;
+&lt;p&gt;We initially designed an autonomous guidance system using OpenCV SURF Feature detection, but then transitioned to also support hardware guidance to allow for manual landing. The “megaphone” design allows for ease of landing.&lt;/p&gt;
+
+&lt;h4 id=&quot;electronics&quot;&gt;Electronics&lt;/h4&gt;
+&lt;p&gt;In order to facilitate a reliable battery connection, we used copper plates on the battery case as an interface to the battery itself. The battery interface on the quadcopter has 4 10-prong spring loaded contact pins for dynamically adjusting to the location and height of each copper plate on the battery case. These are then directly wired to the quad.&lt;/p&gt;
+
+&lt;h2 id=&quot;design-approach&quot;&gt;Design Approach&lt;/h2&gt;
+&lt;p&gt;The system was designed as a whole with a bottom up strategy in which each independent system (i.e. hex, quad, linear slider) was designed independently while maintaining an overall grasp on the the final goal. Components that largely interference with two or more subsystems were designed in the full assembly. The main goal of the project was a successful battery swap, which is mostly a mechatronics design problem. We found design inspiration for the critical mechanisms from plastic buckles to hair clips to leaf springs. Throughout the development process, constant attention was given to designing parts and systems that could utilize rapid prototyping techniques and facilities on campus. All CAD was done through Autodesk Fusion 360 using multiple assemblies to produce complex systems in order to ideate and develop unique solutions to the problems at hand. All parts that were fabricated with off the shelf parts were transferred by hand into Fusion to streamline the design process.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/hotswap/linear_slider.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;prototyping&quot;&gt;Prototyping&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/hotswap/cases.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Iterating on each design was done through rapid prototyping techniques including 3D printing, laser cutting, and waterjet cutting. 3D printing was used throughout the build for custom parts with a more complex geometry. The vast majority of prints were completed on desktop FDM printers including Type As and Printrbots. The battery cases and interference joints required higher dimensional accuracy, those were printed from ABS on a Stratasys Fortus printer. Prototyping was the most tedious process involved in the project. 3D printing can be difficult to use, has inherent flaws, and publically available desktop FDM machines on campus fail frequently. In general these machines were a huge asset to our project and the progress of our mechanical design.&lt;/p&gt;
+
+&lt;h2 id=&quot;project-poster&quot;&gt;Project Poster&lt;/h2&gt;
+&lt;p&gt;To finish off the project, the team and I wrote up this poster to hang in the UAV lab on campus, we’ll display the project to hopefully inspire future generations of UAVs@Berkeley students to try something ambitious.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/hotswap/poster.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-team&quot;&gt;The Team&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/hotswap/team.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;UAVs@Berkeley’s Fall 2017 Milestone 3 event, from left to right: Suneel, Connor, Dipo, Darius, and yours truly.&lt;/p&gt;</content><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/hotswap/main1.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/drone-tx/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/drone-tx</id><content type="html" xml:base="/blog/drone-tx/">&lt;h2 id=&quot;design-innovation-22&quot;&gt;Design Innovation 22&lt;/h2&gt;
 &lt;p&gt;I took Design Innovation 22 in the Fall of my sophmore year. I thoroughly enjoyed it and gained a lot of exposure to modern CNC fabricatino methodologies. Design and analysis is much more rewarding when you get to actually build the thing you designed and analyzed. For my final project in the class, my lab partner Kireet and I built a custom quadcopter frame and and our own RC transmitter to control it. The STM F3-based flight controller onboard the quadcopter is running an opensource firmware called &lt;a href=&quot;https://github.com/betaflight/betaflight&quot;&gt;Betaflight&lt;/a&gt;. The reciever and transmitter are implemented with Arduino microcontrollers and 2.4Ghz RF modules.&lt;/p&gt;
 
 &lt;h3 id=&quot;course-description&quot;&gt;Course Description&lt;/h3&gt;
@@ -425,26 +524,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 	&lt;/table&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/drone-tx/tx_main.jpg" /></entry><entry><title type="html">Robot Learning Lab</title><link href="/blog/rll/" rel="alternate" type="text/html" title="Robot Learning Lab" /><published>2016-09-01T00:00:00-07:00</published><updated>2016-09-01T00:00:00-07:00</updated><id>/blog/rll</id><content type="html" xml:base="/blog/rll/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
-&lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
-
-&lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
-
-&lt;p&gt;Open a terminal window or a command line and &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt; to that location.&lt;/p&gt;
-
-&lt;p&gt;Then enter: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;. You can now access your new Jekyll site from &lt;a href=&quot;http://127.0.0.1:4000/&quot;&gt;http://127.0.0.1:4000/&lt;/a&gt;. Have fun exploring your new site!&lt;/p&gt;
-
-&lt;h2 id=&quot;features&quot;&gt;Features&lt;/h2&gt;
-&lt;h3 id=&quot;auto-generating-sitemap&quot;&gt;Auto-Generating Sitemap&lt;/h3&gt;
-&lt;p&gt;The sitemap is auto generated! Just simply change the front matter of each site. It looks like so…&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sitemap:
-    priority: 0.7
-    lastmod: 2017-11-02
-    changefreq: weekly
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h3 id=&quot;formspring-integration&quot;&gt;Formspring integration&lt;/h3&gt;
-&lt;p&gt;The contact form below each page on the footer actually collects information! Just change your email address in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file!&lt;/p&gt;</content><summary type="html">Part of my responsibilities as an undergraduate research assisstant in Pieter Abbeel's RLL at UC Berkeley.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/pic02.jpg" /></entry><entry><title type="html">FPV Racing Quadcopters</title><link href="/blog/fpv/" rel="alternate" type="text/html" title="FPV Racing Quadcopters" /><published>2015-08-01T00:00:00-07:00</published><updated>2015-08-01T00:00:00-07:00</updated><id>/blog/fpv</id><content type="html" xml:base="/blog/fpv/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/drone-tx/tx_main.jpg" /></entry><entry><title type="html">FPV Racing Quadcopters</title><link href="/blog/fpv/" rel="alternate" type="text/html" title="FPV Racing Quadcopters" /><published>2015-08-01T00:00:00-07:00</published><updated>2015-08-01T00:00:00-07:00</updated><id>/blog/fpv</id><content type="html" xml:base="/blog/fpv/">&lt;h2 id=&quot;how-to-use-this-theme&quot;&gt;How to Use This Theme&lt;/h2&gt;
 &lt;p&gt;Just go ahead and read up on &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;how to install Jekyll&lt;/a&gt;. It’s not too hard I promise!&lt;/p&gt;
 
 &lt;p&gt;Download this repository &lt;a href=&quot;https://github.com/iwiedenm/jekyll-theme-massively&quot;&gt;here&lt;/a&gt; and save it to any folder you want.&lt;/p&gt;
