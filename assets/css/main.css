@@ -3696,7 +3696,7 @@
 			}
 
 				#main > .posts > article > :last-child {
-					margin-bottom: 0;
+					margin-bottom: 0;	
 				}
 
 				#main > .posts > article:nth-child(2n - 1) {

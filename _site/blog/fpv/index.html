@@ -64,21 +64,89 @@
       				<h1>FPV Racing Quadcopters</h1>
       				<p>I build acrobatic FPV enabled quadcopters for racing and freestyle flight.</p>
       			</header>
-      			<div class="image main"><img src="/images/pic02.jpg" alt=""></div>
+      			<div class="image main"><img src="/images/fpv/fpv1.jpg" alt=""></div>
       			<p></p>
-<h2 id="how-to-use-this-theme">How to Use This Theme</h2>
-<p>Just go ahead and read up on <a href="https://jekyllrb.com/">how to install Jekyll</a>. It’s not too hard I promise!</p>
+<h2 id="introduction">Introduction</h2>
 
-<p>Download this repository <a href="https://github.com/iwiedenm/jekyll-theme-massively">here</a> and save it to any folder you want.</p>
+<p>During the summer of 2015, the summer before my freshmen year at Cal, I decided I wanted to take on a side project. I saw a buddy of mine had built a quadcopter from parts from photos on social media. Upon doing some research I found a massive online community of hobbyists and professionals working on opensource hardware and software projects around homebuilt drones. Thousands of hours worth of videos and reading material is available on the internet and it allowed me to muster up enough information to buy parts to put together my first quadcopter running the <a href="https://github.com/cleanflight/cleanflight">Cleanflight</a> flight control firmware on an STM F1 based flight controller.</p>
 
-<p>Open a terminal window or a command line and <code class="highlighter-rouge">cd</code> to that location.</p>
+<p>After building my first quadcopter, videos started to surface on the internet of FPV (First Person View) flight. Basically, you mount a small camera and a video transmitter (often 5.8Ghz) onboard your drone facing forward. Then you recieve the video transmission in a pair of video goggles that you wear while piloting the drone. It’s like you’re flying the drone from the cockpit, it feels like you’re flying and it allows much greater flexibility in flight because you see wat the drone sees. I invested in everything I needed to fly FPV and mounted it on my drone that same summer. I had an awesome experience, but as soon as I showed up at Cal and met the guys at UAVs@Berkeley who were persuing the same technology, I was hooked. I’ve built many rigs over the past few years I’ve been involved in the hobby, each increasing in craftsmanship, forethought, and custom parts.</p>
 
-<p>Then enter: <code class="highlighter-rouge">bundle exec jekyll serve</code>. You can now access your new Jekyll site from <a href="http://127.0.0.1:4000/">http://127.0.0.1:4000/</a>. Have fun exploring your new site!</p>
+<h2 id="youtube-channel">YouTube Channel</h2>
 
-<h2 id="features">Features</h2>
+<p>Videos online, as is true with most FPV pilots, got me into the hobby. About a year and a half into my involvement in flying FPV quadcopters, I like the footage that I produced enough to post to my own YouTube channel. <a href="https://www.youtube.com/channel/UCdd2_nB8uUar0n4pbsSSuJw">Here’s</a> the link, I call the channel “Get Inverted FPV.” Here’s a recent freestyle video:</p>
 
-<h3 id="formspree-integration">Formspree integration</h3>
-<p>The contact form below each page on the footer actually collects information! Just change your email address in the <code class="highlighter-rouge">_config.yml</code> file!</p>
+<div class="video-wrapper">
+	<div class="video-responsive">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/uR2xS1kjnU0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+	</div>
+</div>
+
+<h2 id="first-build">First Build</h2>
+
+<p>This is the only picture I have of that first-ever quadcopter. I didn’t know what I was doing so I bought this ridiculous frame with inverted rear motors. It’s underpowered, takes up too much space, and the power distribution board was a nonstandard size so I had to mount above the top plate. It took me about 2 weeks to build and I was very surprised when it flew.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv2.JPG" alt=""></span></p>
+
+<h2 id="zmr250-build">ZMR250 Build</h2>
+
+<p>The first quad I built at Cal, in my dorm room. This is the rig I learned to fly in rate mode (no accelerometer self leveling, just rate gyro control) with.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv3.JPG" alt=""></span></p>
+
+<h2 id="zmr250-build-v2">ZMR250 Build V2</h2>
+
+<p>The frame is a very similar geometry from the previous build but this frame has real 3K carbon twill. The build went through a number of interations as I experimented with my first custom 3D printed parts (all PLA) for mounting components and cleaning up the build. This thing was continuously evolving, my go-to build for over a year.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv4.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv5.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv6.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv7.JPG" alt=""></span></p>
+
+<h2 id="qav210-build">QAV210 Build</h2>
+
+<p>I used a knockoff QAV210 Frame for tis build. Here I experienced some unwanted gyro noise propogating from the motors, the Chinese carbon wasn’t rigid enough. Although I liked the compact form factor, I quickly retired the frame.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv8.JPG" alt=""></span></p>
+
+<h2 id="connex-build">Connex Build</h2>
+
+<p>At Drone Worlds Expo in San Jose in the Fall of my Sophmore year, I to to talking to an engineer from Amimon, the manufacturer of a digital video transmitter and reciever. Rather than the analog 5.8Ghz video feed which some suffers from low resolution, noise, etc. this product offers 1080p live video with (supposed) latency on the order of an analog feed. The whole system costs over $1,300, and somehow I talked myself onto the beta testing list for the product, and they ended up letting me keep it! I was the only beta tester looking to implement this device onto an FPV racing rig, the main demographic was cinematographers. I printed custom mounts for the massive patch antennas. and built everything on a QAV250 with arm extensions and top plate which fits the GoPro inline. The video feed was impressive, but I was so scared of crashing this thing with so much money onboard, the build wasn’t nearly as fun to fly.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv9.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv10.JPG" alt=""></span></p>
+
+<h2 id="hmb-x5-build">HMB-X5 Build</h2>
+
+<p>My main rig for the past year. Carries a GoPro Hero5 Session. A custom top plate, FPV cam mount, GoPro mount, and SMA antenna mount. The antenna mount is printed in flexible TPU so the joint simply bends rather than solder pads being ripped out. It’s definitely the most robust quad I’ve ever built, it’s got loads of power and produces smooth footage. At one point I even had too identical copies.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv11.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv12.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv13.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv14.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv15.JPG" alt=""></span></p>
+
+<h2 id="3inch-build">3inch Build</h2>
+
+<p>Experimenting with a micro setup which. The main design criteria was to get an all-up weight of less than 250g, so the FAA (and UC Berkeley) considers it a toy. It runs 4S just like all my other racers and it’s got some kick. The frame is the mainplate from an iFlight iX3, and I built it first as an underslung battery build, then as a low profile top mounted build. I designed the AIO cam mount, the bottom plate, and a battery pad which traces the geometry of the frame and printed them. The bottom plate is PLA and everything else is TPU. Better yet, I traced the frame so it’s all in CAD.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv16.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv17.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv18.JPG" alt=""></span></p>
+
+<h3 id="underslung-battery-version">Underslung Battery Version</h3>
+<p><span class="image main"><img src="/images/fpv/fpv19.JPG" alt=""></span></p>
+
+<h3 id="topmount-battery-version">Topmount Battery Version</h3>
+<p><span class="image main"><img src="/images/fpv/fpv20.JPG" alt=""></span></p>
+
+<h2 id="los-build">LOS Build</h2>
+
+<p>As you might imagine, I’ve got a stock pile of spare parts that frightens most everybody that walks into my apartment. I put some of those spares to good use and built up a line of sight quad (no FPV) for practicing some LOS handling. I figure it’s better to have a flying robot than parts for a flying robot. The end product is extremely light, built from the HMB-X5 high density rubber frame. I designed the open “pod” and printed it from TPU for protection.</p>
+
+<p><span class="image main"><img src="/images/fpv/fpv21.JPG" alt=""></span>
+<span class="image main"><img src="/images/fpv/fpv22.JPG" alt=""></span></p>
+
 
       		</section>
 
