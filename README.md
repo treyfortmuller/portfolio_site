@@ -1,9 +1,6 @@
 # portfolio_site
-<<<<<<< HEAD
+
 My personal website and engineering project portfolio wesbite, built with Jekyll and hosted on GitHub Pages.
-=======
-My personal website and engineering project portfolio, built with Jekyll and hosted on github pages.
->>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
 
 ## Credits
 ### Original README from HTML5 UP
@@ -41,8 +38,4 @@ Credits:
 		Misc. Sass functions (@HugoGiraudel)
 		Skel (skel.io)
 		Scrollex (github.com/ajlkn/jquery.scrollex)
-<<<<<<< HEAD
 ```
-=======
-```
->>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
