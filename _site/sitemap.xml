@@ -2,6 +2,7 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+<<<<<<< HEAD
       <loc>/blog/waterproof/</loc>
       
         <lastmod>2017-12-15T00:00:00-08:00</lastmod>
@@ -59,6 +60,11 @@
       <loc>/blog/fpv/</loc>
       
         <lastmod>2015-08-01T00:00:00-07:00</lastmod>
+=======
+      <loc>/blog/welcome-to-massively-the-jekyll-theme/</loc>
+      
+        <lastmod>2017-10-31T00:00:00-07:00</lastmod>
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
       
       <changefreq>weekly</changefreq>
       <priority>0.7</priority>
@@ -76,7 +82,11 @@
      </url>
   
     <url>
+<<<<<<< HEAD
       <loc>/</loc>
+=======
+      <loc>/blog/</loc>
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
        <lastmod>2017-11-02T00:00:00-07:00</lastmod>
       
        <changefreq>weekly</changefreq>
@@ -86,22 +96,38 @@
      </url>
   
     <url>
+<<<<<<< HEAD
       <loc>/projects/</loc>
+=======
+      <loc>/elements/</loc>
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
        <lastmod>2017-11-02T00:00:00-07:00</lastmod>
       
        <changefreq>weekly</changefreq>
       
+<<<<<<< HEAD
        <priority>1.0</priority>
+=======
+       <priority>0.7</priority>
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
       
      </url>
   
     <url>
+<<<<<<< HEAD
       <loc>/resume/</loc>
+=======
+      <loc>/</loc>
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
        <lastmod>2017-11-02T00:00:00-07:00</lastmod>
       
        <changefreq>weekly</changefreq>
       
+<<<<<<< HEAD
        <priority>0.7</priority>
+=======
+       <priority>1.0</priority>
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
       
      </url>
   
@@ -135,6 +161,7 @@
       
      </url>
   
+<<<<<<< HEAD
     <url>
       <loc>/blog/page2/</loc>
        <lastmod>2017-11-02T00:00:00-07:00</lastmod>
@@ -145,4 +172,6 @@
       
      </url>
   
+=======
+>>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
 </urlset>
