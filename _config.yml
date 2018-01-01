@@ -5,13 +5,11 @@ description:        "Jekyll version of the Massively theme by HTML5UP"
 locale:             en_US
 
 # baseurl is the subpath of your site, e.g. /blog
-<<<<<<< HEAD
-baseurl: "" # seems to work for offline work with jekyll serve
+
+# baseurl: "" seems to work for offline work with jekyll serve
 # baseurl: "/portfolio_site" # works for gh-pages serving
-=======
-# baseurl: "" # seems to work for offline work with jekyll serve
-baseurl: "/portfolio_site" # works for gh-pages serving
->>>>>>> 51ffce14d0332fc3e7e96043a2e59fbc14901dfe
+
+baseurl: ""
 url: "" # the base hostname & protocol for your site
 
 defaults:
