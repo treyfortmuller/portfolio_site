@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Engineering Project Portfolio - About
+title: About
 description: Projects outlined from start to finish including motivation, design, fabrication, and challenges.
 sitemap:
     priority: 0.7
