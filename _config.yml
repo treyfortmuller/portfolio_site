@@ -37,11 +37,13 @@ sass:
   style:            compressed
 
 # Social
-analytics-id:       "default"
+analytics-id:       "UA-111812042-1"
 # twitter:            default
 facebook:           trey.fortmuller
 # instagram:          default
 github:             treyfortmuller
+# linkedin:          default
+linkedin:             trey-fortmuller
 
 # personal
 location:           Berkeley, CA
@@ -64,3 +66,6 @@ jekyll-mentions:
 
 # Exclude list
 exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile, old]
+
+#Fonts
+#https://github.com/FortAwesome/Font-Awesome/tree/master/fonts

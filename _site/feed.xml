@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-01-01T12:56:32-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Jekyll version of the Massively theme by HTML5UP</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-01-02T03:34:31-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor Mark Mueller recruited my lab team to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
 
@@ -271,7 +271,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;h2 id=&quot;the-build&quot;&gt;The Build&lt;/h2&gt;
 
-&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/3d-scanner/greg10.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/3d-scanner/greg10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;The rig uses a ZED stereocamera driven by a ROS wrapper to take stereo images at various known poses in a spiral which is executed with precision by two stepper motors driving a leadscrew elevator and a turn table for the model to be scanned. We designed the entire build in a high detail CAD using Autodesk Fusion 360, 3D printed L-brackets and mounting hardware to secure the stepper motors to the T-slot aluminum frame we cut at the metal shop at Jacobs Hall. There are also 1/8th wood pieces that were laser cut at Jacobs, including the turn table itself. We designed the power system around an Arduino microcontroller and and an Adafruit motor shield to drive the steppers. The Arduino and the ZED camera are controlled by python over a serial port and a ROS wrapper respectively to automate the process of capturing the images used as an input to OpenMVG/MVS to compute dense point clouds and eventually refined meshes.&lt;/p&gt;
 
@@ -279,7 +279,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;h2 id=&quot;challenges&quot;&gt;Challenges&lt;/h2&gt;
 
-&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/3d-scanner/greg11.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/3d-scanner/greg11.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;We ran into a few minor mechanical design issues that were unforeseen in the CAD, luckily we had access to a 3D printer throughout the entire weekend and were able to iterate quickly on the tolerancing of some problematic parts. Issues with the AccelStepper library for Arduino used to simultaneously control the velocity and acceleration of 2 stepper motors slowed us down early Sunday evening and we had to extensively read the online documentation to accomplish the control tasks we needed to. Lastly, the complex 3D geometry of our rig (specifically rotation and transformation matrices of the cameras in our defined world coordinate frame) slowed us down and we believe is still problematic as the hackathon comes to a close.&lt;/p&gt;
 
@@ -305,7 +305,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 			&lt;li&gt;CUDA&lt;/li&gt;
 		&lt;/ul&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</content><summary type="html">A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/3d-scanner/greg9.JPG" /></entry><entry><title type="html">Custom Electric Longboard</title><link href="/blog/e-board/" rel="alternate" type="text/html" title="Custom Electric Longboard" /><published>2017-07-15T00:00:00-07:00</published><updated>2017-07-15T00:00:00-07:00</updated><id>/blog/e-board</id><content type="html" xml:base="/blog/e-board/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+&lt;/div&gt;</content><summary type="html">A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/3d-scanner/greg9.jpg" /></entry><entry><title type="html">Custom Electric Longboard</title><link href="/blog/e-board/" rel="alternate" type="text/html" title="Custom Electric Longboard" /><published>2017-07-15T00:00:00-07:00</published><updated>2017-07-15T00:00:00-07:00</updated><id>/blog/e-board</id><content type="html" xml:base="/blog/e-board/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;I go to school in Berkeley, CA. The whole place is built on a hill, so it’s hard to get from point A to point B if point B is East of point A at all. Electric vehicles are, of course, the future of personal transportation, but I’m on a budget so a Tesla isn’t an option. In fact even a $1,400 Boosted Board is a little pricey. I decided to build my own electric longboard to get around the Berkeley hills, I wanted all the torque I could muster whilst keeping the cost down. I’m looking to be finished with this project before the Spring 2018 semester starts, so I can get around the hills of Berkeley without my calves burning.&lt;/p&gt;
 
@@ -480,7 +480,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;Nearly all the components were included in a CAD model for the final quadcopter and transmitter. The quad received a chassis redesign which is larger allowing for brushless motors with a larger stator to be mounted so that we can swing larger props and thus achieve more thrust, as our current set up was plagued with weight issues. The new frame design also considered wire routing, and component mounting with more fidelity. The landing gear which straps to the battery was designed and 3D printed on this iteration as well as the “hood” piece which serves as our body, it houses the Arduino Nano, an nRF24 transceiver module, and the FPV camera is perched on top. The transmitter was redesigned to be either more 3D printable or laser cut. We ended up laser cutting the final iteration without losing much of the ergonomics of the device. We also had to design around large gimbal joysticks which are mounted with stand offs on the flanges of the transmitter which gave great control resolution and linearity as compared to previous designs which utilized cheaper game controller type joysticks.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx1.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;bill-of-materials&quot;&gt;Bill of Materials&lt;/h2&gt;
 &lt;div class=&quot;table-wrapper&quot;&gt;
@@ -544,63 +544,63 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;This is the only picture I have of that first-ever quadcopter. I didn’t know what I was doing so I bought this ridiculous frame with inverted rear motors. It’s underpowered, takes up too much space, and the power distribution board was a nonstandard size so I had to mount above the top plate. It took me about 2 weeks to build and I was very surprised when it flew.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv2.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;zmr250-build&quot;&gt;ZMR250 Build&lt;/h2&gt;
 
 &lt;p&gt;The first quad I built at Cal, in my dorm room. This is the rig I learned to fly in rate mode (no accelerometer self leveling, just rate gyro control) with.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv3.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;zmr250-build-v2&quot;&gt;ZMR250 Build V2&lt;/h2&gt;
 
 &lt;p&gt;The frame is a very similar geometry from the previous build but this frame has real 3K carbon twill. The build went through a number of interations as I experimented with my first custom 3D printed parts (all PLA) for mounting components and cleaning up the build. This thing was continuously evolving, my go-to build for over a year.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv4.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv5.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv6.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv7.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv5.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;qav210-build&quot;&gt;QAV210 Build&lt;/h2&gt;
 
 &lt;p&gt;I used a knockoff QAV210 Frame for tis build. Here I experienced some unwanted gyro noise propogating from the motors, the Chinese carbon wasn’t rigid enough. Although I liked the compact form factor, I quickly retired the frame.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv8.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;connex-build&quot;&gt;Connex Build&lt;/h2&gt;
 
 &lt;p&gt;At Drone Worlds Expo in San Jose in the Fall of my Sophmore year, I to to talking to an engineer from Amimon, the manufacturer of a digital video transmitter and reciever. Rather than the analog 5.8Ghz video feed which some suffers from low resolution, noise, etc. this product offers 1080p live video with (supposed) latency on the order of an analog feed. The whole system costs over $1,300, and somehow I talked myself onto the beta testing list for the product, and they ended up letting me keep it! I was the only beta tester looking to implement this device onto an FPV racing rig, the main demographic was cinematographers. I printed custom mounts for the massive patch antennas. and built everything on a QAV250 with arm extensions and top plate which fits the GoPro inline. The video feed was impressive, but I was so scared of crashing this thing with so much money onboard, the build wasn’t nearly as fun to fly.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv9.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv10.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv9.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;hmb-x5-build&quot;&gt;HMB-X5 Build&lt;/h2&gt;
 
 &lt;p&gt;My main rig for the past year. Carries a GoPro Hero5 Session. A custom top plate, FPV cam mount, GoPro mount, and SMA antenna mount. The antenna mount is printed in flexible TPU so the joint simply bends rather than solder pads being ripped out. It’s definitely the most robust quad I’ve ever built, it’s got loads of power and produces smooth footage. At one point I even had too identical copies.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv11.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv12.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv13.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv14.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv15.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv11.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv12.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv13.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv14.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv15.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3inch-build&quot;&gt;3inch Build&lt;/h2&gt;
 
 &lt;p&gt;Experimenting with a micro setup which. The main design criteria was to get an all-up weight of less than 250g, so the FAA (and UC Berkeley) considers it a toy. It runs 4S just like all my other racers and it’s got some kick. The frame is the mainplate from an iFlight iX3, and I built it first as an underslung battery build, then as a low profile top mounted build. I designed the AIO cam mount, the bottom plate, and a battery pad which traces the geometry of the frame and printed them. The bottom plate is PLA and everything else is TPU. Better yet, I traced the frame so it’s all in CAD.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv16.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv17.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv18.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv16.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv17.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv18.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;underslung-battery-version&quot;&gt;Underslung Battery Version&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv19.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv19.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;topmount-battery-version&quot;&gt;Topmount Battery Version&lt;/h3&gt;
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv20.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv20.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;los-build&quot;&gt;LOS Build&lt;/h2&gt;
 
 &lt;p&gt;As you might imagine, I’ve got a stock pile of spare parts that frightens most everybody that walks into my apartment. I put some of those spares to good use and built up a line of sight quad (no FPV) for practicing some LOS handling. I figure it’s better to have a flying robot than parts for a flying robot. The end product is extremely light, built from the HMB-X5 high density rubber frame. I designed the open “pod” and printed it from TPU for protection.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv21.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv22.JPG&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">I build acrobatic FPV enabled quadcopters for racing and freestyle flight.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/fpv/fpv1.jpg" /></entry></feed>
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv21.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv22.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">I build acrobatic FPV enabled quadcopters for racing and freestyle flight.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/fpv/fpv1.jpg" /></entry></feed>
