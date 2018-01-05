@@ -19,7 +19,7 @@ The build had to employ the same flight controller that the lab already used for
 		<li>Have enough room for a radio based <a href="https://www.bitcraze.io/loco-pos-system/">localization unit</a> to use for state estimation</li>
 		<li>Not too high of a voltage (limit to a 2S LiPo's 8.4V)</li>
 		<li>Compact, less than 200mm motor shaft to motor shaft</li>
-		<li>Agile, at least a 2:1 thust to weight ratio</li>
+		<li>Agile, at least a 2:1 thrust to weight ratio</li>
 		<li>Operate down to 3m of depth</li>
 		<li>Full battery voltage telemetry</li>
 	</ul>
@@ -55,7 +55,7 @@ With our powertrain specified, we found the proper components on Amazon and bega
 			</tr>
 			<tr>
 				<td><a href="https://store.bitcraze.io/collections/positioning/products/loco-positioning-deck">Bitcraze Loco Positioning Deck</a></td>
-				<td>RF based locolization module</td>
+				<td>RF based localization module</td>
 				<td>3.3</td>
 			</tr>
 			<tr>
@@ -74,8 +74,8 @@ With our powertrain specified, we found the proper components on Amazon and bega
 				<td>22</td>
 			</tr>
 			<tr>
-				<td><a href="https://www.amazon.com/Propellers-Compatible-6200-10000KV-Brushless-Transparent/dp/B074NP3LFF/ref=sr_1_1?s=toys-and-games&rps=1&ie=UTF8&qid=1510622468&sr=1-1&keywords=2inch+props&refinements=p_85%3A2470955011">Gemfan 2040 Triblade Props</a></td>
-				<td>Some 2 inch diameter triblade propellors</td>
+				<td><a href="https://www.amazon.com/Propellers-Compatible-6200-10000KV-Brushless-Transparent/dp/B074NP3LFF/ref=sr_1_1?s=toys-and-games&rps=1&ie=UTF8&qid=1510622468&sr=1-1&keywords=2inch+props&refinements=p_85%3A2470955011">Gemfan 2040 Tri-blade Props</a></td>
+				<td>Some 2 inch diameter tri-blade propellers</td>
 				<td>3.6</td>
 			</tr>
 			<tr>
@@ -93,7 +93,7 @@ With our powertrain specified, we found the proper components on Amazon and bega
 
 The main design constraint was the requirement that the vehicle must be submersible. Brushless motors are "waterproof" out of the box due to the insulating enamel applied to the wires of the motor winding in the stator, so those can operate underwater without issue. Everything else (flight controller, ESCs, localization module, voltage regulator, battery) would have to somehow be waterproofed or inside a watertight container. 
 
-David, Joey, and I ideated on how we might protect the sensitive PCBs from the elements with a container of sorts. For the sake of preserving an ideal center of mass, close to the geometric center of the vehicle, we decided on two cases which sandwhich the frame of the quadcopter. The top case contains all the sensitive PCBs and the battery is protected by the bottom case. A hole is cut in the frame for the battery lead to reach the ESCs and regulator in the top case. 20+ hours of CADing in Fusion 360 later, I completed the full vehicle assembly including a custom frame, top and bottom cases, as well as gaskets to seal the cases against the frame. I included every single PCB as each would be mounted in the case and designed the cases around the components. This ensured a reasonable fit as well as the accuracy of the inertia tensor of the vehicle, an input to the PX4 firmware the lab had running onbaord the Crazyflies for flight control.
+David, Joey, and I brainstormed on how we might protect the sensitive PCBs from the elements with a container of sorts. For the sake of preserving an ideal center of mass, close to the geometric center of the vehicle, we decided on two cases which sandwich the frame of the quadcopter. The top case contains all the sensitive PCBs and the battery is protected by the bottom case. A hole is cut in the frame for the battery lead to reach the ESCs and regulator in the top case. 20+ hours of CADing in Fusion 360 later, I completed the full vehicle assembly including a custom frame, top and bottom cases, as well as gaskets to seal the cases against the frame. I included every single PCB as each would be mounted in the case and designed the cases around the components. This ensured a reasonable fit as well as the accuracy of the inertia tensor of the vehicle, an input to the PX4 firmware the lab had running on board the Crazyflies for flight control.
 
 <span class="image main"><img src="{{ "/images/waterproof/waterproof_main2.png" | absolute_url }}" alt="" /></span>
 
@@ -105,13 +105,13 @@ The electronics are mounted inside the top case using TPE mounting solutions, CA
 
 <span class="image left"><img src="{{ "/images/waterproof/waterproof1.jpg" | absolute_url }}" alt="" /></span>
 
-3D printing was the natural choice for frabrication of the custom cases, but normal FDM prints are not watertight. Small gaps between layers can allow some water to permeate even a thick shell of typical 3D printing plastics. SLA type prints (laser/projection based resin curing processes) are bound at a molecular level, so those are watertight. Thankfully at Jacobs Hall on campus at UC Berkeley, we had access to a Carbon3D printer for us to fabricate the cases. I had never printed anything with an SLA printer before, it was definitely a learning curve. This printing process has its own intricacies, there are different issues to debug than I was used to. It took 3 or 4 iterations before I figured out how to avoid vacuum pockets forming in the print, and how to arrange the support structure to avoid warping. Once I was happy with the part and its fabrication, I printed a top and bottom case in black "rigid polyurethane" on the Carbon 3D. All the Carbon3D resin chemistries are proprietary so beyond "polyurethane," I really have no idea what the parts are made of, they were super durable though and I was happy.
+3D printing was the natural choice for fabrication of the custom cases, but normal FDM prints are not watertight. Small gaps between layers can allow some water to permeate even a thick shell of typical 3D printing plastics. SLA type prints (laser/projection based resin curing processes) are bound at a molecular level, so those are watertight. Thankfully at Jacobs Hall on campus at UC Berkeley, we had access to a Carbon3D printer for us to fabricate the cases. I had never printed anything with an SLA printer before, it was definitely a learning curve. This printing process has its own intricacies, there are different issues to debug than I was used to. It took 3 or 4 iterations before I figured out how to avoid vacuum pockets forming in the print, and how to arrange the support structure to avoid warping. Once I was happy with the part and its fabrication, I printed a top and bottom case in black "rigid polyurethane" on the Carbon 3D. All the Carbon3D resin chemistries are proprietary so beyond "polyurethane," I really have no idea what the parts are made of, they were super durable though and I was happy.
 
 ### TPE Gaskets
 The weakness of our double case sandwich approach is the potential leak at the interface between the cases and the frame. We had seen rubber gaskets used in other systems at an interface which needed to be watertight. A flexible 3D printing filament called thermal polyurethane (TPE) came to mind. I designed some gaskets which fit along the footprint of the top and bottom case along the frame. They are meant to be compressed when the top and bottom plate sandwich the frame using a few M2 nuts and bolts. I printed the gaskets in orange <a href="https://www.amazon.com/NinjaFlex-TPU-3D-Printing-Filament/dp/B01LXZYJ3R/ref=sr_1_1?ie=UTF8&qid=1514450027&sr=8-1&keywords=ninjaflex">NinjaFlex</a> TPE on my personal Printrbot Simple and over-extruded the prints pretty severely to ensure better-than-average layer adhesion. The gaskets would be adhered to the cases with CA glue with the exposed interface between the case and gasket covered in watertight <a href="https://www.amazon.com/MG-Chemicals-Silicone-Modified-Conformal/dp/B008O9YIV6/ref=sr_1_1?s=industrial&ie=UTF8&qid=1514450052&sr=1-1&keywords=silicon+conformal+coating">silicon conformal coating.</a>
 
 ### Frame
-Ideally, the custom frame would be cut from a 3mm thick plate of carbon fiber. It would be rigid, light weight, and durable. We had the carbon purchased, but unfortunately we were finishing this project towards the end of the semester. During the last week of class, the waterjet we needed to access in order to safety CNC cut the carbon was all booked up due to other class projects being due for many other students. Cutting the carbon on a typical CNC mill would be a hard sell to the machineshop technicians as carbon fiber dust is one of the last things you'd like in your lungs. 3D printing to the rescue again... we recruited our good friend Eric to complete a speciality print for us. Eric owns a printer with a number of upgrades allowing him to print abrasive and high temperature filaments. He printed us a frame out of 3mm of carbon-reinforced nylon, and extremely durable material. It's not as clean as the carbon fiber plate we planned on, but it's rigid enough to be flight worthy.
+Ideally, the custom frame would be cut from a 3mm thick plate of carbon fiber. It would be rigid, light weight, and durable. We had the carbon purchased, but unfortunately we were finishing this project towards the end of the semester. During the last week of class, the waterjet we needed to access in order to safety CNC cut the carbon was all booked up due to other class projects being due for many other students. Cutting the carbon on a typical CNC mill would be a hard sell to the machine shop technicians as carbon fiber dust is one of the last things you'd like in your lungs. 3D printing to the rescue again... we recruited our good friend Eric to complete a specialty print for us. Eric owns a printer with a number of upgrades allowing him to print abrasive and high temperature filaments. He printed us a frame out of 3mm of carbon-reinforced nylon, and extremely durable material. It's not as clean as the carbon fiber plate we planned on, but it's rigid enough to be flight worthy.
 
 ## Assembly and Delivery
 
@@ -119,6 +119,6 @@ After removing excess pins, direct soldering all the components together, and in
 
 <span class="image main"><img src="{{ "/images/waterproof/waterproof3.png" | absolute_url }}" alt="" /></span>
 
-Modification to the PX4 firmware running on the Crazyflie is necessary in order for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hardcoded scaling factor to read the correct battery voltage from our new VBAT sensing resisor values.
+Modification to the PX4 firmware running on the Crazyflie is necessary in order for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hard-coded scaling factor to read the correct battery voltage from our new VBAT sensing resistor values.
 
-This project was certainly a design challenge and introduced me to an entirely different addative manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future.
+This project was certainly a design challenge and introduced me to an entirely different additive manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future.
