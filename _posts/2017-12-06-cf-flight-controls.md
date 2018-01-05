@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Crazyflie Quadcopter Flight Controls"
+title:  "Crazyflie Flight Controls"
 date:   2017-12-06
 excerpt: "A cascased controller implementation for autonomous loitering with a Crazyflie quadcopter."
 image: "/images/cf-flight-controls/cf_main.jpg"
