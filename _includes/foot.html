@@ -43,5 +43,9 @@
 </footer>
 <!-- Copyright bottom section -->
 <div id="copyright">
-  <ul><li>&copy; Trey Fortmuller </li><li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li></ul>
+  <ul>
+      <li>&copy; {% assign thisyear = site.time | date: "%Y" %}
+    {{ thisyear }} Trey Fortmuller </li>
+      <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
 </div>
