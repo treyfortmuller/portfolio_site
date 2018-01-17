@@ -5,7 +5,7 @@ description:        "Engineering Project Portfolio"
 locale:             en_US
 
 # baseurl is the subpath of your site, e.g. /blog
-# be aware of which branch has which baseurl setting
+# be aware of which branch has which baseurl setting, testing.
 
 baseurl: "" # seems to work for offline work with jekyll serve
 # baseurl: "/portfolio_site" # works for gh-pages serving
