@@ -6,10 +6,9 @@ locale:             en_US
 
 # baseurl is the subpath of your site, e.g. /blog
 
-# baseurl: "" seems to work for offline work with jekyll serve
+baseurl: "" # seems to work for offline work with jekyll serve
 # baseurl: "/portfolio_site" # works for gh-pages serving
 
-baseurl: ""
 url: "" # the base hostname & protocol for your site
 
 defaults:
@@ -38,11 +37,8 @@ sass:
 
 # Social
 analytics-id:       "UA-111812042-1"
-# twitter:            default
 facebook:           trey.fortmuller
-# instagram:          default
 github:             treyfortmuller
-# linkedin:          default
 linkedin:             trey-fortmuller
 
 # personal
