@@ -2472,8 +2472,12 @@
 
 			.image.main.profile {
 				border-radius: 50%;
-				margin: 0 auto 50px auto;
-				width: 50%;
+				margin: 0px auto 50px auto;
+				/*max-width: 300px;
+				max-height: 300px;
+				width: auto;
+				height: auto;*/
+				width: 40%;
 			}
 
 		@media screen and (max-width: 736px) {
@@ -3096,7 +3100,8 @@
 
 	#intro {
 		color: #ffffff;
-		padding: 8rem 4rem 6rem 4rem ;
+		/*padding: 2rem 4rem 4rem 4rem;*/
+		padding: 2rem 4rem 4rem 4rem;
 
 		-moz-align-items: center;
 		-webkit-align-items: center;

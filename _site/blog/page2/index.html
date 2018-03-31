@@ -1,10 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-  Jekyll integration by somiibo.com
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
---><html>
+<html>
 	<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -27,7 +22,6 @@
 <noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
 
 
-
 	</head>
 	<body class="is-loading">
 
@@ -38,11 +32,11 @@
 					<div id="intro">
 
 
-			<!-- Profile picture -->
-			<div><img src="/images/id_photo.jpg" alt="" class="image main profile"></div>
-
-			<!-- Title -->
-            <h1>Trey Fortmuller</h1>
+					<!-- Profile picture -->
+						<div><img src="/images/id_photo.jpg" alt="" class="image main profile"></div>
+						
+					<!-- Title -->
+            			<h1>Trey Fortmuller</h1>
 						<h2>Project Portfolio</h2>
 						<p>I'm a 3rd year Engineering Physics major at UC Berkeley. My interests include robotics, mechanical design, and control.</p>
 
@@ -52,17 +46,18 @@
 					</div>
 
 				<!-- Header -->
-					<header id="header">
-						<a href="/" class="logo">Trey Fortmuller</a>
-					</header>
+				<header id="header">
+					<a href="/" class="logo">Trey Fortmuller</a>
+				</header>
+
 
 				<!-- Nav -->
 					<nav id="nav">
 
             <ul class="links">
-  <li class=""><a href="/">Home</a></li>
+  <li class=""><a href="/">Projects</a></li>
   <li class=""><a href="/about/">About</a></li>
-  <li class=" active "><a href="/projects/">Projects</a></li>
+<!--   <li class=" active "><a href="/projects/">Projects</a></li> -->
   <li class=""><a href="/resume/">Resume</a></li>
 </ul>
 
@@ -75,25 +70,111 @@
 					</nav>
 
 				<!-- Main -->
-					<div id="main">
+				<div id="main">
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<h2><a href="#">Home</a></h2>
-									<p>The best part of going to school is getting to work with<br>
-                    people who share my passions, on projects that inspire me.<br>
-                    I've outlined some of those experiences here.</p>
+					<!-- Intro to projects --> 
+			        <article class="post featured">
+			          <header class="major">
+			            <h2><a href="#">Projects</a></h2>
+			            <p>The best part of going to school is getting to work with people who share my passions, on projects that inspire me. I've outlined some of those experiences here. My project portfolio consists mostly of personal side projects, but I've also included endeavours from hackathons, student clubs, and project-oriented lab classes. I've included each project's motivation, design, fabrication, and challenges I ran into along the way.</p>
+			          </header>
+			        </article>
+
+					<!-- Project tiles -->
+					<section class="posts">
+						
+							<article>
+								<header>
+									<span class="date">15 Dec 2017</span>
+									<h2><a href="/blog/waterproof/">Waterproof Quadcopter Build</a></h2>
 								</header>
-								<a href="#" class="image main"><img src="/images/main.jpg" alt=""></a>
-
+								<a href="/blog/waterproof/" class="image fit"><img src="/images/waterproof/waterproof_main.jpg" alt=""></a>
+								<p>A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</p>
+								<ul class="actions">
+									<li><a href="/blog/waterproof/" class="button">View Project</a></li>
+								</ul>
 							</article>
-							
-							<footer>
-                <ul class="actions">
-                  <li><a href="/projects/" class="button">Projects</a></li>
-                </ul>
-							</footer>
+						
+							<article>
+								<header>
+									<span class="date">06 Dec 2017</span>
+									<h2><a href="/blog/cf-flight-controls/">Crazyflie Flight Controls</a></h2>
+								</header>
+								<a href="/blog/cf-flight-controls/" class="image fit"><img src="/images/cf-flight-controls/cf_main.jpg" alt=""></a>
+								<p>A cascaded controller implementation for autonomous loitering with a Crazyflie quadcopter.</p>
+								<ul class="actions">
+									<li><a href="/blog/cf-flight-controls/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+							<article>
+								<header>
+									<span class="date">08 Oct 2017</span>
+									<h2><a href="/blog/3d-scanner/">Photogrammetry 3D Scanner</a></h2>
+								</header>
+								<a href="/blog/3d-scanner/" class="image fit"><img src="/images/3d-scanner/greg9.jpg" alt=""></a>
+								<p>A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</p>
+								<ul class="actions">
+									<li><a href="/blog/3d-scanner/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+							<article>
+								<header>
+									<span class="date">15 Jul 2017</span>
+									<h2><a href="/blog/e-board/">Custom Electric Longboard</a></h2>
+								</header>
+								<a href="/blog/e-board/" class="image fit"><img src="/images/e-board/board_main.jpg" alt=""></a>
+								<p>IN PROGRESS: An electric longboard with a handheld wireless controller.</p>
+								<ul class="actions">
+									<li><a href="/blog/e-board/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+							<article>
+								<header>
+									<span class="date">15 Jun 2017</span>
+									<h2><a href="/blog/hotswap/">Midair Hotswap</a></h2>
+								</header>
+								<a href="/blog/hotswap/" class="image fit"><img src="/images/hotswap/main1.jpg" alt=""></a>
+								<p>A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</p>
+								<ul class="actions">
+									<li><a href="/blog/hotswap/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+							<article>
+								<header>
+									<span class="date">15 Dec 2016</span>
+									<h2><a href="/blog/drone-tx/">Custom RC Transmitter</a></h2>
+								</header>
+								<a href="/blog/drone-tx/" class="image fit"><img src="/images/drone-tx/tx_main.jpg" alt=""></a>
+								<p>Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</p>
+								<ul class="actions">
+									<li><a href="/blog/drone-tx/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+							<article>
+								<header>
+									<span class="date">01 Aug 2015</span>
+									<h2><a href="/blog/fpv/">FPV Racing Quadcopters</a></h2>
+								</header>
+								<a href="/blog/fpv/" class="image fit"><img src="/images/fpv/fpv1.jpg" alt=""></a>
+								<p>I build acrobatic FPV enabled quadcopters for racing and freestyle flight.</p>
+								<ul class="actions">
+									<li><a href="/blog/fpv/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+						
+
+						<!-- empty space to keep the squares consistnet -->
+
+						<article>
+						</article>
+						
+					</section>
 
 					</div>
 
@@ -154,8 +235,8 @@
 
 			</div>
 
-		<!-- Scripts -->
-		<!-- DYN -->
+			<!-- Scripts -->
+			<!-- DYN -->
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/jquery.scrollex.min.js"></script>
 <script src="/assets/js/jquery.scrolly.min.js"></script>
@@ -163,7 +244,7 @@
 <script src="/assets/js/util.js"></script>
 <script src="/assets/js/main.js"></script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments)};
