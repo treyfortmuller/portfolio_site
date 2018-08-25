@@ -14,7 +14,7 @@ UC Berkeley's Jacobs Institute for Design Innovation is the campus's largest mak
 
 ## Design
 
-<span class="image right"><img src="{{ "/images/tool-stand/2_tools_pic.jpg" | absolute_url }}" alt="" /></span>
+<span class="image left"><img src="{{ "/images/tool-stand/2_tools_pic.jpg" | absolute_url }}" alt="" /></span>
 
 I started with the tools I thought I accessed most and arranged them on the floor of my apartment until I found an aesthetically pleasing and space efficient configuration. I've got my wire strippers, digital calipers, some super glue, an X-acto knife, all the necessities for desktop projects in robotics. I simply took an overhead shot of all the tools in place and threw the image into Fusion 360 as a canvas. I scaled the image in CAD based on a measurement of the length of the screw driver and began tracing each tool with rectangles and splines. Then I simply outlined each curve with a few millimeters of margin and added semicircles as grabbing points. I traced an outer rectangle and arrived at my cut geometry. For thoroughness I extruded the geometry into 3D and added the backing layer. I also designed two kick stands to glue onto the back so that the tools rest at a comfortable 45 degree angle on my desk.
 

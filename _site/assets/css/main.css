@@ -2458,7 +2458,7 @@
 
 		.image.main {
 			display: block;
-			margin: 4rem 0;
+			/*margin: 4rem 0;*/
 			width: 100%;
 		}
 
@@ -3591,8 +3591,8 @@
 /*		width: calc(100% - 4rem);
 */		
 		width: 100%;
-/*		max-width: 72rem;
-*/		z-index: 2;
+		/*max-width: 72rem;*/
+		z-index: 2;
 	}
 
 		#main > * {
@@ -3610,7 +3610,9 @@
 		}
 
 		#main > .post {
-			padding: 8rem 8rem 6rem 8rem ;
+			padding: 8rem 9rem 6rem 9rem ;
+			margin: 0 auto;
+			max-width: 72rem;
 		}
 
 			#main > .post header.major > .date {

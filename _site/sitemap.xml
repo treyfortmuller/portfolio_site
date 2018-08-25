@@ -20,6 +20,15 @@
     </url>
   
     <url>
+      <loc>/blog/waterproof/</loc>
+      
+        <lastmod>2017-12-15T00:00:00-08:00</lastmod>
+      
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
       <loc>/blog/cf-flight-controls/</loc>
       
         <lastmod>2017-12-06T00:00:00-08:00</lastmod>
@@ -76,6 +85,16 @@
   
     <url>
       <loc>/about/</loc>
+       <lastmod>2017-11-02T00:00:00-07:00</lastmod>
+      
+       <changefreq>weekly</changefreq>
+      
+       <priority>0.7</priority>
+      
+     </url>
+  
+    <url>
+      <loc>/elements/</loc>
        <lastmod>2017-11-02T00:00:00-07:00</lastmod>
       
        <changefreq>weekly</changefreq>

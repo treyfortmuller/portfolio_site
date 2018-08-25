@@ -1,38 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-14T12:11:36-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-24T22:57:31-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-&lt;p&gt;Something about wanting to get into wings, why are delta wings cool. I’ll break this build into several parts.&lt;/p&gt;
+&lt;p&gt;When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a &lt;a href=&quot;https://en.wikipedia.org/wiki/Portmanteau&quot;&gt;portmanteau&lt;/a&gt; of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/intro/1_first_build.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;This is Flite Test Arrow (I think), took this thing and despite my best efforts of scowering YouTube for how to have a successful maiden flight I crashed it and destroyed the pod. No electronics took any damage. The differing flight dynamics experienced by the pilot between multirotors and fixed wings. Took the undamaged wings off and capaitalized on an oppurtunity to be creative with the next build&lt;/p&gt;
+&lt;p&gt;I wanted to get involved in wings in some capacity, so I decided to purchased a used RC delta wing about a year ago. I immediately crashed it (in part due to an uncalibrated center of gravity, but definitely due to pilot error), and that’s where part one of this post starts, repairing the broken wing. Part two involves the construction of a brand new wing capable of fully autonomous flight.&lt;/p&gt;
 
 &lt;h2 id=&quot;part-1&quot;&gt;Part 1&lt;/h2&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/2_illustrator.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Below is the delta wing I purchased, it’s made from a &lt;a href=&quot;https://www.flitetest.com/articles/ft-mighty-mini-arrow-build&quot;&gt;Flite Test Arrow&lt;/a&gt; airframe and various off the shelf electronics. It was equipped with a live first-person-view (FPV) analog video feed transmitted over 5.8Ghz and a FrSky frequency hopping receiver at 2.4Ghz. This vehicle had no flight controller onboard, the receiver was connected straight to the servos and electronic speed controller. That means I was in full control of the vehicle with the sticks on my transmitter correlating to angular velocity about each axis.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/3_laser.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/intro/1_first_build.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/4_components.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Given my experience with racing quadcopters, I expected to at least be able to bring the plane safely back to the ground after I launched it. During the maiden flight I crashed it and destroyed the center pod. Thankfully, no electronics took any damage, and the wings maintained their integrity. I removed all the undamaged components from the wreckage and disposed of the center pod. I left the field that day humbled, but at least I had the opportunity to be creative with my repairs.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/5_sanding.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;center-pod-design&quot;&gt;Center Pod Design&lt;/h3&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/6_glued.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The standard Flite Test airframe is made out of folded foam board held together with hot glue. I decided to increase my chances of surviving a few more crashes in the next iteration of the build by replacing the center pod with laser-cut 1/8th-inch thick plywood. I designed the center pod to be wider than the stock version to improve serviceability and leave room for a flight controller in the future. The new pod consists of a top plate that extends to the nose, two side panels with mounting holes for antenna and M3 hardware, a bottom plate with slots for velcro-strapping a battery, and a back plate with mounting holes for a brushless motor. All the pieces would be secured together along their edges with tongue joints and wood glue. I designed the new pod in Autodesk’s Fusion 360 CAD tool, then exported a DXF to Adobe Illustrator for laser cutting. Below is the design file in Illustrator, the parts cut on the bed of the laser cutter, and the cleaned up parts ready for gluing. The original winglets for the wing were damaged in the crash, so I designed and cut some new ones from the same material.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/7_install.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;box alt&quot;&gt;
+	&lt;div class=&quot;row 50% uniform&quot;&gt;
+		&lt;div class=&quot;4u&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/wing/part1/2_illustrator.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;4u&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/wing/part1/3_laser.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;4u$&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/wing/part1/4_components.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/8_airframe_complete.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;kerfed-nose&quot;&gt;Kerfed Nose&lt;/h3&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/9_securement.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;A popular wood working technique for bending wood is called “kerfing.” Essentially one makes many small parallel cuts to allow the wood to become a shapable, living hinge. This technique becomes extremely easy to execute with accuracy when a laser-cutter is available. I included a kerfed edge along the nose of the center pod I designed to give the front-end a rounded edge similar to the stock design. The kerfed section also serves as a living hinge to open the top of the pod for battery replacement or access to the electronics. There’s a horseshoe-shaped gap towards the bottom of the kerfed section for an FPV camera to have a front facing view, but remain protected from head-on impacts. I can’t speak to the aerodynamics of the nose of the aircraft, but I was very happy with the aesthetics and hinge functionality. Below is one of the repaired wings which needed some slight modifications on the belt sander, the glued center pod ready for install, and the wings secured to the new center pod on the work bench.&lt;/p&gt;
+
+&lt;div class=&quot;box alt&quot;&gt;
+	&lt;div class=&quot;row 50% uniform&quot;&gt;
+		&lt;div class=&quot;4u&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/wing/part1/5_sanding.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;4u&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/wing/part1/6_glued.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;4u$&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/wing/part1/7_install.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;flight-test&quot;&gt;Flight Test&lt;/h3&gt;
+
+&lt;p&gt;I didn’t get the chance to actually test fly the repaired vehicle for about six months. Once I finally did, I was much more careful to achieve the correct center of gravity. Center of gravity, and it’s position relative to the center of lift plays an important role in the flight characteristics of any plane, but it is especially critical in flying wings due to the lack of a tail. The center of lift is a function of the wing geometry, defined by the manufacturer from testing or computational fluid dynamics (CFD) simulations. Manufacturers of model aircraft frames will usually define an acceptable range for the center of gravity based on where the center of lift falls for the vehicle. For me, the CoG was in front of the CoL (a slightly nose-heavy configuration), providing passive pitch stability. Below is the final pre-flight state of the repaired wing, electronics installed and ready for round two.&lt;/p&gt;
 
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/10_final_preflight.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
+&lt;p&gt;I performed my first successful hand launch of a plane with this vehicle and successfully flew a few batteries worth laps around a local field via line-of-sight. I was by no means relaxed during my first few flights, but the wing performed well once I had trimmed the control surfaces and got comfortable with the nonexistent yaw authority. A few batteries in, I decided to try some low altitude, high speed passes. You guessed it, I put right into a tree at about 40mph. Below is the state of wing after about an hour of enjoying it.&lt;/p&gt;
+
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part1/11_crash.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Armed with the knowledge that I’m not a particularly talented RC plane pilot, I decided the next build would be constructed from similarly low cost materials, but would also include a sensor suite and onboard flight controller allowing me to fly in assisted flight modes, as well as run completely autonomous missions.&lt;/p&gt;
 
 &lt;h2 id=&quot;part-2&quot;&gt;Part 2&lt;/h2&gt;
 
+&lt;p&gt;[DESCRIPTION OF NEW BUILD, PX4 FLIGHT STACK, FRAME, REUSED COMPONENTS]&lt;/p&gt;
+
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/12_internals.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/13_wing_main.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">A small delta wing UAV capable of autonomous flight based on the PX4 flight stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/wing/part2/13_wing_main.jpg" /></entry><entry><title type="html">Wooden Tool Stand</title><link href="/blog/tool-stand/" rel="alternate" type="text/html" title="Wooden Tool Stand" /><published>2018-01-15T00:00:00-08:00</published><updated>2018-01-15T00:00:00-08:00</updated><id>/blog/tool-stand</id><content type="html" xml:base="/blog/tool-stand/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;[TABLE WITH BOM FOR THE WING]?&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/13_wing_main.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;[VIDEO EDIT OF FLIGHT TEST OF NEW BUILD]&lt;/p&gt;
+
+&lt;p&gt;[SOME PICTURES OF GRAPHS AND 3D TRAJECTORY LOGGING IN PX4, SOME INFO ON THE CONTROL SYSTEM?]&lt;/p&gt;</content><summary type="html">A small delta wing UAV capable of autonomous flight based on the PX4 flight stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/wing/part2/13_wing_main.jpg" /></entry><entry><title type="html">Wooden Tool Stand</title><link href="/blog/tool-stand/" rel="alternate" type="text/html" title="Wooden Tool Stand" /><published>2018-01-15T00:00:00-08:00</published><updated>2018-01-15T00:00:00-08:00</updated><id>/blog/tool-stand</id><content type="html" xml:base="/blog/tool-stand/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/tool-stand/1_inspiration.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
@@ -40,7 +80,7 @@
 
 &lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
 
-&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/tool-stand/2_tools_pic.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/tool-stand/2_tools_pic.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;I started with the tools I thought I accessed most and arranged them on the floor of my apartment until I found an aesthetically pleasing and space efficient configuration. I’ve got my wire strippers, digital calipers, some super glue, an X-acto knife, all the necessities for desktop projects in robotics. I simply took an overhead shot of all the tools in place and threw the image into Fusion 360 as a canvas. I scaled the image in CAD based on a measurement of the length of the screw driver and began tracing each tool with rectangles and splines. Then I simply outlined each curve with a few millimeters of margin and added semicircles as grabbing points. I traced an outer rectangle and arrived at my cut geometry. For thoroughness I extruded the geometry into 3D and added the backing layer. I also designed two kick stands to glue onto the back so that the tools rest at a comfortable 45 degree angle on my desk.&lt;/p&gt;
 
@@ -66,7 +106,122 @@
 
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/tool-stand/8_final.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;The final product with tools ready to build something new.&lt;/p&gt;</content><summary type="html">A laser cut tool stand for quick access to the necessities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/tool-stand/tool-stand.jpg" /></entry><entry><title type="html">Crazyflie Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;me136-introduction-to-control-of-unmanned-aerial-vehicles&quot;&gt;ME136: Introduction to Control of Unmanned Aerial Vehicles&lt;/h2&gt;
+&lt;p&gt;The final product with tools ready to build something new.&lt;/p&gt;</content><summary type="html">A laser cut tool stand for quick access to the necessities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/tool-stand/tool-stand.jpg" /></entry><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor, Mark Mueller, recruited my lab team (my good friends David and Joey, and myself) to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
+
+&lt;p&gt;The build had to employ the same flight controller that the lab already used for their other drone related projects, the &lt;a href=&quot;https://www.bitcraze.io/crazyflie-2/&quot;&gt;Crazyflie&lt;/a&gt; from Bitcraze, a PCB designed to drive brushed motors.&lt;/p&gt;
+
+&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
+&lt;div class=&quot;row&quot;&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Run the Crazyflie flight control board (an STM F4 microcontroller)&lt;/li&gt;
+		&lt;li&gt;Have enough room for a radio based &lt;a href=&quot;https://www.bitcraze.io/loco-pos-system/&quot;&gt;localization unit&lt;/a&gt; used for state estimation&lt;/li&gt;
+		&lt;li&gt;Limit voltage to a 2S LiPo's 8.4V&lt;/li&gt;
+		&lt;li&gt;Must be compact, less than 200mm motor shaft to motor shaft&lt;/li&gt;
+		&lt;li&gt;Must be agile, at least a 2:1 thrust to weight ratio&lt;/li&gt;
+		&lt;li&gt;Operate down to 3m of depth&lt;/li&gt;
+		&lt;li&gt;Full battery voltage telemetry&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;component-specification&quot;&gt;Component Specification&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof6.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Systems engineering for a multirotor is a large optimization problem including factors such as motor stator size, motor KV, prop diameter and airfoil, battery voltage and capacity, and aircraft size, weight, and configuration. Thankfully the requirements for the platform narrowed down our choices.&lt;/p&gt;
+
+&lt;p&gt;We estimated we could meet all the requirements with a craft weighing around 100g. Based on existing motor thrust testing, we found that an 1104 7500KV motor could achieve 100g thrust on 2S running a 2-inch prop, so we’d achieve a power to weight ratio of roughly 4:1.&lt;/p&gt;
+
+&lt;p&gt;With this, we decided on a 2S LiPo at 400mAh. Knowing that all our components would have to be submersible, we decided to look around 10A rated 4-in-1 ESCs (4 ESCs for brushless motors on one PCB for easy mounting inside a waterproof enclosure).&lt;/p&gt;
+
+&lt;p&gt;With our powertrain specified, we found the proper components on Amazon and began recreating them in CAD so I could design our frame and waterproof enclosure around them. The Bill of Materials for off the shelf components we included in the build is as follows:&lt;/p&gt;
+
+&lt;h3&gt;Bill of Materials&lt;/h3&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;
+	&lt;table&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Total Weight Contribution (grams)&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://store.bitcraze.io/collections/kits/products/crazyflie-2-0&quot;&gt;Crazyflie Flight Controller&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;STM F4 based microcontroller with an IMU and several UARTs&lt;/td&gt;
+				&lt;td&gt;7&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://store.bitcraze.io/collections/positioning/products/loco-positioning-deck&quot;&gt;Bitcraze Loco Positioning Deck&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;RF based localization module&lt;/td&gt;
+				&lt;td&gt;3.3&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/iPower-Motor-Brushless-Quadcopter-Torrent/dp/B01N7QDZY6/ref=sr_1_3?ie=UTF8&amp;amp;qid=1510622724&amp;amp;sr=8-3&amp;amp;keywords=1104+7500kv&quot;&gt;iPower iX1104 7500KV Brushless Motor&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Brushless motors&lt;/td&gt;
+				&lt;td&gt;22&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/BLHeli_S-Electronic-Controller-Multirotor-Crazepony/dp/B076BDHCHX/ref=sr_1_4?rps=1&amp;amp;ie=UTF8&amp;amp;qid=1510621639&amp;amp;sr=8-4&amp;amp;keywords=20x20+10A+ESC&amp;amp;refinements=p_85%3A2470955011&quot;&gt;Wave 4-in-1 10A ESC&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Single PCB with 4 ESCs for brushless motors rated for 10A continuous&lt;/td&gt;
+				&lt;td&gt;6&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/Crazepony-400mAh-Battery-Racing-Quadcopter/dp/B072BH1XP6/ref=sr_1_1?ie=UTF8&amp;amp;qid=1510622347&amp;amp;sr=8-1&amp;amp;keywords=2S+400+mah&amp;amp;dpID=410fHvjWLiL&amp;amp;preST=_SY300_QL70_&amp;amp;dpSrc=srch&quot;&gt;Crazepony 400mAh 2S 7.4V 30C LiPo&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;A small 2-cell LiPo&lt;/td&gt;
+				&lt;td&gt;22&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/Propellers-Compatible-6200-10000KV-Brushless-Transparent/dp/B074NP3LFF/ref=sr_1_1?s=toys-and-games&amp;amp;rps=1&amp;amp;ie=UTF8&amp;amp;qid=1510622468&amp;amp;sr=1-1&amp;amp;keywords=2inch+props&amp;amp;refinements=p_85%3A2470955011&quot;&gt;Gemfan 2040 Tri-blade Props&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Some 2 inch diameter tri-blade propellers&lt;/td&gt;
+				&lt;td&gt;3.6&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/Matek-Systems-Adjustable-Switchboard-Continuous/dp/B01EACBW6E/ref=sr_1_fkmr1_4?ie=UTF8&amp;amp;qid=1511574313&amp;amp;sr=8-4-fkmr1&amp;amp;keywords=matek+5V+regulator&quot;&gt;Matek Systems Micro BEC 5V/12V Adjustable Buck Module&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Battery eliminator, a 5V bucking regulator&lt;/td&gt;
+				&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof4.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The main design constraint was the requirement that the vehicle must be submersible. Brushless motors are waterproof out of the box due to the insulating enamel applied to the wires of the motor winding in the stator, they can operate underwater without modification. Everything else (flight controller, ESCs, localization module, voltage regulator, battery) had to somehow be waterproofed or inside a watertight container.&lt;/p&gt;
+
+&lt;p&gt;David, Joey, and I brainstormed on how we might protect the sensitive PCBs from the elements within a container. For the sake of preserving an ideal center of mass, close to the geometric center of the vehicle, we decided on two cases which sandwich the frame of the quadcopter. The top case contains all the sensitive PCBs and the battery is protected by the bottom case. A hole is cut in the frame for the battery lead to reach the ESCs and regulator in the top case. 20+ hours of CADing in Fusion 360 later, I completed the full vehicle assembly including a custom frame, top and bottom cases, as well as gaskets to seal the cases against the frame. I included every single PCB as each would be mounted in the case and designed the cases around the components. This ensured a reasonable fit as well as the accuracy of the inertia tensor of the vehicle, an input to the PX4 firmware the lab had running on board the Crazyflies for flight control.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof_main2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The electronics are mounted inside the top case using TPE mounting solutions, CA glue, heavy duty double sided foam tape, and M2 fasteners. There are 4 holes in the top case which allow the motor wires to reach the ESC board inside the case. Those holes would be filled with a rubbery silicon caulking with the wires threaded through.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabrication&quot;&gt;Fabrication&lt;/h2&gt;
+
+&lt;h3 id=&quot;watertight-cases&quot;&gt;Watertight Cases&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;3D printing was the natural choice for fabrication of the custom cases, but normal FDM prints are not watertight. Small gaps between layers can allow some water to permeate even a thick shell of typical 3D printing plastics. SLA type prints (laser/projection based resin curing processes) are bound at a molecular level, so those are watertight. Thankfully at Jacobs Hall on campus at UC Berkeley, we had access to a Carbon3D printer for fabrication of the cases. I had never printed anything with an SLA printer before, it was definitely a learning curve. This printing process has its own intricacies and there are different issues to debug than I was used to on FDM machines. It took 3 or 4 iterations before I established how to avoid vacuum pockets forming in the print, and how to arrange the support structure to avoid warping. Once I was happy with the part and its fabrication, I printed a top and bottom case in black “rigid polyurethane” on the Carbon 3D. All the Carbon3D resin chemistries are proprietary so beyond “polyurethane,” I really have no idea what the parts are made of. They were durable though and worked beautifully.&lt;/p&gt;
+
+&lt;h3 id=&quot;tpe-gaskets&quot;&gt;TPE Gaskets&lt;/h3&gt;
+&lt;p&gt;The weakness of our double case sandwich approach is the potential leak at the interface between the cases and the frame. We had seen rubber gaskets used in other systems at an interface which needed to be watertight. A flexible 3D printing filament called thermal polyurethane (TPE) came to mind. I designed some gaskets which fit along the footprint of the top and bottom case along the frame. They are meant to be compressed when the top and bottom plate sandwich the frame using a few M2 nuts and bolts. I printed the gaskets in orange &lt;a href=&quot;https://www.amazon.com/NinjaFlex-TPU-3D-Printing-Filament/dp/B01LXZYJ3R/ref=sr_1_1?ie=UTF8&amp;amp;qid=1514450027&amp;amp;sr=8-1&amp;amp;keywords=ninjaflex&quot;&gt;NinjaFlex&lt;/a&gt; TPE on my personal Printrbot Simple and over-extruded the prints severely to ensure better-than-average layer adhesion. The gaskets would be adhered to the cases with CA glue with the exposed interface between the case and gasket covered in watertight &lt;a href=&quot;https://www.amazon.com/MG-Chemicals-Silicone-Modified-Conformal/dp/B008O9YIV6/ref=sr_1_1?s=industrial&amp;amp;ie=UTF8&amp;amp;qid=1514450052&amp;amp;sr=1-1&amp;amp;keywords=silicon+conformal+coating&quot;&gt;silicon conformal coating.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;frame&quot;&gt;Frame&lt;/h3&gt;
+&lt;p&gt;Ideally, the custom frame would be cut from a 3mm thick plate of carbon fiber. It would be rigid, light weight, and durable. We had the carbon purchased, but unfortunately, we were finishing this project towards the end of the semester. During the last week of class, the waterjet we needed to access to safety CNC cut the carbon was booked due to other class projects being due for many other students. Cutting the carbon on a typical CNC mill would be a hard sell to the machine shop technicians as carbon fiber dust is one of the last things you’d like in your lungs. 3D printing to the rescue again… we recruited our good friend Eric to complete a specialty print for us. Eric owns a printer with several upgrades allowing him to print abrasive and high-temperature filaments. He printed us a frame out of carbon-reinforced nylon, an extremely durable material. It’s not as clean as the carbon fiber plate we planned on, but it’s rigid enough to be flight worthy.&lt;/p&gt;
+
+&lt;h2 id=&quot;assembly-and-delivery&quot;&gt;Assembly and Delivery&lt;/h2&gt;
+
+&lt;p&gt;After removing excess pins, direct soldering all the components together, and installing a voltage divider for stepping down the input to the VBAT sensor, we covered all the electronics in 2 coats of silicon conformal coating for safety in the off chance that any moisture got inside the case.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof3.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Modification to the PX4 firmware running on the Crazyflie is necessary for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hard-coded scaling factor to read the correct battery voltage from our new VBAT sensing resistor values.&lt;/p&gt;
+
+&lt;p&gt;This project was certainly a design challenge and introduced me to an entirely different additive manufacturing process in SLA 3D printing. The more materials, processes, and printers I interact with, the more I see 3D printing as a promising engineering medium for research, prototyping, and manufacturing in the future. The collaboration with others on the project including friends David, Joey and Eric added to the sense of accomplishment we achieved as a team.&lt;/p&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/waterproof/waterproof_main.jpg" /></entry><entry><title type="html">Crazyflie Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;me136-introduction-to-control-of-unmanned-aerial-vehicles&quot;&gt;ME136: Introduction to Control of Unmanned Aerial Vehicles&lt;/h2&gt;
 
 &lt;p&gt;I took this course in the Fall of 2017, my junior year. When I took it, it was a new class, the first time it had been offered at Berkeley, as well as the first ever class taught by a new faculty member Mark Mueller. I recognized Professor Mueller from ETH Zurich’s Institute for Dynamic Systems and Control, the birthplace of the PX4 project and online videos like &lt;a target=&quot;_blank&quot; href=&quot;https://www.youtube.com/watch?v=3CR5y8qZf0Y&quot;&gt;this&lt;/a&gt;. I hadn’t taken any of the prerequisites for the class, but decided to go for it anyway. A number of UAVs@Berkeley personnel would be accompanying me and I assumed I could make up for a lack of prerequisite classes with my somewhat obsessive love for working on drones.&lt;/p&gt;
 
@@ -386,7 +541,17 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/hotswap/team.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;UAVs@Berkeley’s Fall 2017 Milestone 3 event, from left to right: Suneel, Connor, Dipo, Darius, and yours truly.&lt;/p&gt;</content><author><name>Trey Fortmuller</name></author><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/hotswap/main1.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/drone-tx/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/drone-tx</id><content type="html" xml:base="/blog/drone-tx/">&lt;h2 id=&quot;design-innovation-22&quot;&gt;Design Innovation 22&lt;/h2&gt;
+&lt;p&gt;UAVs@Berkeley’s Fall 2017 Milestone 3 event, from left to right: Suneel, Connor, Dipo, Darius, and yours truly.&lt;/p&gt;
+
+&lt;h3 id=&quot;autodesk-featured-video&quot;&gt;Autodesk Featured Video&lt;/h3&gt;
+
+&lt;p&gt;Jeff Lee is a Program Manager for Field Engagement in the Autodesk Education Experiences group. Jeff has helped UAVs@Berkeley get onboarded with Autodesk’s cross-platform CAD tool Fusion 360, which was used throughout the mechanical design of the Hotswap project. We were lucky enough to have our project featured in Jeff’s “Day In The Life” Autodesk employee profile video series, check it out:&lt;/p&gt;
+
+&lt;div class=&quot;video-wrapper&quot;&gt;
+	&lt;div class=&quot;video-responsive&quot;&gt;
+		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/fiROrePsVHU?rel=0&amp;amp;start=139&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</content><author><name>Trey Fortmuller</name></author><summary type="html">A mechatronics platform designed to autonomously swap a quadcopter's battery, without touching the ground.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/hotswap/main1.jpg" /></entry><entry><title type="html">Custom RC Transmitter</title><link href="/blog/drone-tx/" rel="alternate" type="text/html" title="Custom RC Transmitter" /><published>2016-12-15T00:00:00-08:00</published><updated>2016-12-15T00:00:00-08:00</updated><id>/blog/drone-tx</id><content type="html" xml:base="/blog/drone-tx/">&lt;h2 id=&quot;design-innovation-22&quot;&gt;Design Innovation 22&lt;/h2&gt;
 
 &lt;p&gt;I took Design Innovation 22 in the Fall of my sophomore year. I thoroughly enjoyed it and gained a lot of exposure to modern CNC fabrication methodologies. Design and analysis is much more rewarding when you actually build the thing you designed and analyzed. For my final project in the class, my lab partner Kireet and I built a custom quadcopter frame and our own RC transmitter to control it. The STM F3-based flight controller on board the quadcopter is running an opensource firmware called &lt;a href=&quot;https://github.com/betaflight/betaflight&quot;&gt;Betaflight&lt;/a&gt;. The receiver and transmitter are implemented with Arduino microcontrollers and 2.4Ghz RF modules.&lt;/p&gt;
 
