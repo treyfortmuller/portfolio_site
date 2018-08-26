@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-24T22:57:31-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-08-25T21:26:52-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a &lt;a href=&quot;https://en.wikipedia.org/wiki/Portmanteau&quot;&gt;portmanteau&lt;/a&gt; of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.&lt;/p&gt;
 
@@ -62,17 +62,83 @@
 
 &lt;h2 id=&quot;part-2&quot;&gt;Part 2&lt;/h2&gt;
 
-&lt;p&gt;[DESCRIPTION OF NEW BUILD, PX4 FLIGHT STACK, FRAME, REUSED COMPONENTS]&lt;/p&gt;
+&lt;p&gt;Another six months passed, another semester came to a close, and finally I had the time to get to work on a new plane. This one was built from a &lt;a href=&quot;https://store.flitetest.com/flite-test-spear-electric-airplane-kit-1041mm-flt-1043/p673707&quot;&gt;Flite Test Spear&lt;/a&gt; foam board airframe. It is a very similar geometry to the Arrow used in the first build but has a massive payload bay for storing extra batteries, a GoPro, a flight controller, more sensors, etc. The airframe only took a two or three hours to fold into shape and cost about $40 USD. I transplanted the receiver, servos, and ESC from the original build then set about integrating new flight control hardware which was mostly sourced from &lt;a href=&quot;https://store.mrobotics.io/Default.asp&quot;&gt;mRobotics&lt;/a&gt;. mRobotics is a relatively new spinoff from some of the &lt;a href=&quot;http://mrobotics.io/mayan-robotics/&quot;&gt;hardware designers&lt;/a&gt; who were working at 3D Robotics during their development of the original Pixhawk flight controller. Below is a rough bill of materials for the vehicle along with a shot of the completed payload bay.&lt;/p&gt;
+
+&lt;h3 id=&quot;bill-of-materials&quot;&gt;Bill of Materials&lt;/h3&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;
+	&lt;table&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;LiPo battery&lt;/td&gt;
+				&lt;td&gt;4S 1500mAh pack for power with an XT60 connector&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Brushless Motor&lt;/td&gt;
+				&lt;td&gt;An EMAX 2306 2300KV motor designed for racing multirotors in a pusher configuration for thurst&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Electronic Speed Controller&lt;/td&gt;
+				&lt;td&gt;A 40A ESC with a 5V battery eliminator circuit for speed control of the motor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Propeller&lt;/td&gt;
+				&lt;td&gt;6x4.5 two-bladed propeller made from glass-nylon&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Servos&lt;/td&gt;
+				&lt;td&gt;9g hobby servos glued into the wings to actuate the elevon control surfaces&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Flight Controller&lt;/td&gt;
+				&lt;td&gt;A Pixhawk FMUv2 with an included IMU built around a 32-bit ARM Cortex M4 processor&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Receiver&lt;/td&gt;
+				&lt;td&gt;FrSky frequency-hopping spread spectrum 2.4Ghz control receiver for manual flight input&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Pixhawk Power Module&lt;/td&gt;
+				&lt;td&gt;A small module in series with the battery that includes voltage and current sensing circuits for telemetry&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;Airspeed Sensor&lt;/td&gt;
+				&lt;td&gt;An mRo airspeed sensor which communicates of I2C connected to a front facing pitot tube&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;GPS&lt;/td&gt;
+				&lt;td&gt;mRo GPS module with a u-Blox Neo-M8N and included compass for 3D localization tuned for GPS and GLONASS networks&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
 
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/12_internals.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;[TABLE WITH BOM FOR THE WING]?&lt;/p&gt;
+&lt;h3 id=&quot;px4-flight-stack&quot;&gt;PX4 Flight Stack&lt;/h3&gt;
+
+&lt;p&gt;I’ve used variants of the PX4 open source flight control firmware stack before, but only for multirotors. I read through the PX4 &lt;a href=&quot;https://docs.px4.io/en/&quot;&gt;User Guide&lt;/a&gt; as well as the &lt;a href=&quot;https://dev.px4.io/en/&quot;&gt;Dev Guide&lt;/a&gt; in order to better understand the important differences between the vehicle architectures. Aside from the low level controllers, mixers, and flight modes, there are few differences between the fixed-wing and multirotor workflows.&lt;/p&gt;
 
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/13_wing_main.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/controller.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/attitude_plot.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/roll_plot.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/wing/part2/power_plot.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
 &lt;p&gt;[VIDEO EDIT OF FLIGHT TEST OF NEW BUILD]&lt;/p&gt;
 
-&lt;p&gt;[SOME PICTURES OF GRAPHS AND 3D TRAJECTORY LOGGING IN PX4, SOME INFO ON THE CONTROL SYSTEM?]&lt;/p&gt;</content><summary type="html">A small delta wing UAV capable of autonomous flight based on the PX4 flight stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/wing/part2/13_wing_main.jpg" /></entry><entry><title type="html">Wooden Tool Stand</title><link href="/blog/tool-stand/" rel="alternate" type="text/html" title="Wooden Tool Stand" /><published>2018-01-15T00:00:00-08:00</published><updated>2018-01-15T00:00:00-08:00</updated><id>/blog/tool-stand</id><content type="html" xml:base="/blog/tool-stand/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;[SOME PICTURES OF GRAPHS AND 3D TRAJECTORY LOGGING IN PX4, SOME INFO ON THE CONTROL SYSTEM?]&lt;/p&gt;
+
+&lt;p&gt;For a full 3D render of this test flight via &lt;a href=&quot;https://cesiumjs.org/&quot;&gt;Cesium&lt;/a&gt;, including real time playback click &lt;a href=&quot;https://logs.px4.io/3d?log=49eeeb7c-ef61-4775-9a70-3fd3f24ef544&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">A small delta wing UAV capable of autonomous flight based on the PX4 flight stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/wing/part2/13_wing_main.jpg" /></entry><entry><title type="html">Wooden Tool Stand</title><link href="/blog/tool-stand/" rel="alternate" type="text/html" title="Wooden Tool Stand" /><published>2018-01-15T00:00:00-08:00</published><updated>2018-01-15T00:00:00-08:00</updated><id>/blog/tool-stand</id><content type="html" xml:base="/blog/tool-stand/">&lt;h2 id=&quot;motivation&quot;&gt;Motivation&lt;/h2&gt;
 
 &lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/tool-stand/1_inspiration.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
