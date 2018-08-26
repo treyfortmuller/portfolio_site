@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>Photogrammetry 3D Scanner</title>
+<meta name="description" content="">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+<link rel="manifest" href="/assets/icon/manifest.json">
+<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/icon/favicon.ico">
+<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
+
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+        <header id="header">
+          <a href="/" class="logo">Trey Fortmuller</a>
+        </header>
+
+				<!-- Nav -->
+					<nav id="nav">
+
+            <ul class="links">
+  <li class=""><a href="/">Projects</a></li>
+  <li class=""><a href="/about/">About</a></li>
+<!--   <li class=" active "><a href="/projects/">Projects</a></li> -->
+  <li class=""><a href="/resume/">Resume</a></li>
+</ul>
+
+
+						<ul class="icons">
+              <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+              <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+              <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li>
+            </ul>
+					</nav>
+
+				<!-- Main -->
+				<div id="main">
+          <section class="post">
+    				<header class="major">
+      				<span class="date">08 Oct 2017</span>
+      				<h1>Photogrammetry 3D Scanner</h1>
+      				<p>A vision based 3D scanner utilizing photogrammetry to generate meshes, affectionately called 'Greg.'</p>
+      			</header>
+      			<div class="image main"><img src="/images/3d-scanner/greg9.jpg" alt=""></div>
+      			<p></p>
+<p>I built this project with my friends Suneel and Nathan for UC Berkeley’s hackathon: <a target="_blank" href="https://calhacks.io/">Cal Hacks</a>, one of the largest collegiate hackathons in the world. The event featured 1,700 hackers from 100 schools and 5 countries building projects for 36 straight hours. It was an incredible experience, and a very professionally run event. After we submitted and presented our work, we found out that we were one of six teams to win the Cal Hacks fellowship award.</p>
+
+<h3 id="the-cal-hacks-fellowship">The Cal Hacks Fellowship</h3>
+<div class="box">
+  <p>
+  	Why do you have to stop when the hackathon is over? We’re introducing the Cal Hacks Fellowship, a program that accepts 5 hackathon teams to continue their projects beyond the hackathon. We plan to continue improving your project and move it past its initial stage so you can continue adding onto it, while receiving the same support from a hackathon.</p>
+  <p>
+	This includes: One-on-one director mentorship, Work with industry professionals and venture capitalists, Receive support from The House Founders program, Gain access to future hack nights and unlimited amount of free resources.
+  </p>
+  <p style="text-align:right">
+  	- calhacks.io
+  </p>
+</div>
+
+<p>We were given $1000 to continue building our project out as far as we’d like. Suneel, Nathan, and I have plenty of ideas as to how to best use this money to turn our weekend project into a useful tool. Our original Cal Hacks submission for the project can be found on <a target="_blank" href="https://devpost.com/software/greg-wt609e">DevPost</a>. Also, the directors of Cal Hacks wrote <a target="_blank" href="https://medium.com/cal-hacks/the-cal-hacks-fellowship-transcending-beyond-the-hack-468a84a9db06">a Medium article</a> about the motivation behind the Cal Hacks Fellowship.</p>
+
+<h2 id="inspiration">Inspiration</h2>
+
+<p>3D Printing offers quick and easy access to a physical design from a digitized mesh file. Transferring a physical model back into a digitized mesh is much less accessible in a desktop platform. We sought to create our own desktop 3D scanner that could generate high fidelity, colored and textured meshes for 3D printing or including models in computer graphics. The build is named after our good friend Greg who let us borrow his stereo camera for the weekend, enabling this project.</p>
+
+<h2 id="the-build">The Build</h2>
+
+<p><span class="image left"><img src="/images/3d-scanner/greg10.jpg" alt=""></span></p>
+
+<p>The rig uses a ZED stereo camera driven by a ROS wrapper to take stereo images at various known poses in a spiral which is executed with precision by two stepper motors driving a leadscrew elevator and a turn table for the model to be scanned. We designed the entire build in a high detail CAD using Autodesk Fusion 360, 3D printed L-brackets and mounting hardware to secure the stepper motors to the T-slot aluminum frame we cut at the metal shop at Jacobs Hall. There are also 1/8th inch wood pieces that were laser cut at Jacobs, including the turn table itself. We designed the power system around an Arduino microcontroller and an Adafruit motor shield to drive the steppers. The Arduino and the ZED camera are controlled by python over a serial port and a ROS wrapper respectively to automate the process of capturing the images used as an input to OpenMVG/MVS to compute dense point clouds and eventually refined meshes.</p>
+
+<p><span class="image main"><img src="/images/3d-scanner/greg_cad.png" alt=""></span></p>
+
+<h2 id="challenges">Challenges</h2>
+
+<p><span class="image right"><img src="/images/3d-scanner/greg11.jpg" alt=""></span></p>
+
+<p>We ran into a few minor mechanical design issues that were unforeseen in the CAD, luckily we had access to a 3D printer throughout the entire weekend and were able to iterate quickly on the tolerancing of some problematic parts. Issues with the AccelStepper library for Arduino used to simultaneously control the velocity and acceleration of 2 stepper motors slowed us down early Sunday evening and we had to extensively read the online documentation to accomplish the control tasks we needed to. Lastly, the complex 3D geometry of our rig (specifically rotation and transformation matrices of the cameras in our defined world coordinate frame) slowed us down and we believe may still problematic.</p>
+
+<h2 id="future-improvements">Future Improvements</h2>
+
+<p>We’re proud of the mechanical design and fabrication, actuator precision, and data collection automation we achieved in just 36 hours. The outputted point clouds and meshes are still being improved. This is a result of the ZED stereo camera we used, it wasn’t the right camera for the job as it is optimized for depth sensing up to 20m away, not 20cm away as in our build. It did however have an awesome advantage in that we could control it through ROS, so automating the activation of the camera through a python script was easy.</p>
+
+<p><span class="image main"><img src="/images/3d-scanner/greg_build.png" alt=""></span></p>
+
+<p>With the money we won at the hackathon, we are planning on purchasing an Nvidia TX2, to integrate all the automation and mesh construction onto an embedded platform that can be carried with the scanner. Also, we’ll purchase an XBox Kinect camera and try to rebuild around using IR depth sensing rather than photogrammetry. This method has been proven specifically for this close-range application and we’re hoping to generate our first usable mesh during the Spring 2018.</p>
+
+<p><span class="image main"><img src="/images/3d-scanner/greg4.png" alt=""></span></p>
+
+<h2 id="built-with">Built With</h2>
+<div class="row">
+	<div class="6u 12u$(small)">
+		<ul>
+			<li>OpenMVG</li>
+			<li>Arduino</li>
+			<li>Python</li>
+			<li>ZED from Stereolabs</li>
+			<li>ROS</li>
+			<li>CUDA</li>
+		</ul>
+	</div>
+</div>
+
+
+      		</section>
+
+					<!-- Footer -->
+						<footer>
+              <ul class="actions">
+                <li><a href="/projects/" class="button">Projects</a></li>
+              </ul>
+						</footer>
+					</div>
+
+				<!-- Footer -->
+        <footer id="footer">
+  <section>
+    <!-- Formspree form for adding a email form to the status site -->
+    <form method="POST" action="https://formspree.io/tfortmuller@berkeley.edu">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email">
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="3"></textarea>
+      </div>
+      <ul class="actions">
+        <li><input type="submit" value="Send Message"></li>
+      </ul>
+    </form>
+  </section>
+
+  <!-- Contact side section -->
+  <section class="split contact">
+
+    <!-- Location -->
+    <section class="alt">
+      <h3>Location</h3>
+      <p>Berkeley, CA</p>
+    </section>
+
+    <!-- Connect -->
+    <section>
+      <h3>Connect</h3>
+      <ul class="icons alt">
+        <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+        <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li>
+      </ul>
+    </section>
+    
+  </section>
+</footer>
+<!-- Copyright bottom section -->
+<div id="copyright">
+  <ul>
+      <li>© 
+    2018 Trey Fortmuller </li>
+      <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a>
+</li>
+    </ul>
+</div>
+
+
+			</div>
+
+      <!-- Scripts -->
+  		<!-- DYN -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111812042-1');
+</script>
+
+
+	</body>
+</html>
