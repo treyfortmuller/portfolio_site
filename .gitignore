@@ -1,2 +1,3 @@
 .DS_store # the mac os desktop rendering file
+.DS_Store
 _site/ # the directory where compiled sites reside
