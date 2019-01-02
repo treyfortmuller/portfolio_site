@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-11-21T13:59:00-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-01-01T22:15:20-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a &lt;a href=&quot;https://en.wikipedia.org/wiki/Portmanteau&quot;&gt;portmanteau&lt;/a&gt; of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.&lt;/p&gt;
 
@@ -396,7 +396,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;I go to school in Berkeley, CA. The campus is built on a hill, so it’s difficult to get from point A to point B if point B is East of point A. Electric vehicles are, of course, the future of personal transportation, but I’m on a budget so a Tesla isn’t an option. In fact, even a $1,400 Boosted Board is a little pricey. I decided to build my own electric longboard to get around the Berkeley hills, I wanted all the torque I could muster whilst keeping the cost down.&lt;/p&gt;
 
-&lt;h2 id=&quot;drivetrain-specification&quot;&gt;Drivetrain Specification&lt;/h2&gt;
+&lt;h2 id=&quot;powertrain-specification&quot;&gt;Powertrain Specification&lt;/h2&gt;
 
 &lt;p&gt;I knew I wanted to use two 4S LiPos in series to run my powertrain on 8S power because I can still use 4S batteries for other projects (flying drones, field charging other LiPos, etc.). With 8S voltage decided, what KV motor should I buy and what gear reduction should take place between the motor and the wheels?&lt;/p&gt;
 
@@ -406,7 +406,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;The best brushless outrunner motor candidate I could find was &lt;a target=&quot;\_blank&quot; href=&quot;https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2&quot;&gt;this&lt;/a&gt; 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.&lt;/p&gt;
 
-&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
+&lt;h2 id=&quot;mechanical-design&quot;&gt;Mechanical Design&lt;/h2&gt;
 
 &lt;h3 id=&quot;the-board&quot;&gt;The Board&lt;/h3&gt;
 
@@ -424,7 +424,9 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/e-board/cover.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;I designed and printed some covers which wrap over the divot in four pieces to protect the electronics bay from moisture or gravel. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. I’m brainstorming now how I might fabricate a mechanism to more easily remove and reattach them when I need to access the bay to charge batteries. The final products will be printed out of Nylon for durability.&lt;/p&gt;
+&lt;p&gt;I designed and printed some enclosures which wrap over the divot in four pieces to protect the electronics bay from dust, debris, and water. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. There’s opportunity for improving the serviceability of the board by implementing a latch or some other mechanism to access the batteries without unscrewing the lock nuts I’ve used. I’ve kept the design simple because the pieces are large and they take a long time to print, so iterating several times on a tightly toleranced mechanism was not a high priority. My printer can print PLA the fastest of any material and each of the four pieces still took 12 hours each. With a more capable printer, Nylon or PETG would be more suited materials for their greater flexibility and robustness to vibration and shock. Below is a picture of the board fully integrated with the enclosure attached.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/enclosure.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;Longboards are typically made from bamboo, maple, birch, or composite materials. I made mine from a low-grade plywood without paying much attention to the load carrying capacity of my design. Upon hopping on for the first time, I felt an uneasy sinking at the center of the board under my weight rather than the springy feel of manufactured boards. I compensated with an aluminum beam spanning the electronics bay and it felt much safer.&lt;/p&gt;
 
@@ -436,11 +438,59 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;h3 id=&quot;the-handheld-remote&quot;&gt;The Handheld Remote&lt;/h3&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/transmit1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Inside the handheld wireless remote control, I had to fit an Arduino Nano, a 9V battery, an nRF24 transceiver module, an arming switch, and a joystick for throttle control. The arming switch is there to ensure a safe mode of “default” operation. The arming switch (also sometimes called a dead man’s switch) arms to motor so that control input is only acted upon while the momentary switch is being actively pressed. That way, if you drop the remote, or you fall off the longboard, it won’t zip away. In the mechanical design of the remote I was aiming for serviceability and access to the electronics as I was still testing the transceiver’s performance and tuning parameters in the transmitter’s software while the remote was put together. Ideally, the case would be relatively ergonomic and comfortable to hold as well. Ergonomics are certainly not my specialty, so I found open design files for a pistol grip online and modified it to mount the joystick and dead man’s switch, leaving a large open space for quick access to the electronics, which are held in place with industrial strength doubled-sided foam tape for now. Doubled-sided foam is quick, reliable, doesn’t leave a mess, and it’s not permanent so I use it all the side a temporary fastening method. Below are some renders of the remote and its physical incarnation after 3D printing the grip and integration of the electronics.&lt;/p&gt;
 
-&lt;p&gt;Mechanical design for the hand held remote is underway now. I’ve got to fit an Arduino Nano, a 9V battery, an nRF24 transceiver module, a dead man’s switch, and potentiometer for throttle control inside an ergonomic 3D printed case. I’ve got the electronics finished and code ready to be tested.&lt;/p&gt;
+&lt;div class=&quot;box alt&quot;&gt;
+	&lt;div class=&quot;row 50% uniform&quot;&gt;
+		&lt;div class=&quot;4u&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/e-board/tx_rend1.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;4u&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/e-board/tx_rend2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;4u$&quot;&gt;
+			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/e-board/tx_rend3.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
 
-&lt;p&gt;More to come after I complete this project.&lt;/p&gt;</content><summary type="html">IN PROGRESS: An electric longboard with a handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/e-board/board_main.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/tx.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;software-design&quot;&gt;Software Design&lt;/h2&gt;
+
+&lt;p&gt;The code for both the receiving (on the longboard itself) and transmitting (inside the remote) Arduinos is available in &lt;a target=&quot;\_blank&quot; href=&quot;https://github.com/treyfortmuller/eboard&quot;&gt;my GitHub repo&lt;/a&gt; for the longboard. My buddy David and I had plans that got canceled due to weather, so I roped him into the project and we hacked through all the Arduino code in a single afternoon.&lt;/p&gt;
+
+&lt;p&gt;The transmitting Arduino inside the remote takes of care:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Reading the state of the joystick and arming switch&lt;/li&gt;
+  &lt;li&gt;Averaging a time series of the throttle input for smoother acceleration and braking&lt;/li&gt;
+  &lt;li&gt;Packaging the smoothed throttle output and arming switch state into a transmittable data structure&lt;/li&gt;
+  &lt;li&gt;Transmitting packets to the receiving nRF24 module&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The receiving Arduino inside the electronics enclosure on the longboard is tasked with:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Receiving packets from the transmitting nRF24 module&lt;/li&gt;
+  &lt;li&gt;Unpacking the data&lt;/li&gt;
+  &lt;li&gt;Generating a PWM throttle signal to send to the electronic speed controller (ESC) for the motor&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Below is the receiving side Arduino and its corresponding nRF24 module, the wire wrapped in braided nylon goes to the ESC. This 3D printed mounting solution is then secured to the underside of the board, inside the enclosure, using high strength velcro. I chose the &lt;a target=&quot;\_blank&quot; href=&quot;http://vedder.se/2015/01/vesc-open-source-esc/&quot;&gt;Vedder ESC (VESC)&lt;/a&gt;, an open-source hardware and software project which is purpose built for electric longboards and other high-power applications. The VESC includes a battery eliminator circuit which sends a clean 5V to the microcontroller to power it. The VESC simplified this project in a big way. It takes care of regenerative braking and runs the motor using a simple PID current controller. The motor back-EMF is characterized in the configurator that is distributed with the VESC’s firmware.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/rx_enclosure.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;testing&quot;&gt;Testing&lt;/h2&gt;
+
+&lt;p&gt;I tuned some of the ESC’s parameters in the &lt;a target=&quot;\_blank&quot; href=&quot;https://diyelectricskateboard.com/blogs/electric-skateboard/vesc-bldc-tool-download-link&quot;&gt;BLDC Tool&lt;/a&gt;, a configurator for the the VESC’s firmware. I adjusted the PWM signal range, throttle deadband, and minimum duty cycle. I spun up the motor for the first time and tested the wireless controllers reliability. Upon confirming the implemented software failsafes (arming switch functionality, ESC behavior in case of a lost wireless connection, battery undervoltage, etc.), it was time to hop on.&lt;/p&gt;
+
+&lt;p&gt;The board delivered some excellent uphill acceleration and braking power shown in the video below. The remote control was easy to use on the board and the wireless connection never faltered. My only complaint so far is the occasional motor glitches at very slow speeds with high throttle setpoints. Providing data from a Hall effect sensor or visual motor encoder would allow the VESC to more accurately control slow speeds for smoother power delivery. I haven’t done any extensive testing to characterize the range or all out top speed yet. I need some more practice first, or some kneepads.&lt;/p&gt;
+
+&lt;!-- A video goes here! --&gt;
+&lt;div class=&quot;video-wrapper&quot;&gt;
+	&lt;div class=&quot;video-responsive&quot;&gt;
+		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/KJxlBvzlVTY?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</content><summary type="html">A custom electric longboard and handheld wireless controller.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/e-board/board_main.jpg" /></entry><entry><title type="html">Midair Hotswap</title><link href="/blog/hotswap/" rel="alternate" type="text/html" title="Midair Hotswap" /><published>2017-06-15T00:00:00-07:00</published><updated>2017-06-15T00:00:00-07:00</updated><id>/blog/hotswap</id><content type="html" xml:base="/blog/hotswap/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;The Midair Hotswap is a project I did within the UAVs@Berkeley student organization campus at Cal which I now lead as President. I began this project at the start of my Sophomore year as a Team Lead. We started with about 12 people and over the course of the 3 semesters we worked on this project, we ended up with a team of 5 dedicated undergraduate engineering students who stuck it out till the bitter end. This project was incredibly rewarding to work on. Not only did my technical knowledge, prototyping intuition, and design methodology strengthen over the course of the 3 semesters, my understanding of how to work in a team grew enormously. From simple face to face communication on technical topics, to delegating tasks that play to the strengths of each team member, to maintaining a unified vision, and even keeping my team motivated and inspired to pursue this project, I couldn’t have asked for a better platform to grow as a future professional engineer.&lt;/p&gt;
 

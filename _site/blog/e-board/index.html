@@ -56,7 +56,7 @@
     				<header class="major">
       				<span class="date">15 Jul 2017</span>
       				<h1>Custom Electric Longboard</h1>
-      				<p>IN PROGRESS: An electric longboard with a handheld wireless controller.</p>
+      				<p>A custom electric longboard and handheld wireless controller.</p>
       			</header>
       			<div class="image main"><img src="/images/e-board/board_main.jpg" alt=""></div>
       			<p></p>
@@ -64,7 +64,7 @@
 
 <p>I go to school in Berkeley, CA. The campus is built on a hill, so it’s difficult to get from point A to point B if point B is East of point A. Electric vehicles are, of course, the future of personal transportation, but I’m on a budget so a Tesla isn’t an option. In fact, even a $1,400 Boosted Board is a little pricey. I decided to build my own electric longboard to get around the Berkeley hills, I wanted all the torque I could muster whilst keeping the cost down.</p>
 
-<h2 id="drivetrain-specification">Drivetrain Specification</h2>
+<h2 id="powertrain-specification">Powertrain Specification</h2>
 
 <p>I knew I wanted to use two 4S LiPos in series to run my powertrain on 8S power because I can still use 4S batteries for other projects (flying drones, field charging other LiPos, etc.). With 8S voltage decided, what KV motor should I buy and what gear reduction should take place between the motor and the wheels?</p>
 
@@ -74,7 +74,7 @@
 
 <p>The best brushless outrunner motor candidate I could find was <a target="\_blank" href="https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2">this</a> 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.</p>
 
-<h2 id="design">Design</h2>
+<h2 id="mechanical-design">Mechanical Design</h2>
 
 <h3 id="the-board">The Board</h3>
 
@@ -92,7 +92,9 @@
 
 <p><span class="image right"><img src="/images/e-board/cover.jpg" alt=""></span></p>
 
-<p>I designed and printed some covers which wrap over the divot in four pieces to protect the electronics bay from moisture or gravel. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. I’m brainstorming now how I might fabricate a mechanism to more easily remove and reattach them when I need to access the bay to charge batteries. The final products will be printed out of Nylon for durability.</p>
+<p>I designed and printed some enclosures which wrap over the divot in four pieces to protect the electronics bay from dust, debris, and water. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. There’s opportunity for improving the serviceability of the board by implementing a latch or some other mechanism to access the batteries without unscrewing the lock nuts I’ve used. I’ve kept the design simple because the pieces are large and they take a long time to print, so iterating several times on a tightly toleranced mechanism was not a high priority. My printer can print PLA the fastest of any material and each of the four pieces still took 12 hours each. With a more capable printer, Nylon or PETG would be more suited materials for their greater flexibility and robustness to vibration and shock. Below is a picture of the board fully integrated with the enclosure attached.</p>
+
+<p><span class="image main"><img src="/images/e-board/enclosure.jpg" alt=""></span></p>
 
 <p>Longboards are typically made from bamboo, maple, birch, or composite materials. I made mine from a low-grade plywood without paying much attention to the load carrying capacity of my design. Upon hopping on for the first time, I felt an uneasy sinking at the center of the board under my weight rather than the springy feel of manufactured boards. I compensated with an aluminum beam spanning the electronics bay and it felt much safer.</p>
 
@@ -104,11 +106,60 @@
 
 <h3 id="the-handheld-remote">The Handheld Remote</h3>
 
-<p><span class="image main"><img src="/images/e-board/transmit1.jpg" alt=""></span></p>
+<p>Inside the handheld wireless remote control, I had to fit an Arduino Nano, a 9V battery, an nRF24 transceiver module, an arming switch, and a joystick for throttle control. The arming switch is there to ensure a safe mode of “default” operation. The arming switch (also sometimes called a dead man’s switch) arms to motor so that control input is only acted upon while the momentary switch is being actively pressed. That way, if you drop the remote, or you fall off the longboard, it won’t zip away. In the mechanical design of the remote I was aiming for serviceability and access to the electronics as I was still testing the transceiver’s performance and tuning parameters in the transmitter’s software while the remote was put together. Ideally, the case would be relatively ergonomic and comfortable to hold as well. Ergonomics are certainly not my specialty, so I found open design files for a pistol grip online and modified it to mount the joystick and dead man’s switch, leaving a large open space for quick access to the electronics, which are held in place with industrial strength doubled-sided foam tape for now. Doubled-sided foam is quick, reliable, doesn’t leave a mess, and it’s not permanent so I use it all the side a temporary fastening method. Below are some renders of the remote and its physical incarnation after 3D printing the grip and integration of the electronics.</p>
 
-<p>Mechanical design for the hand held remote is underway now. I’ve got to fit an Arduino Nano, a 9V battery, an nRF24 transceiver module, a dead man’s switch, and potentiometer for throttle control inside an ergonomic 3D printed case. I’ve got the electronics finished and code ready to be tested.</p>
+<div class="box alt">
+	<div class="row 50% uniform">
+		<div class="4u">
+			<span class="image fit"><img src="/images/e-board/tx_rend1.png" alt=""></span>
+		</div>
+		<div class="4u">
+			<span class="image fit"><img src="/images/e-board/tx_rend2.png" alt=""></span>
+		</div>
+		<div class="4u$">
+			<span class="image fit"><img src="/images/e-board/tx_rend3.png" alt=""></span>
+		</div>
+	</div>
+</div>
 
-<p>More to come after I complete this project.</p>
+<p><span class="image main"><img src="/images/e-board/tx.jpg" alt=""></span></p>
+
+<h2 id="software-design">Software Design</h2>
+
+<p>The code for both the receiving (on the longboard itself) and transmitting (inside the remote) Arduinos is available in <a target="\_blank" href="https://github.com/treyfortmuller/eboard">my GitHub repo</a> for the longboard. My buddy David and I had plans that got canceled due to weather, so I roped him into the project and we hacked through all the Arduino code in a single afternoon.</p>
+
+<p>The transmitting Arduino inside the remote takes of care:</p>
+<ul>
+  <li>Reading the state of the joystick and arming switch</li>
+  <li>Averaging a time series of the throttle input for smoother acceleration and braking</li>
+  <li>Packaging the smoothed throttle output and arming switch state into a transmittable data structure</li>
+  <li>Transmitting packets to the receiving nRF24 module</li>
+</ul>
+
+<p>The receiving Arduino inside the electronics enclosure on the longboard is tasked with:</p>
+<ul>
+  <li>Receiving packets from the transmitting nRF24 module</li>
+  <li>Unpacking the data</li>
+  <li>Generating a PWM throttle signal to send to the electronic speed controller (ESC) for the motor</li>
+</ul>
+
+<p>Below is the receiving side Arduino and its corresponding nRF24 module, the wire wrapped in braided nylon goes to the ESC. This 3D printed mounting solution is then secured to the underside of the board, inside the enclosure, using high strength velcro. I chose the <a target="\_blank" href="http://vedder.se/2015/01/vesc-open-source-esc/">Vedder ESC (VESC)</a>, an open-source hardware and software project which is purpose built for electric longboards and other high-power applications. The VESC includes a battery eliminator circuit which sends a clean 5V to the microcontroller to power it. The VESC simplified this project in a big way. It takes care of regenerative braking and runs the motor using a simple PID current controller. The motor back-EMF is characterized in the configurator that is distributed with the VESC’s firmware.</p>
+
+<p><span class="image main"><img src="/images/e-board/rx_enclosure.jpg" alt=""></span></p>
+
+<h2 id="testing">Testing</h2>
+
+<p>I tuned some of the ESC’s parameters in the <a target="\_blank" href="https://diyelectricskateboard.com/blogs/electric-skateboard/vesc-bldc-tool-download-link">BLDC Tool</a>, a configurator for the the VESC’s firmware. I adjusted the PWM signal range, throttle deadband, and minimum duty cycle. I spun up the motor for the first time and tested the wireless controllers reliability. Upon confirming the implemented software failsafes (arming switch functionality, ESC behavior in case of a lost wireless connection, battery undervoltage, etc.), it was time to hop on.</p>
+
+<p>The board delivered some excellent uphill acceleration and braking power shown in the video below. The remote control was easy to use on the board and the wireless connection never faltered. My only complaint so far is the occasional motor glitches at very slow speeds with high throttle setpoints. Providing data from a Hall effect sensor or visual motor encoder would allow the VESC to more accurately control slow speeds for smoother power delivery. I haven’t done any extensive testing to characterize the range or all out top speed yet. I need some more practice first, or some kneepads.</p>
+
+<!-- A video goes here! -->
+<div class="video-wrapper">
+	<div class="video-responsive">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/KJxlBvzlVTY?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+	</div>
+</div>
+
 
       		</section>
 
@@ -168,7 +219,7 @@
 <div id="copyright">
   <ul>
       <li>© 
-    2018 Trey Fortmuller </li>
+    2019 Trey Fortmuller </li>
       <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a>
 </li>
     </ul>
