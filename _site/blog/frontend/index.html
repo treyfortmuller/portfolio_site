@@ -62,35 +62,56 @@
       			<p></p>
 <h2 id="introduction">Introduction</h2>
 
+<p>If you’ve read through many of the other projects listed on this portfolio you may have noticed a pattern. I tend to get most excited about robotics projects that interact with the physical world. Writing code for mobile, desktop, and web applications is an educational endeavor but not one that I find particularly inspiring. I am, however, extremely motivated while writing software that has some physical manifestation. Examples might include software for interfacing sensors, actuators, networking, logic, and control for autonomous systems.</p>
+
+<p>That being said, during my sophomore year in college I decided it would be valuable for my eventual job prospects to have an online platform to share my projects and experience. I had worked with WordPress before as a Content Management System (CMS) for maintaining a website. I found the interface clunky, and I could never achieve exactly what I wanted to in terms of the look and operation of the website using their templates. I did some googling to understand what other options existed to help me build and maintain a web presence according to my priorities:</p>
 <ul>
-  <li>Some stuff about not caring about web development, but wanting a web presence</li>
-  <li>Stuff that is important:
-    <ul>
-      <li>look good (im not a design expert)</li>
-      <li>easily maintained, expanded, redeployed</li>
-      <li>As cheap as possible</li>
-      <li>Responsive</li>
-    </ul>
-  </li>
-  <li>Ran into Jekyll and some tutorials on YouTube. Why is Jekyll Cool</li>
-  <li>Bit of story, started developing my website (became fluent with Jekyll’s workflow and the hardest part of webdev now is writing the content, as it should be). Got so comfortable that I volunteered to take over websites for some of the organizations I’m a part of at UC Berkeley…</li>
+  <li>Easily maintained and expanded upon</li>
+  <li>Exposes source level access to the entire site and its styling</li>
+  <li>Looks good out of the box (I’m no design expert)</li>
+  <li>As cheap as possible to develop and host</li>
+  <li>Responsive (the site should look and function just as well on mobile phones as it does in a desktop browser)</li>
 </ul>
+
+<p>The process of building a website more “from scratch” than a CMS like WordPress allows would have the added benefit of requiring that I learn the basics of front-end web development. As I mentioned, its not my favorite, but executing the vital 20% suggested by the <a href="https://en.wikipedia.org/wiki/Pareto_principle">80/20 rule</a> would satisfy my priorities for a robust web presence. Also, who doesn’t love acquiring new skills?</p>
+
+<p>In my research, I ran into a Ruby-based static site generator called <a href="https://jekyllrb.com/">Jekyll</a>. Jekyll allows me to write all my content in Markdown and leverage a templating engine called <a href="https://github.com/Shopify/liquid/wiki">Liquid</a>. These are some huge time saving conveniences, but I still retain the ability to edit HTML and CSS (or compile Sass) directly. Jekyll has hundreds of <a href="https://jekyllthemes.io/">templates</a> available, aimed at many different use cases (portfolios, blogs, landing pages, you name it). The templates vary in their licensing, most are free and the rest are low cost to download and use. I experimented with a bunch of free templates early on, inspecting their file structure and source code for understanding. Eventually I came across the work of a web developer in Nashville named <a href="https://aj.lkn.io/">AJ</a>. AJ builds beautiful, modern, and responsive website templates and distributes them with permissive licenses on his site, <a href="https://html5up.net/">HTML5 UP</a>. HTML5 UP sites are minimalist both visually and in the source. The aesthetic of the sites attracted me but they’re also feature-rich, with styling built-in for text tables, photo grids, and Formspree forms.</p>
+
+<h2 id="project-portfolio">Project Portfolio</h2>
+
+<p>I learned the basics of HTML, CSS, and how to make use of Jekyll through experimentation, <a href="https://www.youtube.com/watch?v=iWowJBRMtpc">YouTube tutorials</a>, and <a href="https://jekyllrb.com/docs/">documentation</a> over the course of a couple months as I modified an HTML5 UP template to fit my needs for this project portfolio. GitHub Pages is GitHub’s own free hosting service for personal websites. Better yet, it supports Jekyll by default. This feature allows me to put the Jekyll project under source control as I normally would for any project, but GitHub then compiles the project into a static site and hosts it from a branch of my choosing without me lifting a finger.</p>
+
+<p>After having completed the first deployable version of my portfolio website, I felt comfortable enough with HTML, CSS, and Jekyll workflows that the hardest part of producing a quality, responsive website was writing the content. This is exactly as it should be.</p>
+
+<div class="box alt">
+	<div class="row 50% uniform">
+		<div class="4u">
+			<span class="image fit"><img src="/images/wing/part1/5_sanding.jpg" alt=""></span>
+		</div>
+		<div class="4u">
+			<span class="image fit"><img src="/images/wing/part1/6_glued.jpg" alt=""></span>
+		</div>
+		<div class="4u$">
+			<span class="image fit"><img src="/images/wing/part1/7_install.jpg" alt=""></span>
+		</div>
+	</div>
+</div>
 
 <h2 id="uc-jazz">UC Jazz</h2>
 
-<p>https://treyfortmuller.github.io/ucjazz_site/</p>
+<p>Having acquired a new ability to put static websites together quickly, I volunteered to revamp some of the websites for organization that I’m involved with at school. The UC Jazz Ensembles is my main musical outlet during the semester, so its important to me that the organization continues to recruit excellent musicians into the program out of high school. The UC Jazz site looked like it was deployed in the mid-nineties. I figured prospective students were less than impressed by it so I volunteered to give it the HTML5 UP/Jekyll treatment. The writing on the site was up to date and informative, but aesthetics, responsiveness, and imagery were lacking.</p>
 
-<p>Below is the delta wing I purchased, it’s made from a <a href="https://www.flitetest.com/articles/ft-mighty-mini-arrow-build">Flite Test Arrow</a> airframe and various off the shelf electronics. It was equipped with a live first-person-view (FPV) analog video feed transmitted over 5.8Ghz and a FrSky frequency hopping receiver at 2.4Ghz. This vehicle had no flight controller onboard, the receiver was connected straight to the servos and electronic speed controller. That means I was in full control of the vehicle with the sticks on my transmitter correlating to angular velocity about each axis.</p>
+<p>I collected images from recent performances, added embedded SoundCloud and YouTube materials, and created a few informational sections that didn’t exist in the HTML5 UP template I based the site around. I documented my work on the site such that it could maintained by a future UC Jazz webmaster. The site is hosted on Berkeley’s Open Computing Facility (<a href="https://www.ocf.berkeley.edu/">OCF</a>) servers at <a href="https://ucjazz.berkeley.edu">ucjazz.berkeley.edu</a>.</p>
 
 <p><span class="image main"><img src="/images/wing/intro/1_first_build.jpg" alt=""></span></p>
 
-<p>Given my experience with racing quadcopters, I expected to at least be able to bring the plane safely back to the ground after I launched it. During the maiden flight I crashed it and destroyed the center pod. Thankfully, no electronics took any damage, and the wings maintained their integrity. I removed all the undamaged components from the wreckage and disposed of the center pod. I left the field that day humbled, but at least I had the opportunity to be creative with my repairs.</p>
-
 <h2 id="uavsberkeley">UAVs@Berkeley</h2>
 
-<p>https://treyfortmuller.github.io/uavs_site/</p>
+<p>I’ve talked about UAVs@Berkeley and the club projects I’ve been involved in elsewhere in this portfolio. Having been involved since I was a freshman at Cal, and having served as the club’s president for a year, it goes without saying that the organization, its people, and its public image are all hugely important to me. The UAVs@Berkeley website I inherited was generated with WordPress. It was rarely updated, was inoperable on mobile devices, and failed to represent the club’s goals and interests.</p>
 
-<p>The standard Flite Test airframe is made out of folded foam board held together with hot glue. I decided to increase my chances of surviving a few more crashes in the next iteration of the build by replacing the center pod with laser-cut 1/8th-inch thick plywood. I designed the center pod to be wider than the stock version to improve serviceability and leave room for a flight controller in the future. The new pod consists of a top plate that extends to the nose, two side panels with mounting holes for antenna and M3 hardware, a bottom plate with slots for velcro-strapping a battery, and a back plate with mounting holes for a brushless motor. All the pieces would be secured together along their edges with tongue joints and wood glue. I designed the new pod in Autodesk’s Fusion 360 CAD tool, then exported a DXF to Adobe Illustrator for laser cutting. Below is the design file in Illustrator, the parts cut on the bed of the laser cutter, and the cleaned up parts ready for gluing. The original winglets for the wing were damaged in the crash, so I designed and cut some new ones from the same material.</p>
+<p>Early in the summer of 2018 I embarked on rebuilding the UAVs@B site using Jekyll and another HTML5 UP template. As a leader in the club I instituted the creation of <a href="https://uav.berkeley.edu/projects.html">project articles</a> written by the project managers each semester, similar to the ones I write for my personal projects on my portfolio. The purpose of these articles is to give prospective students a better idea of what the interests and capabilities of club members are, and how innovative undergraduates can be in the field of aerial robotics given the right resources. The articles also serve as a public archive of what was worked on and what was accomplished in each project, hopefully promoting intergenerational knowledge exchange between past and present UAVs@Berkeley members.</p>
+
+<p>I reorganized the entire site creating new pages and eliminating unnecessary ones. I rewrote all the language on every page to better reflect the current state of the club. The <a href="https://uav.berkeley.edu/teams.html">teams page</a> is the one I’m most proud of. Engaging imagery and video content is associated with the three sections of the club to most effectively communicate to prospective students how they might get involved. The site is hosted on Berkeley’s OCF servers at <a href="https://uav.berkeley.edu/">uav.berkeley.edu</a>.</p>
 
 <div class="box alt">
 	<div class="row 50% uniform">
@@ -106,23 +127,9 @@
 	</div>
 </div>
 
-<h2 id="project-portfolio">Project Portfolio</h2>
+<h2 id="conclusions">Conclusions</h2>
 
-<p>A popular wood working technique for bending wood is called “kerfing.” Essentially one makes many small parallel cuts to allow the wood to become a shapable, living hinge. This technique becomes extremely easy to execute with accuracy when a laser-cutter is available. I included a kerfed edge along the nose of the center pod I designed to give the front-end a rounded edge similar to the stock design. The kerfed section also serves as a living hinge to open the top of the pod for battery replacement or access to the electronics. There’s a horseshoe-shaped gap towards the bottom of the kerfed section for an FPV camera to have a front facing view, but remain protected from head-on impacts. I can’t speak to the aerodynamics of the nose of the aircraft, but I was very happy with the aesthetics and hinge functionality. Below is one of the repaired wings which needed some slight modifications on the belt sander, the glued center pod ready for install, and the wings secured to the new center pod on the work bench.</p>
-
-<div class="box alt">
-	<div class="row 50% uniform">
-		<div class="4u">
-			<span class="image fit"><img src="/images/wing/part1/5_sanding.jpg" alt=""></span>
-		</div>
-		<div class="4u">
-			<span class="image fit"><img src="/images/wing/part1/6_glued.jpg" alt=""></span>
-		</div>
-		<div class="4u$">
-			<span class="image fit"><img src="/images/wing/part1/7_install.jpg" alt=""></span>
-		</div>
-	</div>
-</div>
+<p>Jekyll, existing templates, and GitHub Pages are a great way to get started in front-end web development. It’s very likely that, as a non-expert, I’ve arrived at some local maximum productivity level. But for 20% of the effort I’m easily able to achieve 80% of my possible effectiveness on the web. There’s an unending list of tools, libraries, and web frameworks to become overwhelmed with as a newcomer to web development, having a reference for a successful combination of tools might be helpful to someone else with priorities similar to mine.</p>
 
       		</section>
 
