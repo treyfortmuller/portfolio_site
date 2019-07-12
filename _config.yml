@@ -65,3 +65,5 @@ exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.j
 
 #Fonts
 #https://github.com/FortAwesome/Font-Awesome/tree/master/fonts
+
+highlighter: rouge

@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-04-21T19:45:20-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">ME131 Vehicle Controls</title><link href="/blog/me131/" rel="alternate" type="text/html" title="ME131 Vehicle Controls" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h1 id=&quot;notes&quot;&gt;Notes&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-11T18:00:27-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Lane Keeping RC Car</title><link href="/blog/me131/" rel="alternate" type="text/html" title="Lane Keeping RC Car" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;During my final semester at Cal, I took ME131: Vehicle Dynamics and Control. The course focused on modeling automotive vehicle dynamics, understanding instabilities and safety implications, then building controllers to improve the vehicle behavior somehow. Modern cars have a slew of feedback control laws running at all times. We might segment all these controllers into two groups:&lt;/p&gt;
+
+&lt;h3 id=&quot;1-low-level-controllers&quot;&gt;1. Low Level Controllers&lt;/h3&gt;
+
+&lt;p&gt;Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Anti-lock braking systems (ABS): modulates braking force to ensure the tires do not exceed their friction limits under maximum vehicle deceleration.&lt;/li&gt;
+  &lt;li&gt;Traction control: modulates engine torque to ensure the tires do not exceed their friction limits under maximum vehicle acceleration.&lt;/li&gt;
+  &lt;li&gt;Electronic stability control (ESP): is usually implemented as differential braking between the left and right wheels to control the yaw rate of the vehicle while turning.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- MAYBE SOME MORE INFO ON TIRE FORCES AND THE NONLINEAR REGIME HERE WITH PLOTS --&gt;
+
+&lt;h3 id=&quot;2-high-level-controllers&quot;&gt;2. High Level Controllers&lt;/h3&gt;
+
+&lt;p&gt;High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomony:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cruise control: modulates engine torque to maintain a desired reference speed.&lt;/li&gt;
+  &lt;li&gt;Adaptive cruise control: modulates engine torque and braking force to maintain a desired speed or following distance to the car ahead.&lt;/li&gt;
+  &lt;li&gt;Lane keep assist: actuates the car’s steering to maintain a position inside the lane, often combined with adaptive cruise control for autonomous highway driving (such as the current state of Tesla’s “autopilot”).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiqitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-barc&quot;&gt;The BARC&lt;/h2&gt;
+
+&lt;p&gt;The BARC was developed by the &lt;a href=&quot;http://www.mpc.berkeley.edu/&quot;&gt;MPC Lab&lt;/a&gt; at UC Berkeley. It is a 1/10th scale, all-wheel-drive electric racecar.&lt;/p&gt;
+
+&lt;h3 id=&quot;powertrain&quot;&gt;Powertrain&lt;/h3&gt;
+
+&lt;p&gt;The vehicle is powered by a 2S, 8 Ah lithium-polymer battery. The drivetrain includes an electronic speed controller (ESC) which converts DC power from the battery to 3-phase AC for the brushless motor. The ESC also contains a 5V battery eliminator circuit (BEC) and serves as power distribution for the steering servo.&lt;/p&gt;
+
+&lt;h3 id=&quot;sensors&quot;&gt;Sensors&lt;/h3&gt;
+
+&lt;p&gt;The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiement.&lt;/p&gt;
+
+&lt;h3 id=&quot;compute&quot;&gt;Compute&lt;/h3&gt;
+
+&lt;p&gt;High level processes are handled by an Odroid XU4 embedded Linux computer running an image of Ubuntu Mate 16.04 maintained by the Berkeley MPC Lab. The Odroid has a 2Ghz ARM-based processor and 2Gb of DDR3 RAM making it a capable platform for soft real-time applications. The Odroid has several I/O ports and publishes a wifi access point for wireless communication with a host computer via secure shell (SSH) or virtual network computing (VNC). Low level processes are handled by an Arduino Nano microcontroller. This device reads sensor data and relays the data over serial to the Odroid. The microcontroller also receives control commands over serial from the Odroid and communicates via pulse width modulation (PWM) with the ESC.&lt;/p&gt;
+
+&lt;h3 id=&quot;software&quot;&gt;Software&lt;/h3&gt;
+
+&lt;p&gt;The Robot Operating System (ROS) is heavily used for inter-process communication onboard the BARC. ROS Kinetic is installed with the MPC lab’s distribution of Ubuntu Mate 16.04 for the Odroid. Processes are segmented into nodes which publish and/or subscribe to topics on which messages of a given data structure are communicated. Often nodes are associated with hardware interfaces, data processing, controllers, estimators, etc. The data processing, estimators, and controllers for the lane keeping system are implemented in python leveraging several open source libraries including &lt;a href=&quot;https://opencv.org/&quot;&gt;OpenCV&lt;/a&gt; and &lt;a href=&quot;https://github.com/markwmuller/controlpy&quot;&gt;controlPy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;approach-and-methods&quot;&gt;Approach and Methods&lt;/h2&gt;
+
+&lt;!-- THESE PARAGRAPHS WONT MAKE ANY SENSE, CHANGE THESE --&gt;
+
+&lt;p&gt;We use the lane detection code provided by the course staff but add several of our own scripts for data processing and control. We also modified the existing &lt;script type=&quot;math/tex&quot;&gt;\texttt{low\_level\_PID\_controller.py}&lt;/script&gt; to publish a vehicle longitudinal velocity estimate based on an average of encoder readings. Three of four encoders on our vehicle had reliable readings so we averaged their count rate as an input to the second order backwards finite difference method as a vehicle velocity estimate.&lt;/p&gt;
+
+&lt;p&gt;We added a script called &lt;script type=&quot;math/tex&quot;&gt;\texttt{compute\_radius.py}&lt;/script&gt; which subscribed to the &lt;script type=&quot;math/tex&quot;&gt;\texttt{reference\_trajectory}&lt;/script&gt; topic and computed the radius of curvature of the track ahead as an input the LQR controller. Seven x-y points in the body-fixed frame of the vehicle are returned by the lane detection system. The first point (closest to the vehicle’s center of mass), and last point (furthest ahead of the vehicle), and the center point between them were used in the radius computation described in the Lab 10 documentation.&lt;/p&gt;
+
+&lt;p&gt;Finally, we added an &lt;script type=&quot;math/tex&quot;&gt;\texttt{LQR\_synth.py}&lt;/script&gt; script which subscribes to the track radius, vehicle velocity estimate, the ECU steering command, and the loop time &lt;script type=&quot;math/tex&quot;&gt;dt&lt;/script&gt; to compute a discrete LQR gain matrix on each loop, then output the controller’s velocity and steering angle commands to the &lt;script type=&quot;math/tex&quot;&gt;\texttt{/uOpt}&lt;/script&gt; topic. The &lt;script type=&quot;math/tex&quot;&gt;\texttt{rqt\_graph}&lt;/script&gt; of the nodes and topics running on our system is shown below.&lt;/p&gt;
+
+&lt;!-- RQT GRAPH GOES HERE --&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/rqt_graph.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;We choose the nonlinear kinematic bicycle model of the vehicle as means to determine the optimal gain. The Jacobian linearization of these dynamics are computed as state transition matrices for our LQR gain matrix calculation, which is performed with the controlPy library. The control must be able to handle non-static setpoints so we choose a reference tracking LQR controller which brings the error between estimated and reference states to zero. We also include a feedforward term computed directly by the kinematic bicycle model. The full gain scheduled, reference tracking LQR lane keeping controller with feedforward can be represented as&lt;/p&gt;
+
+&lt;!-- HOW DO I PUT MATH IN THESE THINGS??? --&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;u(t) = -K(t)\cdot(z(t) - z_{ref}(t)) + u_{ref}(t)&lt;/script&gt;
+
+&lt;p&gt;Where &lt;script type=&quot;math/tex&quot;&gt;K(t)&lt;/script&gt; is the time varying LQR gain matrix, &lt;script type=&quot;math/tex&quot;&gt;z(t) - z_{ref}(t)&lt;/script&gt; is the state error, and &lt;script type=&quot;math/tex&quot;&gt;u_{ref}(t)&lt;/script&gt; is the feedforward term from the kinematic bicycle model.&lt;/p&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;After having implemented all the nodes necessary for our system, we ran into issues that made it difficult to debug our controller related to lane detection. After moving to a driving space with a homogeneous, non-reflective floor, we had success detecting lanes robustly with with our vehicle. An image of the lane detection and reference trajectory is shown below.&lt;/p&gt;
+
+&lt;!-- VNC VIEWER IMAGE GOES HERE --&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/lane_detect.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;We found our controller to be overactuating with the LQR cost matrices as identities. We lowered the Q matrix’s cost by three orders of magnitude to avoid penalizing errors in the states so heavily. This improved the robustness of the tracking but, as expected, caused some extra variation away from the centerline on average. Upon increasing the reference velocity to 1 m/s, we saw reduced noise in the centerline trajectory and smoother driving. This performance is demonstrated in the video below.&lt;/p&gt;
+
+&lt;div class=&quot;video-wrapper&quot;&gt;
+	&lt;div class=&quot;video-responsive&quot;&gt;
+		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/7w4f1qW-Uts&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;discussion&quot;&gt;Discussion&lt;/h3&gt;
+
+&lt;!-- NEED TO SHIFT THE TONE OF THESE PARAGRAPHS A BIT --&gt;
+
+&lt;p&gt;The problem of autonomous navigation is hard because it consists of several sub-problems which are difficult in their own right, and solutions to these problems must work in harmony to deliver a robust system. Perception, trajectory generation, and control modules must deliver simultaneously for reliable driving. Our system focused on the control aspects of the problem, and thus shortcuts were taken in the perception and trajectory generation steps which lead to most of the issues we debugged after implementing our algorithms. The lane localization system used a simple edge detection algorithm based on finding intensity gradients greater than a hard coded threshold. This approach is not robust to changes in lighting, texture, or reflectance of the driving surface. Our vehicle struggled to reliably find lanes on shiny floors so we found a large space with dark carpeting and used bright white tape as lane lines for maximum contrast which improved tracking performance.&lt;/p&gt;
+
+&lt;p&gt;Another issue we struggled with throughout the project was wireless connectivity and lag while using VNC to connect to the Odroid to start nodes and view camera images. The next generation BARC vehicle should feature higher bandwidth, 5.8Ghz wireless connectivity. If nodes for image transmission over ROS were included in the BARC libraries and local machines were configured to communicate via ROS over the network then all of the debugging could take place with SSH alone. This would prevent the wasted overhead of a full virtual desktop which is slow and unreliable.&lt;/p&gt;
+
+&lt;p&gt;My code for the project is available on &lt;a href=&quot;https://github.com/treyfortmuller/me131&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;notes&quot;&gt;Notes&lt;/h1&gt;
 
 &lt;h2 id=&quot;labs&quot;&gt;Labs&lt;/h2&gt;
 
@@ -26,16 +120,14 @@
 &lt;p&gt;Models, simulation (using simulink or the BARC simulator), implementation, performance and results, videos&lt;/p&gt;
 
 &lt;!-- The _includes for images and videos --&gt;
-&lt;!-- &lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-
+&lt;!--
+&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
 
 
 &lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
 
 
-
 &lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-
 
 
 &lt;div class=&quot;box alt&quot;&gt;
@@ -51,12 +143,20 @@
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class=&quot;video-wrapper&quot;&gt;
 	&lt;div class=&quot;video-responsive&quot;&gt;
 		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/KJxlBvzlVTY?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen&gt;&lt;/iframe&gt;
 	&lt;/div&gt;
-&lt;/div&gt; --&gt;</content><summary type="html">Low level (and high level?) controllers for a 1/10th scale vehicle.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/me131/car.png" /></entry><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;/div&gt;
+--&gt;
+
+&lt;!-- MathJax --&gt;
+&lt;!--
+Here is inline math $$ \psi = 1 $$.
+Displayed math must be on its own paragraph.
+
+$$ x = \int \dot{x} dt $$
+--&gt;</content><summary type="html">LQR lane keeping controller and PID cruise control for a 1/10th scale vehicle, the Berkeley Autonomous Racecar (BARC).</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/me131/barc.jpg" /></entry><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a &lt;a href=&quot;https://en.wikipedia.org/wiki/Portmanteau&quot;&gt;portmanteau&lt;/a&gt; of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.&lt;/p&gt;
 
@@ -253,7 +353,7 @@
 
 &lt;p&gt;I collected images from recent performances, added embedded SoundCloud and YouTube materials, and created a few informational sections that didn’t exist in the HTML5 UP template I based the site around. I documented my work on the site such that it could maintained by a future UC Jazz webmaster. The site is hosted on Berkeley’s Open Computing Facility (&lt;a href=&quot;https://www.ocf.berkeley.edu/&quot;&gt;OCF&lt;/a&gt;) servers at &lt;a href=&quot;https://ucjazz.berkeley.edu&quot;&gt;ucjazz.berkeley.edu&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/ucj_web2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/ucj.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;uavsberkeley&quot;&gt;UAVs@Berkeley&lt;/h2&gt;
 
@@ -263,7 +363,7 @@
 
 &lt;p&gt;I reorganized the entire site creating new pages and eliminating unnecessary ones. I rewrote all the language on every page to better reflect the current state of the club. The &lt;a href=&quot;https://uav.berkeley.edu/teams.html&quot;&gt;teams page&lt;/a&gt; is the one I’m most proud of. Engaging imagery and video content is associated with the three sections of the club to most effectively communicate to prospective students how they might get involved. The site is hosted on Berkeley’s OCF servers at &lt;a href=&quot;https://uav.berkeley.edu/&quot;&gt;uav.berkeley.edu&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/uav_web2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/uav.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
 
@@ -503,7 +603,22 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;Beyond the hills being hard to conquer, the pavement in Berkeley is treacherous. Big wheels make clearing gaps and cracks in the asphalt easier and the largest, easily found longboard wheels are 90mm in diameter. I do value my physical safety, so I decided on a top speed of 20mph. Upon doing some research, I found gear reductions on electric longboards to be anywhere from 1.8 to 2.5, I went with a 3:1 gear reduction to optimize for torque rather than top speed. We do some math to find the required motor KV:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Desired top speed: &lt;script type=&quot;math/tex&quot;&gt;20\mathrm{mph} = 8.89\mathrm{m/s}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Batrtery: 8S at &lt;script type=&quot;math/tex&quot;&gt;4.0\mathrm{V/cell} = 32\mathrm{V}&lt;/script&gt; (average voltage)&lt;/li&gt;
+  &lt;li&gt;Wheels: &lt;script type=&quot;math/tex&quot;&gt;90\mathrm{mm}&lt;/script&gt; diameter&lt;/li&gt;
+  &lt;li&gt;Wheel circumference: &lt;script type=&quot;math/tex&quot;&gt;C = 90\pi = 282.74\mathrm{mm/rev}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= 0.283\mathrm{m/rev}&lt;/script&gt;
+
+&lt;p&gt;At a velocity of 8.89m/s where the wheels roll 0.283 meters per revolution, the wheels must rotate at 1886.5 rotations per minute.&lt;/p&gt;
+
+&lt;p&gt;With a reduction ratio of 3:1 (motor:wheel)&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;3 \cdot 1886.5\mathrm{rpm} = 5659.5\mathrm{rpm} \text{ at the motor shaft}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{5659.5\mathrm{rpm}}{32\mathrm{V}} = 176\mathrm{KV} \text{ motor}&lt;/script&gt;
 
 &lt;p&gt;The best brushless outrunner motor candidate I could find was &lt;a target=&quot;\_blank&quot; href=&quot;https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2&quot;&gt;this&lt;/a&gt; 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.&lt;/p&gt;
 

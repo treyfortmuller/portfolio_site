@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-<title>ME131 Vehicle Controls</title>
+<title>Lane Keeping RC Car</title>
 <meta name="description" content="">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
@@ -20,6 +20,29 @@
 <!-- CSS -->
 <link rel="stylesheet" href="/assets/css/main.css">
 <noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
+
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
 
 	</head>
 	<body class="is-loading">
@@ -40,6 +63,7 @@
   <li class=""><a href="/about/">About</a></li>
 <!--   <li class=" active "><a href="/projects/">Projects</a></li> -->
   <li class=""><a href="/resume/">Resume</a></li>
+  <li class=""><a href="/publications/">Publications</a></li>  
 </ul>
 
 
@@ -55,11 +79,105 @@
           <section class="post">
     				<header class="major">
       				<span class="date">01 Mar 2019</span>
-      				<h1>ME131 Vehicle Controls</h1>
-      				<p>Low level (and high level?) controllers for a 1/10th scale vehicle.</p>
+      				<h1>Lane Keeping RC Car</h1>
+      				<p>LQR lane keeping controller and PID cruise control for a 1/10th scale vehicle, the Berkeley Autonomous Racecar (BARC).</p>
       			</header>
-      			<div class="image main"><img src="/images/me131/car.png" alt=""></div>
+      			<div class="image main"><img src="/images/me131/barc.jpg" alt=""></div>
       			<p></p>
+<h2 id="introduction">Introduction</h2>
+
+<p>During my final semester at Cal, I took ME131: Vehicle Dynamics and Control. The course focused on modeling automotive vehicle dynamics, understanding instabilities and safety implications, then building controllers to improve the vehicle behavior somehow. Modern cars have a slew of feedback control laws running at all times. We might segment all these controllers into two groups:</p>
+
+<h3 id="1-low-level-controllers">1. Low Level Controllers</h3>
+
+<p>Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include:</p>
+
+<ul>
+  <li>Anti-lock braking systems (ABS): modulates braking force to ensure the tires do not exceed their friction limits under maximum vehicle deceleration.</li>
+  <li>Traction control: modulates engine torque to ensure the tires do not exceed their friction limits under maximum vehicle acceleration.</li>
+  <li>Electronic stability control (ESP): is usually implemented as differential braking between the left and right wheels to control the yaw rate of the vehicle while turning.</li>
+</ul>
+
+<!-- MAYBE SOME MORE INFO ON TIRE FORCES AND THE NONLINEAR REGIME HERE WITH PLOTS -->
+
+<h3 id="2-high-level-controllers">2. High Level Controllers</h3>
+
+<p>High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomony:</p>
+
+<ul>
+  <li>Cruise control: modulates engine torque to maintain a desired reference speed.</li>
+  <li>Adaptive cruise control: modulates engine torque and braking force to maintain a desired speed or following distance to the car ahead.</li>
+  <li>Lane keep assist: actuates the car’s steering to maintain a position inside the lane, often combined with adaptive cruise control for autonomous highway driving (such as the current state of Tesla’s “autopilot”).</li>
+</ul>
+
+<p>The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiqitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.</p>
+
+<h2 id="the-barc">The BARC</h2>
+
+<p>The BARC was developed by the <a href="http://www.mpc.berkeley.edu/">MPC Lab</a> at UC Berkeley. It is a 1/10th scale, all-wheel-drive electric racecar.</p>
+
+<h3 id="powertrain">Powertrain</h3>
+
+<p>The vehicle is powered by a 2S, 8 Ah lithium-polymer battery. The drivetrain includes an electronic speed controller (ESC) which converts DC power from the battery to 3-phase AC for the brushless motor. The ESC also contains a 5V battery eliminator circuit (BEC) and serves as power distribution for the steering servo.</p>
+
+<h3 id="sensors">Sensors</h3>
+
+<p>The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiement.</p>
+
+<h3 id="compute">Compute</h3>
+
+<p>High level processes are handled by an Odroid XU4 embedded Linux computer running an image of Ubuntu Mate 16.04 maintained by the Berkeley MPC Lab. The Odroid has a 2Ghz ARM-based processor and 2Gb of DDR3 RAM making it a capable platform for soft real-time applications. The Odroid has several I/O ports and publishes a wifi access point for wireless communication with a host computer via secure shell (SSH) or virtual network computing (VNC). Low level processes are handled by an Arduino Nano microcontroller. This device reads sensor data and relays the data over serial to the Odroid. The microcontroller also receives control commands over serial from the Odroid and communicates via pulse width modulation (PWM) with the ESC.</p>
+
+<h3 id="software">Software</h3>
+
+<p>The Robot Operating System (ROS) is heavily used for inter-process communication onboard the BARC. ROS Kinetic is installed with the MPC lab’s distribution of Ubuntu Mate 16.04 for the Odroid. Processes are segmented into nodes which publish and/or subscribe to topics on which messages of a given data structure are communicated. Often nodes are associated with hardware interfaces, data processing, controllers, estimators, etc. The data processing, estimators, and controllers for the lane keeping system are implemented in python leveraging several open source libraries including <a href="https://opencv.org/">OpenCV</a> and <a href="https://github.com/markwmuller/controlpy">controlPy</a>.</p>
+
+<h2 id="approach-and-methods">Approach and Methods</h2>
+
+<!-- THESE PARAGRAPHS WONT MAKE ANY SENSE, CHANGE THESE -->
+
+<p>We use the lane detection code provided by the course staff but add several of our own scripts for data processing and control. We also modified the existing <script type="math/tex">\texttt{low\_level\_PID\_controller.py}</script> to publish a vehicle longitudinal velocity estimate based on an average of encoder readings. Three of four encoders on our vehicle had reliable readings so we averaged their count rate as an input to the second order backwards finite difference method as a vehicle velocity estimate.</p>
+
+<p>We added a script called <script type="math/tex">\texttt{compute\_radius.py}</script> which subscribed to the <script type="math/tex">\texttt{reference\_trajectory}</script> topic and computed the radius of curvature of the track ahead as an input the LQR controller. Seven x-y points in the body-fixed frame of the vehicle are returned by the lane detection system. The first point (closest to the vehicle’s center of mass), and last point (furthest ahead of the vehicle), and the center point between them were used in the radius computation described in the Lab 10 documentation.</p>
+
+<p>Finally, we added an <script type="math/tex">\texttt{LQR\_synth.py}</script> script which subscribes to the track radius, vehicle velocity estimate, the ECU steering command, and the loop time <script type="math/tex">dt</script> to compute a discrete LQR gain matrix on each loop, then output the controller’s velocity and steering angle commands to the <script type="math/tex">\texttt{/uOpt}</script> topic. The <script type="math/tex">\texttt{rqt\_graph}</script> of the nodes and topics running on our system is shown below.</p>
+
+<!-- RQT GRAPH GOES HERE -->
+<p><span class="image main"><img src="/images/me131/rqt_graph.png" alt=""></span></p>
+
+<p>We choose the nonlinear kinematic bicycle model of the vehicle as means to determine the optimal gain. The Jacobian linearization of these dynamics are computed as state transition matrices for our LQR gain matrix calculation, which is performed with the controlPy library. The control must be able to handle non-static setpoints so we choose a reference tracking LQR controller which brings the error between estimated and reference states to zero. We also include a feedforward term computed directly by the kinematic bicycle model. The full gain scheduled, reference tracking LQR lane keeping controller with feedforward can be represented as</p>
+
+<!-- HOW DO I PUT MATH IN THESE THINGS??? -->
+
+<script type="math/tex; mode=display">u(t) = -K(t)\cdot(z(t) - z_{ref}(t)) + u_{ref}(t)</script>
+
+<p>Where <script type="math/tex">K(t)</script> is the time varying LQR gain matrix, <script type="math/tex">z(t) - z_{ref}(t)</script> is the state error, and <script type="math/tex">u_{ref}(t)</script> is the feedforward term from the kinematic bicycle model.</p>
+
+<h2 id="results">Results</h2>
+
+<p>After having implemented all the nodes necessary for our system, we ran into issues that made it difficult to debug our controller related to lane detection. After moving to a driving space with a homogeneous, non-reflective floor, we had success detecting lanes robustly with with our vehicle. An image of the lane detection and reference trajectory is shown below.</p>
+
+<!-- VNC VIEWER IMAGE GOES HERE -->
+<p><span class="image main"><img src="/images/me131/lane_detect.png" alt=""></span></p>
+
+<p>We found our controller to be overactuating with the LQR cost matrices as identities. We lowered the Q matrix’s cost by three orders of magnitude to avoid penalizing errors in the states so heavily. This improved the robustness of the tracking but, as expected, caused some extra variation away from the centerline on average. Upon increasing the reference velocity to 1 m/s, we saw reduced noise in the centerline trajectory and smoother driving. This performance is demonstrated in the video below.</p>
+
+<div class="video-wrapper">
+	<div class="video-responsive">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/7w4f1qW-Uts" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+	</div>
+</div>
+
+<h3 id="discussion">Discussion</h3>
+
+<!-- NEED TO SHIFT THE TONE OF THESE PARAGRAPHS A BIT -->
+
+<p>The problem of autonomous navigation is hard because it consists of several sub-problems which are difficult in their own right, and solutions to these problems must work in harmony to deliver a robust system. Perception, trajectory generation, and control modules must deliver simultaneously for reliable driving. Our system focused on the control aspects of the problem, and thus shortcuts were taken in the perception and trajectory generation steps which lead to most of the issues we debugged after implementing our algorithms. The lane localization system used a simple edge detection algorithm based on finding intensity gradients greater than a hard coded threshold. This approach is not robust to changes in lighting, texture, or reflectance of the driving surface. Our vehicle struggled to reliably find lanes on shiny floors so we found a large space with dark carpeting and used bright white tape as lane lines for maximum contrast which improved tracking performance.</p>
+
+<p>Another issue we struggled with throughout the project was wireless connectivity and lag while using VNC to connect to the Odroid to start nodes and view camera images. The next generation BARC vehicle should feature higher bandwidth, 5.8Ghz wireless connectivity. If nodes for image transmission over ROS were included in the BARC libraries and local machines were configured to communicate via ROS over the network then all of the debugging could take place with SSH alone. This would prevent the wasted overhead of a full virtual desktop which is slow and unreliable.</p>
+
+<p>My code for the project is available on <a href="https://github.com/treyfortmuller/me131">Github</a>.</p>
+
 <h1 id="notes">Notes</h1>
 
 <h2 id="labs">Labs</h2>
@@ -88,16 +206,14 @@
 <p>Models, simulation (using simulink or the BARC simulator), implementation, performance and results, videos</p>
 
 <!-- The _includes for images and videos -->
-<!-- <span class="image main"><img src="/images/e-board/motor_math.png" alt="" /></span>
-
+<!--
+<span class="image main"><img src="/images/e-board/motor_math.png" alt="" /></span>
 
 
 <span class="image right"><img src="/images/e-board/motor_math.png" alt="" /></span>
 
 
-
 <span class="image left"><img src="/images/e-board/motor_math.png" alt="" /></span>
-
 
 
 <div class="box alt">
@@ -113,13 +229,20 @@
 		</div>
 	</div>
 </div>
-
 <div class="video-wrapper">
 	<div class="video-responsive">
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/KJxlBvzlVTY?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 	</div>
-</div> -->
+</div>
+-->
 
+<!-- MathJax -->
+<!--
+Here is inline math $$ \psi = 1 $$.
+Displayed math must be on its own paragraph.
+
+$$ x = \int \dot{x} dt $$
+-->
 
       		</section>
 

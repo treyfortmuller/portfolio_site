@@ -21,6 +21,29 @@
 <link rel="stylesheet" href="/assets/css/main.css">
 <noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
 
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
 	</head>
 	<body class="is-loading">
 
@@ -40,6 +63,7 @@
   <li class=""><a href="/about/">About</a></li>
 <!--   <li class=" active "><a href="/projects/">Projects</a></li> -->
   <li class=""><a href="/resume/">Resume</a></li>
+  <li class=""><a href="/publications/">Publications</a></li>  
 </ul>
 
 
@@ -70,7 +94,24 @@
 
 <p>Beyond the hills being hard to conquer, the pavement in Berkeley is treacherous. Big wheels make clearing gaps and cracks in the asphalt easier and the largest, easily found longboard wheels are 90mm in diameter. I do value my physical safety, so I decided on a top speed of 20mph. Upon doing some research, I found gear reductions on electric longboards to be anywhere from 1.8 to 2.5, I went with a 3:1 gear reduction to optimize for torque rather than top speed. We do some math to find the required motor KV:</p>
 
-<p><span class="image main"><img src="/images/e-board/motor_math.png" alt=""></span></p>
+<ul>
+  <li>Desired top speed: <script type="math/tex">20\mathrm{mph} = 8.89\mathrm{m/s}</script>
+</li>
+  <li>Batrtery: 8S at <script type="math/tex">4.0\mathrm{V/cell} = 32\mathrm{V}</script> (average voltage)</li>
+  <li>Wheels: <script type="math/tex">90\mathrm{mm}</script> diameter</li>
+  <li>Wheel circumference: <script type="math/tex">C = 90\pi = 282.74\mathrm{mm/rev}</script>
+</li>
+</ul>
+
+<script type="math/tex; mode=display">= 0.283\mathrm{m/rev}</script>
+
+<p>At a velocity of 8.89m/s where the wheels roll 0.283 meters per revolution, the wheels must rotate at 1886.5 rotations per minute.</p>
+
+<p>With a reduction ratio of 3:1 (motor:wheel)</p>
+
+<script type="math/tex; mode=display">3 \cdot 1886.5\mathrm{rpm} = 5659.5\mathrm{rpm} \text{ at the motor shaft}</script>
+
+<script type="math/tex; mode=display">\frac{5659.5\mathrm{rpm}}{32\mathrm{V}} = 176\mathrm{KV} \text{ motor}</script>
 
 <p>The best brushless outrunner motor candidate I could find was <a target="\_blank" href="https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2">this</a> 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.</p>
 
