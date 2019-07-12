@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-11T19:00:02-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Lane Keeping RC Car</title><link href="/blog/me131/" rel="alternate" type="text/html" title="Lane Keeping RC Car" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-11T23:54:32-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Lane Keeping RC Car</title><link href="/blog/me131/" rel="alternate" type="text/html" title="Lane Keeping RC Car" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;During my final semester at Cal, I took ME131: Vehicle Dynamics and Control. The course focused on modeling automotive vehicle dynamics, understanding instabilities and safety implications, then building controllers to improve the vehicle behavior somehow. Modern cars have a slew of feedback control laws running at all times. We might segment all these controllers into two groups:&lt;/p&gt;
 
 &lt;h3 id=&quot;1-low-level-controllers&quot;&gt;1. Low Level Controllers&lt;/h3&gt;
 
-&lt;p&gt;Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include:&lt;/p&gt;
+&lt;p&gt;Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include (but are certainly not limited to):&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Anti-lock braking systems (ABS): modulates braking force to ensure the tires do not exceed their friction limits under maximum vehicle deceleration.&lt;/li&gt;
@@ -16,7 +16,7 @@
 
 &lt;h3 id=&quot;2-high-level-controllers&quot;&gt;2. High Level Controllers&lt;/h3&gt;
 
-&lt;p&gt;High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomony:&lt;/p&gt;
+&lt;p&gt;High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomy:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Cruise control: modulates engine torque to maintain a desired reference speed.&lt;/li&gt;
@@ -24,7 +24,7 @@
   &lt;li&gt;Lane keep assist: actuates the car’s steering to maintain a position inside the lane, often combined with adaptive cruise control for autonomous highway driving (such as the current state of Tesla’s “autopilot”).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiqitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.&lt;/p&gt;
+&lt;p&gt;The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiquitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-barc&quot;&gt;The BARC&lt;/h2&gt;
 
@@ -36,7 +36,7 @@
 
 &lt;h3 id=&quot;sensors&quot;&gt;Sensors&lt;/h3&gt;
 
-&lt;p&gt;The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiement.&lt;/p&gt;
+&lt;p&gt;The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiment.&lt;/p&gt;
 
 &lt;h3 id=&quot;compute&quot;&gt;Compute&lt;/h3&gt;
 

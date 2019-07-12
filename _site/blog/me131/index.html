@@ -90,7 +90,7 @@
 
 <h3 id="1-low-level-controllers">1. Low Level Controllers</h3>
 
-<p>Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include:</p>
+<p>Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include (but are certainly not limited to):</p>
 
 <ul>
   <li>Anti-lock braking systems (ABS): modulates braking force to ensure the tires do not exceed their friction limits under maximum vehicle deceleration.</li>
@@ -102,7 +102,7 @@
 
 <h3 id="2-high-level-controllers">2. High Level Controllers</h3>
 
-<p>High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomony:</p>
+<p>High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomy:</p>
 
 <ul>
   <li>Cruise control: modulates engine torque to maintain a desired reference speed.</li>
@@ -110,7 +110,7 @@
   <li>Lane keep assist: actuates the car’s steering to maintain a position inside the lane, often combined with adaptive cruise control for autonomous highway driving (such as the current state of Tesla’s “autopilot”).</li>
 </ul>
 
-<p>The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiqitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.</p>
+<p>The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiquitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.</p>
 
 <h2 id="the-barc">The BARC</h2>
 
@@ -122,7 +122,7 @@
 
 <h3 id="sensors">Sensors</h3>
 
-<p>The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiement.</p>
+<p>The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiment.</p>
 
 <h3 id="compute">Compute</h3>
 
