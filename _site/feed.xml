@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-11T23:54:32-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Lane Keeping RC Car</title><link href="/blog/me131/" rel="alternate" type="text/html" title="Lane Keeping RC Car" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-12T19:30:55-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Lane Keeping RC Car</title><link href="/blog/me131/" rel="alternate" type="text/html" title="Lane Keeping RC Car" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;During my final semester at Cal, I took ME131: Vehicle Dynamics and Control. The course focused on modeling automotive vehicle dynamics, understanding instabilities and safety implications, then building controllers to improve the vehicle behavior somehow. Modern cars have a slew of feedback control laws running at all times. We might segment all these controllers into two groups:&lt;/p&gt;
 
@@ -16,7 +16,7 @@
 
 &lt;h3 id=&quot;2-high-level-controllers&quot;&gt;2. High Level Controllers&lt;/h3&gt;
 
-&lt;p&gt;High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver, I’ve listed them in order of increasing sophistication and autonomy:&lt;/p&gt;
+&lt;p&gt;High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver. I’ve listed them in order of increasing sophistication and autonomy:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Cruise control: modulates engine torque to maintain a desired reference speed.&lt;/li&gt;
@@ -24,11 +24,11 @@
   &lt;li&gt;Lane keep assist: actuates the car’s steering to maintain a position inside the lane, often combined with adaptive cruise control for autonomous highway driving (such as the current state of Tesla’s “autopilot”).&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiquitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the hardware first.&lt;/p&gt;
+&lt;p&gt;The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiquitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the robot itself first.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-barc&quot;&gt;The BARC&lt;/h2&gt;
 
-&lt;p&gt;The BARC was developed by the &lt;a href=&quot;http://www.mpc.berkeley.edu/&quot;&gt;MPC Lab&lt;/a&gt; at UC Berkeley. It is a 1/10th scale, all-wheel-drive electric racecar.&lt;/p&gt;
+&lt;p&gt;The BARC was developed by the &lt;a href=&quot;http://www.mpc.berkeley.edu/&quot;&gt;MPC Lab&lt;/a&gt; at UC Berkeley. It is a 1/10th scale, all-wheel-drive electric racecar. More information on the BARC project, including a bill of materials is available &lt;a href=&quot;http://www.barc-project.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;powertrain&quot;&gt;Powertrain&lt;/h3&gt;
 
@@ -40,41 +40,92 @@
 
 &lt;h3 id=&quot;compute&quot;&gt;Compute&lt;/h3&gt;
 
-&lt;p&gt;High level processes are handled by an Odroid XU4 embedded Linux computer running an image of Ubuntu Mate 16.04 maintained by the Berkeley MPC Lab. The Odroid has a 2Ghz ARM-based processor and 2Gb of DDR3 RAM making it a capable platform for soft real-time applications. The Odroid has several I/O ports and publishes a wifi access point for wireless communication with a host computer via secure shell (SSH) or virtual network computing (VNC). Low level processes are handled by an Arduino Nano microcontroller. This device reads sensor data and relays the data over serial to the Odroid. The microcontroller also receives control commands over serial from the Odroid and communicates via pulse width modulation (PWM) with the ESC.&lt;/p&gt;
+&lt;p&gt;High level processes are handled by an Odroid XU4 embedded Linux computer running an image of &lt;a href=&quot;https://github.com/MPC-Berkeley/barc/blob/master/docs/FlashingEMMC.md&quot;&gt;Ubuntu Mate 16.04&lt;/a&gt; maintained by the Berkeley MPC Lab. The Odroid has a 2Ghz ARM-based processor and 2Gb of DDR3 RAM making it a capable platform for soft real-time applications. The Odroid has several I/O ports and publishes a wifi access point for wireless communication with a host computer via secure shell (SSH) or virtual network computing (VNC). Low level processes are handled by an Arduino Nano microcontroller. This device reads sensor data and relays the data over serial to the Odroid. The microcontroller also receives control commands over serial from the Odroid and communicates via pulse width modulation (PWM) with the ESC. Several of these components are labeled in the image below.&lt;/p&gt;
 
 &lt;h3 id=&quot;software&quot;&gt;Software&lt;/h3&gt;
 
 &lt;p&gt;The Robot Operating System (ROS) is heavily used for inter-process communication onboard the BARC. ROS Kinetic is installed with the MPC lab’s distribution of Ubuntu Mate 16.04 for the Odroid. Processes are segmented into nodes which publish and/or subscribe to topics on which messages of a given data structure are communicated. Often nodes are associated with hardware interfaces, data processing, controllers, estimators, etc. The data processing, estimators, and controllers for the lane keeping system are implemented in python leveraging several open source libraries including &lt;a href=&quot;https://opencv.org/&quot;&gt;OpenCV&lt;/a&gt; and &lt;a href=&quot;https://github.com/markwmuller/controlpy&quot;&gt;controlPy&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;approach-and-methods&quot;&gt;Approach and Methods&lt;/h2&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/labeled_barc.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;!-- THESE PARAGRAPHS WONT MAKE ANY SENSE, CHANGE THESE --&gt;
+&lt;h2 id=&quot;lane-keeping&quot;&gt;Lane Keeping&lt;/h2&gt;
 
-&lt;p&gt;We use the lane detection code provided by the course staff but add several of our own scripts for data processing and control. We also modified the existing &lt;script type=&quot;math/tex&quot;&gt;\texttt{low\_level\_PID\_controller.py}&lt;/script&gt; to publish a vehicle longitudinal velocity estimate based on an average of encoder readings. Three of four encoders on our vehicle had reliable readings so we averaged their count rate as an input to the second order backwards finite difference method as a vehicle velocity estimate.&lt;/p&gt;
+&lt;h3 id=&quot;dynamics&quot;&gt;Dynamics&lt;/h3&gt;
 
-&lt;p&gt;We added a script called &lt;script type=&quot;math/tex&quot;&gt;\texttt{compute\_radius.py}&lt;/script&gt; which subscribed to the &lt;script type=&quot;math/tex&quot;&gt;\texttt{reference\_trajectory}&lt;/script&gt; topic and computed the radius of curvature of the track ahead as an input the LQR controller. Seven x-y points in the body-fixed frame of the vehicle are returned by the lane detection system. The first point (closest to the vehicle’s center of mass), and last point (furthest ahead of the vehicle), and the center point between them were used in the radius computation described in the Lab 10 documentation.&lt;/p&gt;
+&lt;p&gt;Vehicle dynamics is a complicated subject, people get doctorates in it. Mostly these complications arise due to the nature of tire/road interactions. If I learned one thing from ME131 its that “tires are complicated.” Tires exert a force on the road through the viscoelastic deformation of the contact patch that the rubber of the tire forms on the road. Material properties of the rubber and of the ground are necessary to make an any detailed predictions about the force a tire will exert on the road. Several models, with different physical intuitions, exist and are used commonly in industry (see Dougoff and &lt;a href=&quot;https://en.wikipedia.org/wiki/Hans_B._Pacejka&quot;&gt;Pacejka&lt;/a&gt; tire models). To avoid these complications (and because the tires on the BARC are made of hard plastic), we’ll leave tire force terms unexpanded, or relate them directly to motor torque.&lt;/p&gt;
 
-&lt;p&gt;Finally, we added an &lt;script type=&quot;math/tex&quot;&gt;\texttt{LQR\_synth.py}&lt;/script&gt; script which subscribes to the track radius, vehicle velocity estimate, the ECU steering command, and the loop time &lt;script type=&quot;math/tex&quot;&gt;dt&lt;/script&gt; to compute a discrete LQR gain matrix on each loop, then output the controller’s velocity and steering angle commands to the &lt;script type=&quot;math/tex&quot;&gt;\texttt{/uOpt}&lt;/script&gt; topic. The &lt;script type=&quot;math/tex&quot;&gt;\texttt{rqt\_graph}&lt;/script&gt; of the nodes and topics running on our system is shown below.&lt;/p&gt;
+&lt;h4 id=&quot;longitudinal-dynamics&quot;&gt;Longitudinal Dynamics&lt;/h4&gt;
 
-&lt;!-- RQT GRAPH GOES HERE --&gt;
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/rqt_graph.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The longitudinal dynamics (aligned with the forward direction of the vehicle) can be expressed easily via Newton’s second law.&lt;/p&gt;
 
-&lt;p&gt;We choose the nonlinear kinematic bicycle model of the vehicle as means to determine the optimal gain. The Jacobian linearization of these dynamics are computed as state transition matrices for our LQR gain matrix calculation, which is performed with the controlPy library. The control must be able to handle non-static setpoints so we choose a reference tracking LQR controller which brings the error between estimated and reference states to zero. We also include a feedforward term computed directly by the kinematic bicycle model. The full gain scheduled, reference tracking LQR lane keeping controller with feedforward can be represented as&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;m\ddot{x} = F_{x_F} + F_{x_R} - F_{aero} - R_{x_F} - R_{x_R} - mg\sin{\theta}&lt;/script&gt;
 
-&lt;!-- HOW DO I PUT MATH IN THESE THINGS??? --&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;F_{x_F}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;F_{x_R}&lt;/script&gt; are the front and rear tire forces exerted on the vehicle to propel it forward. &lt;script type=&quot;math/tex&quot;&gt;F_{aero}&lt;/script&gt; is aerodynamic drag. &lt;script type=&quot;math/tex&quot;&gt;R_{x_F}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;R_{x_R}&lt;/script&gt; are the front and rear tire rolling resistances. And &lt;script type=&quot;math/tex&quot;&gt;mg\sin{\theta}&lt;/script&gt; is the component of gravitational acceleration pulling the vehicle down an incline of angle &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can be more specific about &lt;script type=&quot;math/tex&quot;&gt;F_{aero}&lt;/script&gt; if we like:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;F_{aero} = \frac{1}{2}\rho C_{d} A_{f} (v_{x} + v_{wind})^2&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\rho&lt;/script&gt; is the mass density of the air&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;C_d&lt;/script&gt; is the drag coefficient of the vehicle (as determined via CFD, wind tunnel, or full scale testing)&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;A_F&lt;/script&gt; is the front area of the vehicle, the area of the vehicle that the oncoming wind “sees”&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;v_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v_{wind}&lt;/script&gt; are the longitudinal velocity of the vehicle and the headwind velocity if one exists.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;lateral-dynamics&quot;&gt;Lateral Dynamics&lt;/h4&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/me131/kinematic_bike.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Lateral dynamics are significantly richer than longitudinal dynamics. There’s two approaches we can take here, the more accurate but more complicated approach would be to study forces and torques on the vehicle due to tire/road interactions, assuming we have a tire model we’re comfortable with. A large simplification we can make for a limited set of driving conditions is called the “kinematic bicycle model.” This approach is “kinematic” because we’ll ignore forces and torques and use only geometric constraints to derive the equations of motion of the vehicle. Its called a “bicycle” model because we’ll combine the left and right tires into one entity each such that the vehicle has two wheels, a front and back, just like a bicycle:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dot{x} = v\cos(\psi + \beta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dot{y} = v\sin(\psi + \beta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dot{\psi} = \frac{v}{l_r}\sin(\beta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\delta_f = \tan^{-1}\bigg( \frac{l_r + l_f}{l_r}\tan{\beta} \bigg)&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is the inertial x coordinate&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is the inertial y coordinate&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is the longitudinal velocity of the vehicle&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; is the heading angle of the vehicle in the inertial frame&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\delta_f&lt;/script&gt; is the steering angle of the front wheels&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;l_r&lt;/script&gt; is the distance from the vehicle’s center of mass to the rear axle&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;l_f&lt;/script&gt; is the distance from the vehicle’s center of mass to the front axle&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; is the sideslip angle (the angle between the vehicle’s velocity vector and its longitudinal axis)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The state variables will be &lt;script type=&quot;math/tex&quot;&gt;z = [x, y, \psi]^T&lt;/script&gt; and the inputs will be &lt;script type=&quot;math/tex&quot;&gt;u = [v, \delta_f]^T&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;We’re making two critical assumptions when we use the kinematic bicycle model.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The velocity vectors at the front and rear tires are parallel to the direction of the tires, i.e. there are no lateral tire forces.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The radius of the vehicle path changes slowly such that &lt;script type=&quot;math/tex&quot;&gt;\dot{\psi} = \frac{v}{r}&lt;/script&gt; holds.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These assumptions make our model appropriate for slow speed driving (as in a parking lot rather than on a freeway). As a visual representation of this limitation, we can compare the open loop performance of the kinematic model to predict the motion of a vehicle to the performance of a more sophisticated dynamic model which &lt;em&gt;does&lt;/em&gt; take tire forces into account. I was given differential GPS data for a vehicle performing a severe figure-8 maneuver. I implemented both the kinematic bicycle model shown above and a dynamic bicycle model in Simulink, and using the recorded longitudinal velocity and steering angle off the vehicle, simulated both models to see how quickly they diverged off the dGPS truth. Check out the code &lt;a href=&quot;https://github.com/treyfortmuller/me131/tree/master/labs/lab8&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/kinematic_vs_dynamic.svg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;lqr-steering-controller&quot;&gt;LQR Steering Controller&lt;/h3&gt;
+
+&lt;p&gt;The steering controller exists in a script called &lt;script type=&quot;math/tex&quot;&gt;\texttt{LQR_synth.py}&lt;/script&gt; which you can find &lt;a href=&quot;https://github.com/treyfortmuller/me131/blob/master/labs/final_proj/on_barc/LQR_synth.py&quot;&gt;here&lt;/a&gt;. We use a discrete-time, infinite-horizon &lt;a href=&quot;https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator&quot;&gt;linear quadratic regulator&lt;/a&gt; (LQR) approach which minimizes a cost associated with state error and control effort. The script is a ROS node which subscribes to an estimate of the track radius, a vehicle velocity estimate, the previous loop’s steering command, and the loop time &lt;script type=&quot;math/tex&quot;&gt;dt&lt;/script&gt; in order to compute an LQR gain matrix &lt;script type=&quot;math/tex&quot;&gt;K(t)&lt;/script&gt; at each loop. A Jacobian linearization of the nonlinear kinematic model is computed as an input to the Riccati solver in the &lt;a href=&quot;https://github.com/markwmuller/controlpy&quot;&gt;controlPy&lt;/a&gt; python toolbox (controlPy was incidentally built by my old PI from the HiPeRLab). Because a new gain matrix is computed at loop rather than computing one gain matrix to use for all operating conditions, we’ll call the controller a “gain-scheduled” LQR controller.&lt;/p&gt;
+
+&lt;p&gt;The script then computes the optimal control output and publishes it for the Arduino to send to the actuators. The controller must be able to handle non-static setpoints (the track curvature varies unpredictably with time) so we choose a reference tracking LQR controller which brings the error between estimated and reference states to zero. We also include a feedforward steering term computed directly by the kinematic bicycle model. The full gain scheduled, reference tracking LQR lane keeping controller with feedforward can be represented as:&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;u(t) = -K(t)\cdot(z(t) - z_{ref}(t)) + u_{ref}(t)&lt;/script&gt;
 
 &lt;p&gt;Where &lt;script type=&quot;math/tex&quot;&gt;K(t)&lt;/script&gt; is the time varying LQR gain matrix, &lt;script type=&quot;math/tex&quot;&gt;z(t) - z_{ref}(t)&lt;/script&gt; is the state error, and &lt;script type=&quot;math/tex&quot;&gt;u_{ref}(t)&lt;/script&gt; is the feedforward term from the kinematic bicycle model.&lt;/p&gt;
 
-&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
-
-&lt;p&gt;After having implemented all the nodes necessary for our system, we ran into issues that made it difficult to debug our controller related to lane detection. After moving to a driving space with a homogeneous, non-reflective floor, we had success detecting lanes robustly with with our vehicle. An image of the lane detection and reference trajectory is shown below.&lt;/p&gt;
-
-&lt;!-- VNC VIEWER IMAGE GOES HERE --&gt;
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/lane_detect.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;We found our controller to be overactuating with the LQR cost matrices as identities. We lowered the Q matrix’s cost by three orders of magnitude to avoid penalizing errors in the states so heavily. This improved the robustness of the tracking but, as expected, caused some extra variation away from the centerline on average. Upon increasing the reference velocity to 1 m/s, we saw reduced noise in the centerline trajectory and smoother driving. This performance is demonstrated in the video below.&lt;/p&gt;
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
 
 &lt;div class=&quot;video-wrapper&quot;&gt;
 	&lt;div class=&quot;video-responsive&quot;&gt;
@@ -82,81 +133,15 @@
 	&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;discussion&quot;&gt;Discussion&lt;/h3&gt;
-
-&lt;!-- NEED TO SHIFT THE TONE OF THESE PARAGRAPHS A BIT --&gt;
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
 
 &lt;p&gt;The problem of autonomous navigation is hard because it consists of several sub-problems which are difficult in their own right, and solutions to these problems must work in harmony to deliver a robust system. Perception, trajectory generation, and control modules must deliver simultaneously for reliable driving. Our system focused on the control aspects of the problem, and thus shortcuts were taken in the perception and trajectory generation steps which lead to most of the issues we debugged after implementing our algorithms. The lane localization system used a simple edge detection algorithm based on finding intensity gradients greater than a hard coded threshold. This approach is not robust to changes in lighting, texture, or reflectance of the driving surface. Our vehicle struggled to reliably find lanes on shiny floors so we found a large space with dark carpeting and used bright white tape as lane lines for maximum contrast which improved tracking performance.&lt;/p&gt;
 
-&lt;p&gt;Another issue we struggled with throughout the project was wireless connectivity and lag while using VNC to connect to the Odroid to start nodes and view camera images. The next generation BARC vehicle should feature higher bandwidth, 5.8Ghz wireless connectivity. If nodes for image transmission over ROS were included in the BARC libraries and local machines were configured to communicate via ROS over the network then all of the debugging could take place with SSH alone. This would prevent the wasted overhead of a full virtual desktop which is slow and unreliable.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/lane_detect.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;My code for the project is available on &lt;a href=&quot;https://github.com/treyfortmuller/me131&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I’m interested in continuing to build and experiment with small RC cars. They’re a relatively cheap way to get directly involved in the technology powering a future multi-billion dollar self-driving industry.&lt;/p&gt;
 
-&lt;h1 id=&quot;notes&quot;&gt;Notes&lt;/h1&gt;
-
-&lt;h2 id=&quot;labs&quot;&gt;Labs&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Nothing really (using the terminal and stuff)&lt;/li&gt;
-  &lt;li&gt;(Simulating Kinematic Models in ROS) ROS intro, Github, integrating a ROS teleoperation node, PID cruise controller in simulation and tested response with the BARC simulator&lt;/li&gt;
-  &lt;li&gt;(Introduction to the BARC Vehicle) Sending simple control commands mostly&lt;/li&gt;
-  &lt;li&gt;(BARC System Identification) Least squares method and data collection to characterize PWM &amp;gt; accel and PWM &amp;gt; braking and PWM &amp;gt; steering transfer functions&lt;/li&gt;
-  &lt;li&gt;(Longitudinal Dynamics: Cruise Control) PI Cruise Controller on the BARC (as opposed to simulation in Lab 2) Simulink experiment for gains via pole placement, then manual tuning on the vehicle&lt;/li&gt;
-  &lt;li&gt;(Longitudinal Dynamics: Model-based Cruise Control) Coast down tests to determine Cd and Rx for the BARC (as we did for a simulated vehicle in HW3??) LQR cruise controller design, only done in Simulink experiment, not implemented on the car (&lt;strong&gt;yet?&lt;/strong&gt;)&lt;/li&gt;
-  &lt;li&gt;(Reconstructing Motion from IMU Data) Use real IMU data off of a car to reconstruct the motion comparing to GPS data as ground truth&lt;/li&gt;
-  &lt;li&gt;(Lateral Control: Model-based) Comparing Kinematic Bicycle Model and Dynamic Bicycle Model open-loop predictions of motion given the longitudinal velocity Vx and df the steering input comapred to dGPS data off a real car as ground truth&lt;/li&gt;
-  &lt;li&gt;(Implementing Lateral Control: Simulink) —I’m here now—&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h1 id=&quot;outline&quot;&gt;Outline&lt;/h1&gt;
-
-&lt;h3 id=&quot;intro-to-barc&quot;&gt;Intro to BARC&lt;/h3&gt;
-&lt;p&gt;It’s capabilities, sensors, parts, who built it, how do you work with it (embedded linux computer and a ROS based software architecture), BARC github and website, how’s I get my hands on one (taking a class in vehicle dynamics and control).&lt;/p&gt;
-
-&lt;h3 id=&quot;parameter-estimation&quot;&gt;Parameter Estimation&lt;/h3&gt;
-&lt;p&gt;What paramaters do we need, what experiements can we do to get them, what infrastructure will we use to collect and process data, results from these experiements, might include actuator characterization, then Rx and Cd from the longitudinal model&lt;/p&gt;
-
-&lt;h3 id=&quot;controller-design&quot;&gt;Controller Design&lt;/h3&gt;
-&lt;p&gt;Models, simulation (using simulink or the BARC simulator), implementation, performance and results, videos&lt;/p&gt;
-
-&lt;!-- The _includes for images and videos --&gt;
-&lt;!--
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-
-
-&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-
-
-&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-
-
-&lt;div class=&quot;box alt&quot;&gt;
-	&lt;div class=&quot;row 50% uniform&quot;&gt;
-		&lt;div class=&quot;4u&quot;&gt;
-			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-		&lt;/div&gt;
-		&lt;div class=&quot;4u&quot;&gt;
-			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/e-board/tx_rend2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-		&lt;/div&gt;
-		&lt;div class=&quot;4u$&quot;&gt;
-			&lt;span class=&quot;image fit&quot;&gt;&lt;img src=&quot;/images/e-board/tx_rend3.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;video-wrapper&quot;&gt;
-	&lt;div class=&quot;video-responsive&quot;&gt;
-		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/KJxlBvzlVTY?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen&gt;&lt;/iframe&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
---&gt;
-
-&lt;!-- MathJax --&gt;
-&lt;!--
-Here is inline math $$ \psi = 1 $$.
-Displayed math must be on its own paragraph.
-
-$$ x = \int \dot{x} dt $$
---&gt;</content><summary type="html">LQR lane keeping controller and PID cruise control for a 1/10th scale vehicle, the Berkeley Autonomous Racecar (BARC).</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/me131/barc.jpg" /></entry><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;My code for the project is available on &lt;a href=&quot;https://github.com/treyfortmuller/me131&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">LQR lane keeping controller and PID cruise control for a 1/10th scale vehicle, the Berkeley Autonomous Racecar (BARC).</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/me131/barc.jpg" /></entry><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a &lt;a href=&quot;https://en.wikipedia.org/wiki/Portmanteau&quot;&gt;portmanteau&lt;/a&gt; of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.&lt;/p&gt;
 
