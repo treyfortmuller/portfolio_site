@@ -1,7 +1,35 @@
-# portfolio_site
+# Project Portfolio Website
 
 My personal website and engineering project portfolio wesbite, built with Jekyll and hosted on GitHub Pages.
 
+### Includes
+
+I've implemented several `_includes`, liquid templates for formatting images, videos, and more without writing any HTML. Examples are listed below:
+
+1. Image: main
+	`{% include img_main.html path='/images/e-board/motor_math.png' %}`
+2. Image: right
+	`{% include img_right.html path='/images/e-board/motor_math.png' %}`
+3. Image: left
+	`{% include img_left.html path='/images/e-board/motor_math.png' %}`
+4. Images: three in a row
+	`{% include img_three.html left='/images/e-board/motor_math.png' center='/images/e-board/tx_rend2.png' right='/images/e-board/tx_rend3.png' %}`
+5. YouTube video
+	`{% include youtube.html url='https://www.youtube.com/embed/KJxlBvzlVTY?rel=0' %}`
+
+### MathJax
+
+MathJax rendering of LaTeX is used throughout, [
+Arthur O’Dwyer](https://quuxplusone.github.io/blog/2018/08/05/mathjax-in-jekyll/) has helpful instructions on using MathJax within Jekyll efficiently and such that the syntax is pleasing.
+
+#### Math Syntax
+Double dollar signs are used for escape keys for inline and display mode math. Examples below:
+```
+Here is inline math $$ \psi = 1 $$.
+Displayed math must be on its own paragraph.
+
+$$ x = \int \dot{x} dt $$
+```
 ## Credits
 ### Original README from HTML5 UP
 ```

@@ -42,7 +42,7 @@ github:             treyfortmuller
 linkedin:             trey-fortmuller
 
 # personal
-location:           Berkeley, CA
+location:           Orange County, CA
 phone:              123-546-7890
 email:              tfortmuller@berkeley.edu
 
@@ -65,3 +65,5 @@ exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.j
 
 #Fonts
 #https://github.com/FortAwesome/Font-Awesome/tree/master/fonts
+
+highlighter: rouge

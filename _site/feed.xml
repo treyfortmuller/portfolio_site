@@ -1,4 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-09T18:40:55-08:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-07-12T19:30:55-07:00</updated><id>/</id><title type="html">Trey Fortmuller</title><subtitle>Engineering Project Portfolio</subtitle><entry><title type="html">Lane Keeping RC Car</title><link href="/blog/me131/" rel="alternate" type="text/html" title="Lane Keeping RC Car" /><published>2019-03-01T00:00:00-08:00</published><updated>2019-03-01T00:00:00-08:00</updated><id>/blog/me131</id><content type="html" xml:base="/blog/me131/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;During my final semester at Cal, I took ME131: Vehicle Dynamics and Control. The course focused on modeling automotive vehicle dynamics, understanding instabilities and safety implications, then building controllers to improve the vehicle behavior somehow. Modern cars have a slew of feedback control laws running at all times. We might segment all these controllers into two groups:&lt;/p&gt;
+
+&lt;h3 id=&quot;1-low-level-controllers&quot;&gt;1. Low Level Controllers&lt;/h3&gt;
+
+&lt;p&gt;Low level controllers augment the vehicle’s dynamics to enhance safety or performance. They run at all times in normal passenger cars and they all work to ensure that the tires don’t exceed their friction limits. These include (but are certainly not limited to):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Anti-lock braking systems (ABS): modulates braking force to ensure the tires do not exceed their friction limits under maximum vehicle deceleration.&lt;/li&gt;
+  &lt;li&gt;Traction control: modulates engine torque to ensure the tires do not exceed their friction limits under maximum vehicle acceleration.&lt;/li&gt;
+  &lt;li&gt;Electronic stability control (ESP): is usually implemented as differential braking between the left and right wheels to control the yaw rate of the vehicle while turning.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- MAYBE SOME MORE INFO ON TIRE FORCES AND THE NONLINEAR REGIME HERE WITH PLOTS --&gt;
+
+&lt;h3 id=&quot;2-high-level-controllers&quot;&gt;2. High Level Controllers&lt;/h3&gt;
+
+&lt;p&gt;High level controllers relieve the driver of some part of the driving task. These controllers are meant to be a convenience to the driver. I’ve listed them in order of increasing sophistication and autonomy:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cruise control: modulates engine torque to maintain a desired reference speed.&lt;/li&gt;
+  &lt;li&gt;Adaptive cruise control: modulates engine torque and braking force to maintain a desired speed or following distance to the car ahead.&lt;/li&gt;
+  &lt;li&gt;Lane keep assist: actuates the car’s steering to maintain a position inside the lane, often combined with adaptive cruise control for autonomous highway driving (such as the current state of Tesla’s “autopilot”).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The automotive world offers an extremely rich area of study for controls engineering, and now more than ever as ubiquitous sensors and compute find their way into modern vehicles. The massive effort for fully autonomous driving in the industry today makes automotive controls even more compelling. In ME131 I had the chance to derive and simulate vehicle dynamics in Matlab, then implement controllers I designed on a 1/10th scale RC car called the Berkeley Autonomous Racecar (BARC). Let’s talk about the robot itself first.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-barc&quot;&gt;The BARC&lt;/h2&gt;
+
+&lt;p&gt;The BARC was developed by the &lt;a href=&quot;http://www.mpc.berkeley.edu/&quot;&gt;MPC Lab&lt;/a&gt; at UC Berkeley. It is a 1/10th scale, all-wheel-drive electric racecar. More information on the BARC project, including a bill of materials is available &lt;a href=&quot;http://www.barc-project.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;powertrain&quot;&gt;Powertrain&lt;/h3&gt;
+
+&lt;p&gt;The vehicle is powered by a 2S, 8 Ah lithium-polymer battery. The drivetrain includes an electronic speed controller (ESC) which converts DC power from the battery to 3-phase AC for the brushless motor. The ESC also contains a 5V battery eliminator circuit (BEC) and serves as power distribution for the steering servo.&lt;/p&gt;
+
+&lt;h3 id=&quot;sensors&quot;&gt;Sensors&lt;/h3&gt;
+
+&lt;p&gt;The BARC features an optical encoder on each wheel with eight counts per wheel revolution, allowing for an angular velocity estimate of each wheel. It also features a front facing digital camera which communicates data over serial to an ebedded Linux computer for processing at 30 frames per second. Color or intensity gradient thresholding on the image stream from the camera allows for edge detection within these frames, and thus for semantic data regarding relative position of the vehicle to a lane, to be extracted. The BARC also features an inertial measurement unit (IMU) consisting of an accelerometer and rate gyroscope for measurement of proper acceleration and angular rates of the vehicle. The IMU is not utilized in our lane keeping experiment.&lt;/p&gt;
+
+&lt;h3 id=&quot;compute&quot;&gt;Compute&lt;/h3&gt;
+
+&lt;p&gt;High level processes are handled by an Odroid XU4 embedded Linux computer running an image of &lt;a href=&quot;https://github.com/MPC-Berkeley/barc/blob/master/docs/FlashingEMMC.md&quot;&gt;Ubuntu Mate 16.04&lt;/a&gt; maintained by the Berkeley MPC Lab. The Odroid has a 2Ghz ARM-based processor and 2Gb of DDR3 RAM making it a capable platform for soft real-time applications. The Odroid has several I/O ports and publishes a wifi access point for wireless communication with a host computer via secure shell (SSH) or virtual network computing (VNC). Low level processes are handled by an Arduino Nano microcontroller. This device reads sensor data and relays the data over serial to the Odroid. The microcontroller also receives control commands over serial from the Odroid and communicates via pulse width modulation (PWM) with the ESC. Several of these components are labeled in the image below.&lt;/p&gt;
+
+&lt;h3 id=&quot;software&quot;&gt;Software&lt;/h3&gt;
+
+&lt;p&gt;The Robot Operating System (ROS) is heavily used for inter-process communication onboard the BARC. ROS Kinetic is installed with the MPC lab’s distribution of Ubuntu Mate 16.04 for the Odroid. Processes are segmented into nodes which publish and/or subscribe to topics on which messages of a given data structure are communicated. Often nodes are associated with hardware interfaces, data processing, controllers, estimators, etc. The data processing, estimators, and controllers for the lane keeping system are implemented in python leveraging several open source libraries including &lt;a href=&quot;https://opencv.org/&quot;&gt;OpenCV&lt;/a&gt; and &lt;a href=&quot;https://github.com/markwmuller/controlpy&quot;&gt;controlPy&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/labeled_barc.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;lane-keeping&quot;&gt;Lane Keeping&lt;/h2&gt;
+
+&lt;h3 id=&quot;dynamics&quot;&gt;Dynamics&lt;/h3&gt;
+
+&lt;p&gt;Vehicle dynamics is a complicated subject, people get doctorates in it. Mostly these complications arise due to the nature of tire/road interactions. If I learned one thing from ME131 its that “tires are complicated.” Tires exert a force on the road through the viscoelastic deformation of the contact patch that the rubber of the tire forms on the road. Material properties of the rubber and of the ground are necessary to make an any detailed predictions about the force a tire will exert on the road. Several models, with different physical intuitions, exist and are used commonly in industry (see Dougoff and &lt;a href=&quot;https://en.wikipedia.org/wiki/Hans_B._Pacejka&quot;&gt;Pacejka&lt;/a&gt; tire models). To avoid these complications (and because the tires on the BARC are made of hard plastic), we’ll leave tire force terms unexpanded, or relate them directly to motor torque.&lt;/p&gt;
+
+&lt;h4 id=&quot;longitudinal-dynamics&quot;&gt;Longitudinal Dynamics&lt;/h4&gt;
+
+&lt;p&gt;The longitudinal dynamics (aligned with the forward direction of the vehicle) can be expressed easily via Newton’s second law.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;m\ddot{x} = F_{x_F} + F_{x_R} - F_{aero} - R_{x_F} - R_{x_R} - mg\sin{\theta}&lt;/script&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;F_{x_F}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;F_{x_R}&lt;/script&gt; are the front and rear tire forces exerted on the vehicle to propel it forward. &lt;script type=&quot;math/tex&quot;&gt;F_{aero}&lt;/script&gt; is aerodynamic drag. &lt;script type=&quot;math/tex&quot;&gt;R_{x_F}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;R_{x_R}&lt;/script&gt; are the front and rear tire rolling resistances. And &lt;script type=&quot;math/tex&quot;&gt;mg\sin{\theta}&lt;/script&gt; is the component of gravitational acceleration pulling the vehicle down an incline of angle &lt;script type=&quot;math/tex&quot;&gt;\theta&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can be more specific about &lt;script type=&quot;math/tex&quot;&gt;F_{aero}&lt;/script&gt; if we like:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;F_{aero} = \frac{1}{2}\rho C_{d} A_{f} (v_{x} + v_{wind})^2&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\rho&lt;/script&gt; is the mass density of the air&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;C_d&lt;/script&gt; is the drag coefficient of the vehicle (as determined via CFD, wind tunnel, or full scale testing)&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;A_F&lt;/script&gt; is the front area of the vehicle, the area of the vehicle that the oncoming wind “sees”&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;v_x&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;v_{wind}&lt;/script&gt; are the longitudinal velocity of the vehicle and the headwind velocity if one exists.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;lateral-dynamics&quot;&gt;Lateral Dynamics&lt;/h4&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/me131/kinematic_bike.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Lateral dynamics are significantly richer than longitudinal dynamics. There’s two approaches we can take here, the more accurate but more complicated approach would be to study forces and torques on the vehicle due to tire/road interactions, assuming we have a tire model we’re comfortable with. A large simplification we can make for a limited set of driving conditions is called the “kinematic bicycle model.” This approach is “kinematic” because we’ll ignore forces and torques and use only geometric constraints to derive the equations of motion of the vehicle. Its called a “bicycle” model because we’ll combine the left and right tires into one entity each such that the vehicle has two wheels, a front and back, just like a bicycle:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dot{x} = v\cos(\psi + \beta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dot{y} = v\sin(\psi + \beta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\dot{\psi} = \frac{v}{l_r}\sin(\beta)&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\delta_f = \tan^{-1}\bigg( \frac{l_r + l_f}{l_r}\tan{\beta} \bigg)&lt;/script&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt; is the inertial x coordinate&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; is the inertial y coordinate&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;v&lt;/script&gt; is the longitudinal velocity of the vehicle&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\psi&lt;/script&gt; is the heading angle of the vehicle in the inertial frame&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\delta_f&lt;/script&gt; is the steering angle of the front wheels&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;l_r&lt;/script&gt; is the distance from the vehicle’s center of mass to the rear axle&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;l_f&lt;/script&gt; is the distance from the vehicle’s center of mass to the front axle&lt;/li&gt;
+  &lt;li&gt;&lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; is the sideslip angle (the angle between the vehicle’s velocity vector and its longitudinal axis)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The state variables will be &lt;script type=&quot;math/tex&quot;&gt;z = [x, y, \psi]^T&lt;/script&gt; and the inputs will be &lt;script type=&quot;math/tex&quot;&gt;u = [v, \delta_f]^T&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;We’re making two critical assumptions when we use the kinematic bicycle model.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The velocity vectors at the front and rear tires are parallel to the direction of the tires, i.e. there are no lateral tire forces.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The radius of the vehicle path changes slowly such that &lt;script type=&quot;math/tex&quot;&gt;\dot{\psi} = \frac{v}{r}&lt;/script&gt; holds.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These assumptions make our model appropriate for slow speed driving (as in a parking lot rather than on a freeway). As a visual representation of this limitation, we can compare the open loop performance of the kinematic model to predict the motion of a vehicle to the performance of a more sophisticated dynamic model which &lt;em&gt;does&lt;/em&gt; take tire forces into account. I was given differential GPS data for a vehicle performing a severe figure-8 maneuver. I implemented both the kinematic bicycle model shown above and a dynamic bicycle model in Simulink, and using the recorded longitudinal velocity and steering angle off the vehicle, simulated both models to see how quickly they diverged off the dGPS truth. Check out the code &lt;a href=&quot;https://github.com/treyfortmuller/me131/tree/master/labs/lab8&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/kinematic_vs_dynamic.svg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;lqr-steering-controller&quot;&gt;LQR Steering Controller&lt;/h3&gt;
+
+&lt;p&gt;The steering controller exists in a script called &lt;script type=&quot;math/tex&quot;&gt;\texttt{LQR_synth.py}&lt;/script&gt; which you can find &lt;a href=&quot;https://github.com/treyfortmuller/me131/blob/master/labs/final_proj/on_barc/LQR_synth.py&quot;&gt;here&lt;/a&gt;. We use a discrete-time, infinite-horizon &lt;a href=&quot;https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator&quot;&gt;linear quadratic regulator&lt;/a&gt; (LQR) approach which minimizes a cost associated with state error and control effort. The script is a ROS node which subscribes to an estimate of the track radius, a vehicle velocity estimate, the previous loop’s steering command, and the loop time &lt;script type=&quot;math/tex&quot;&gt;dt&lt;/script&gt; in order to compute an LQR gain matrix &lt;script type=&quot;math/tex&quot;&gt;K(t)&lt;/script&gt; at each loop. A Jacobian linearization of the nonlinear kinematic model is computed as an input to the Riccati solver in the &lt;a href=&quot;https://github.com/markwmuller/controlpy&quot;&gt;controlPy&lt;/a&gt; python toolbox (controlPy was incidentally built by my old PI from the HiPeRLab). Because a new gain matrix is computed at loop rather than computing one gain matrix to use for all operating conditions, we’ll call the controller a “gain-scheduled” LQR controller.&lt;/p&gt;
+
+&lt;p&gt;The script then computes the optimal control output and publishes it for the Arduino to send to the actuators. The controller must be able to handle non-static setpoints (the track curvature varies unpredictably with time) so we choose a reference tracking LQR controller which brings the error between estimated and reference states to zero. We also include a feedforward steering term computed directly by the kinematic bicycle model. The full gain scheduled, reference tracking LQR lane keeping controller with feedforward can be represented as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;u(t) = -K(t)\cdot(z(t) - z_{ref}(t)) + u_{ref}(t)&lt;/script&gt;
+
+&lt;p&gt;Where &lt;script type=&quot;math/tex&quot;&gt;K(t)&lt;/script&gt; is the time varying LQR gain matrix, &lt;script type=&quot;math/tex&quot;&gt;z(t) - z_{ref}(t)&lt;/script&gt; is the state error, and &lt;script type=&quot;math/tex&quot;&gt;u_{ref}(t)&lt;/script&gt; is the feedforward term from the kinematic bicycle model.&lt;/p&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
+
+&lt;div class=&quot;video-wrapper&quot;&gt;
+	&lt;div class=&quot;video-responsive&quot;&gt;
+		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/7w4f1qW-Uts&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;The problem of autonomous navigation is hard because it consists of several sub-problems which are difficult in their own right, and solutions to these problems must work in harmony to deliver a robust system. Perception, trajectory generation, and control modules must deliver simultaneously for reliable driving. Our system focused on the control aspects of the problem, and thus shortcuts were taken in the perception and trajectory generation steps which lead to most of the issues we debugged after implementing our algorithms. The lane localization system used a simple edge detection algorithm based on finding intensity gradients greater than a hard coded threshold. This approach is not robust to changes in lighting, texture, or reflectance of the driving surface. Our vehicle struggled to reliably find lanes on shiny floors so we found a large space with dark carpeting and used bright white tape as lane lines for maximum contrast which improved tracking performance.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/me131/lane_detect.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m interested in continuing to build and experiment with small RC cars. They’re a relatively cheap way to get directly involved in the technology powering a future multi-billion dollar self-driving industry.&lt;/p&gt;
+
+&lt;p&gt;My code for the project is available on &lt;a href=&quot;https://github.com/treyfortmuller/me131&quot;&gt;Github&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">LQR lane keeping controller and PID cruise control for a 1/10th scale vehicle, the Berkeley Autonomous Racecar (BARC).</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/me131/barc.jpg" /></entry><entry><title type="html">Autonomous Delta Wing</title><link href="/blog/wing/" rel="alternate" type="text/html" title="Autonomous Delta Wing" /><published>2018-08-01T00:00:00-07:00</published><updated>2018-08-01T00:00:00-07:00</updated><id>/blog/wing</id><content type="html" xml:base="/blog/wing/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a &lt;a href=&quot;https://en.wikipedia.org/wiki/Portmanteau&quot;&gt;portmanteau&lt;/a&gt; of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.&lt;/p&gt;
 
@@ -195,7 +338,7 @@
 
 &lt;p&gt;I collected images from recent performances, added embedded SoundCloud and YouTube materials, and created a few informational sections that didn’t exist in the HTML5 UP template I based the site around. I documented my work on the site such that it could maintained by a future UC Jazz webmaster. The site is hosted on Berkeley’s Open Computing Facility (&lt;a href=&quot;https://www.ocf.berkeley.edu/&quot;&gt;OCF&lt;/a&gt;) servers at &lt;a href=&quot;https://ucjazz.berkeley.edu&quot;&gt;ucjazz.berkeley.edu&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/ucj_web2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/ucj.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;uavsberkeley&quot;&gt;UAVs@Berkeley&lt;/h2&gt;
 
@@ -205,7 +348,7 @@
 
 &lt;p&gt;I reorganized the entire site creating new pages and eliminating unnecessary ones. I rewrote all the language on every page to better reflect the current state of the club. The &lt;a href=&quot;https://uav.berkeley.edu/teams.html&quot;&gt;teams page&lt;/a&gt; is the one I’m most proud of. Engaging imagery and video content is associated with the three sections of the club to most effectively communicate to prospective students how they might get involved. The site is hosted on Berkeley’s OCF servers at &lt;a href=&quot;https://uav.berkeley.edu/&quot;&gt;uav.berkeley.edu&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/uav_web2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/frontend/uav.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;conclusions&quot;&gt;Conclusions&lt;/h2&gt;
 
@@ -243,7 +386,132 @@
 
 &lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/tool-stand/8_final.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;The final product with tools ready to build something new.&lt;/p&gt;</content><summary type="html">A laser cut tool stand for quick access to the necessities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/tool-stand/tool-stand.jpg" /></entry><entry><title type="html">Crazyflie Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;me136-introduction-to-control-of-unmanned-aerial-vehicles&quot;&gt;ME136: Introduction to Control of Unmanned Aerial Vehicles&lt;/h2&gt;
+&lt;p&gt;The final product with tools ready to build something new.&lt;/p&gt;</content><summary type="html">A laser cut tool stand for quick access to the necessities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/tool-stand/tool-stand.jpg" /></entry><entry><title type="html">Waterproof Quadcopter Build</title><link href="/blog/waterproof/" rel="alternate" type="text/html" title="Waterproof Quadcopter Build" /><published>2017-12-15T00:00:00-08:00</published><updated>2017-12-15T00:00:00-08:00</updated><id>/blog/waterproof</id><content type="html" xml:base="/blog/waterproof/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;After taking “Intro to Control for UAVs” (ME136) in the Fall of 2017, the professor, Mark Mueller, recruited my lab team (my good friends David and Joey, and myself) to design and build a quadcopter to be used in his lab for research purposes. One of his graduate students is working on launching a drone from the ocean. This platform will be a test rig to be used within the lab as the grad student works on modeling the dynamics of an aquatic launch and developing control systems to achieve this reliably.&lt;/p&gt;
+
+&lt;p&gt;This effort did ultimately lead to conference paper published in the proceedings of the 2019 International Conference on Unmanned Aircraft Systems (&lt;a href=&quot;http://www.uasconferences.com/&quot;&gt;ICUAS&lt;/a&gt;). The paper, authored by my HiPeRLab colleague Jiaming Zha, is entitled “Towards breaching a still water surface with a miniature unmanned aerial underwater vehicle” and is available
+&lt;a href=&quot;http://hiperlab.berkeley.edu/wp-content/uploads/2019/05/Towards-breaching-a-still-water-surface-with-a-miniature-unmanned-aerial-underwater-vehicle.pdf&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;requirements&quot;&gt;Requirements&lt;/h2&gt;
+
+&lt;p&gt;The build had to employ the same flight controller that the lab already used for their other drone related projects, the &lt;a href=&quot;https://www.bitcraze.io/crazyflie-2/&quot;&gt;Crazyflie&lt;/a&gt; from Bitcraze, a PCB designed to drive brushed motors.&lt;/p&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+	&lt;ul&gt;
+		&lt;li&gt;Run the Crazyflie flight control board (an STM F4 microcontroller)&lt;/li&gt;
+		&lt;li&gt;Have enough room for a radio based &lt;a href=&quot;https://www.bitcraze.io/loco-pos-system/&quot;&gt;localization unit&lt;/a&gt; used for state estimation&lt;/li&gt;
+		&lt;li&gt;Limit voltage to a 2S LiPo's 8.4V&lt;/li&gt;
+		&lt;li&gt;Must be compact, less than 200mm motor shaft to motor shaft&lt;/li&gt;
+		&lt;li&gt;Must be agile, at least a 2:1 thrust to weight ratio&lt;/li&gt;
+		&lt;li&gt;Operate down to 3m of depth&lt;/li&gt;
+		&lt;li&gt;Full battery voltage telemetry&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;component-specification&quot;&gt;Component Specification&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof6.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Systems engineering for a multirotor is a large optimization problem including factors such as motor stator size, motor KV, prop diameter and airfoil, battery voltage and capacity, and aircraft size, weight, and configuration. Thankfully the requirements for the platform narrowed down our choices.&lt;/p&gt;
+
+&lt;p&gt;We estimated we could meet all the requirements with a craft weighing around 100g. Based on existing motor thrust testing, we found that an 1104 7500KV motor could achieve 100g thrust on 2S running a 2-inch prop, so we’d achieve a power to weight ratio of roughly 4:1.&lt;/p&gt;
+
+&lt;p&gt;With this, we decided on a 2S LiPo at 400mAh. Knowing that all our components would have to be submersible, we decided to look around 10A rated 4-in-1 ESCs (4 ESCs for brushless motors on one PCB for easy mounting inside a waterproof enclosure).&lt;/p&gt;
+
+&lt;p&gt;With our powertrain specified, we found the proper components on Amazon and began recreating them in CAD so I could design our frame and waterproof enclosure around them. The Bill of Materials for off the shelf components we included in the build is as follows:&lt;/p&gt;
+
+&lt;h3&gt;Bill of Materials&lt;/h3&gt;
+&lt;div class=&quot;table-wrapper&quot;&gt;
+	&lt;table&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Item&lt;/th&gt;
+				&lt;th&gt;Description&lt;/th&gt;
+				&lt;th&gt;Total Weight Contribution (grams)&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://store.bitcraze.io/collections/kits/products/crazyflie-2-0&quot;&gt;Crazyflie Flight Controller&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;STM F4 based microcontroller with an IMU and several UARTs&lt;/td&gt;
+				&lt;td&gt;7&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://store.bitcraze.io/collections/positioning/products/loco-positioning-deck&quot;&gt;Bitcraze Loco Positioning Deck&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;RF based localization module&lt;/td&gt;
+				&lt;td&gt;3.3&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/iPower-Motor-Brushless-Quadcopter-Torrent/dp/B01N7QDZY6/ref=sr_1_3?ie=UTF8&amp;amp;qid=1510622724&amp;amp;sr=8-3&amp;amp;keywords=1104+7500kv&quot;&gt;iPower iX1104 7500KV Brushless Motor&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Brushless motors&lt;/td&gt;
+				&lt;td&gt;22&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/BLHeli_S-Electronic-Controller-Multirotor-Crazepony/dp/B076BDHCHX/ref=sr_1_4?rps=1&amp;amp;ie=UTF8&amp;amp;qid=1510621639&amp;amp;sr=8-4&amp;amp;keywords=20x20+10A+ESC&amp;amp;refinements=p_85%3A2470955011&quot;&gt;Wave 4-in-1 10A ESC&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Single PCB with 4 ESCs for brushless motors rated for 10A continuous&lt;/td&gt;
+				&lt;td&gt;6&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/Crazepony-400mAh-Battery-Racing-Quadcopter/dp/B072BH1XP6/ref=sr_1_1?ie=UTF8&amp;amp;qid=1510622347&amp;amp;sr=8-1&amp;amp;keywords=2S+400+mah&amp;amp;dpID=410fHvjWLiL&amp;amp;preST=_SY300_QL70_&amp;amp;dpSrc=srch&quot;&gt;Crazepony 400mAh 2S 7.4V 30C LiPo&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;A small 2-cell LiPo&lt;/td&gt;
+				&lt;td&gt;22&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/Propellers-Compatible-6200-10000KV-Brushless-Transparent/dp/B074NP3LFF/ref=sr_1_1?s=toys-and-games&amp;amp;rps=1&amp;amp;ie=UTF8&amp;amp;qid=1510622468&amp;amp;sr=1-1&amp;amp;keywords=2inch+props&amp;amp;refinements=p_85%3A2470955011&quot;&gt;Gemfan 2040 Tri-blade Props&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Some 2 inch diameter tri-blade propellers&lt;/td&gt;
+				&lt;td&gt;3.6&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;a href=&quot;https://www.amazon.com/Matek-Systems-Adjustable-Switchboard-Continuous/dp/B01EACBW6E/ref=sr_1_fkmr1_4?ie=UTF8&amp;amp;qid=1511574313&amp;amp;sr=8-4-fkmr1&amp;amp;keywords=matek+5V+regulator&quot;&gt;Matek Systems Micro BEC 5V/12V Adjustable Buck Module&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;Battery eliminator, a 5V bucking regulator&lt;/td&gt;
+				&lt;td&gt;1&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;design&quot;&gt;Design&lt;/h2&gt;
+
+&lt;p&gt;&lt;span class=&quot;image right&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof4.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The main design constraint was the requirement that the vehicle must be submersible. Brushless motors are waterproof out of the box due to the insulating enamel applied to the wires of the motor winding in the stator, they can operate underwater without modification. Everything else (flight controller, ESCs, localization module, voltage regulator, battery) had to somehow be waterproofed or inside a watertight container.&lt;/p&gt;
+
+&lt;p&gt;David, Joey, and I brainstormed on how we might protect the sensitive PCBs from the elements within a container. For the sake of preserving an ideal center of mass, close to the geometric center of the vehicle, we decided on two cases which sandwich the frame of the quadcopter. The top case contains all the sensitive PCBs and the battery is protected by the bottom case. A hole is cut in the frame for the battery lead to reach the ESCs and regulator in the top case. 20+ hours of CADing in Fusion 360 later, I completed the full vehicle assembly including a custom frame, top and bottom cases, as well as gaskets to seal the cases against the frame. I included every single PCB as each would be mounted in the case and designed the cases around the components. This ensured a reasonable fit as well as the accuracy of the inertia tensor of the vehicle, an input to the PX4 firmware the lab had running on board the Crazyflies for flight control.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof_main2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The electronics are mounted inside the top case using TPE mounting solutions, CA glue, heavy duty double sided foam tape, and M2 fasteners. There are 4 holes in the top case which allow the motor wires to reach the ESC board inside the case. Those holes would be filled with a rubbery silicon caulking with the wires threaded through.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabrication&quot;&gt;Fabrication&lt;/h2&gt;
+
+&lt;h3 id=&quot;watertight-cases&quot;&gt;Watertight Cases&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;image left&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;3D printing was the natural choice for fabrication of the custom cases, but normal FDM prints are not watertight. Small gaps between layers can allow some water to permeate even a thick shell of typical 3D printing plastics. SLA type prints (laser/projection based resin curing processes) are bound at a molecular level, so those are watertight. Thankfully at Jacobs Hall on campus at UC Berkeley, we had access to a Carbon3D printer for fabrication of the cases. I had never printed anything with an SLA printer before, it was definitely a learning curve. This printing process has its own intricacies and there are different issues to debug than I was used to on FDM machines. It took 3 or 4 iterations before I established how to avoid vacuum pockets forming in the print, and how to arrange the support structure to avoid warping. Once I was happy with the part and its fabrication, I printed a top and bottom case in black “rigid polyurethane” on the Carbon 3D. All the Carbon3D resin chemistries are proprietary so beyond “polyurethane,” I really have no idea what the parts are made of. They were durable though and worked beautifully.&lt;/p&gt;
+
+&lt;h3 id=&quot;tpe-gaskets&quot;&gt;TPE Gaskets&lt;/h3&gt;
+&lt;p&gt;The weakness of our double case sandwich approach is the potential leak at the interface between the cases and the frame. We had seen rubber gaskets used in other systems at an interface which needed to be watertight. A flexible 3D printing filament called thermal polyurethane (TPE) came to mind. I designed some gaskets which fit along the footprint of the top and bottom case along the frame. They are meant to be compressed when the top and bottom plate sandwich the frame using a few M2 nuts and bolts. I printed the gaskets in orange &lt;a href=&quot;https://www.amazon.com/NinjaFlex-TPU-3D-Printing-Filament/dp/B01LXZYJ3R/ref=sr_1_1?ie=UTF8&amp;amp;qid=1514450027&amp;amp;sr=8-1&amp;amp;keywords=ninjaflex&quot;&gt;NinjaFlex&lt;/a&gt; TPE on my personal Printrbot Simple and over-extruded the prints severely to ensure better-than-average layer adhesion. The gaskets would be adhered to the cases with CA glue with the exposed interface between the case and gasket covered in watertight &lt;a href=&quot;https://www.amazon.com/MG-Chemicals-Silicone-Modified-Conformal/dp/B008O9YIV6/ref=sr_1_1?s=industrial&amp;amp;ie=UTF8&amp;amp;qid=1514450052&amp;amp;sr=1-1&amp;amp;keywords=silicon+conformal+coating&quot;&gt;silicon conformal coating.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;frame&quot;&gt;Frame&lt;/h3&gt;
+&lt;p&gt;Ideally, the custom frame would be cut from a 3mm thick plate of carbon fiber. It would be rigid, light weight, and durable. We had the carbon purchased, but unfortunately, we were finishing this project towards the end of the semester. During the last week of class, the waterjet we needed to access to safely CNC cut the carbon was booked due to other class projects being due for many other students. Cutting the carbon on a typical CNC mill would be a hard sell to the machine shop technicians as carbon fiber dust is one of the last things you’d like in your lungs. 3D printing to the rescue again… we recruited our good friend Eric to complete a specialty print for us. Eric owns a printer with several upgrades allowing him to print abrasive and high-temperature filaments. He printed us a frame out of carbon-reinforced nylon, an extremely durable material. It’s not as clean as the carbon fiber plate we planned on, but it’s rigid enough to be flight worthy.&lt;/p&gt;
+
+&lt;h2 id=&quot;assembly-and-delivery&quot;&gt;Assembly and Delivery&lt;/h2&gt;
+
+&lt;p&gt;After removing excess pins, direct soldering all the components together, and installing a voltage divider for stepping down the input to the VBAT sensor, we covered all the electronics in 2 coats of silicon conformal coating for safety in the off chance that any moisture got inside the case.&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/waterproof/waterproof3.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Modification to the PX4 firmware running on the Crazyflie is necessary for the PWM signal output to the ESC to be read correctly, and thus appropriately control the motors. PWM signal timing was adjusted to the standard 1000-2000 microsecond period, but the logic level of the signal worked out of the box. We also changed a hard-coded scaling factor to read the correct battery voltage from our new VBAT sensing resistor values.&lt;/p&gt;
+
+&lt;h2 id=&quot;hop-test&quot;&gt;Hop Test&lt;/h2&gt;
+
+&lt;div class=&quot;video-wrapper&quot;&gt;
+	&lt;div class=&quot;video-responsive&quot;&gt;
+		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/y4-ZcgsTGAQ&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</content><summary type="html">A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/waterproof/waterproof_main.jpg" /></entry><entry><title type="html">Crazyflie Flight Controls</title><link href="/blog/cf-flight-controls/" rel="alternate" type="text/html" title="Crazyflie Flight Controls" /><published>2017-12-06T00:00:00-08:00</published><updated>2017-12-06T00:00:00-08:00</updated><id>/blog/cf-flight-controls</id><content type="html" xml:base="/blog/cf-flight-controls/">&lt;h2 id=&quot;me136-introduction-to-control-of-unmanned-aerial-vehicles&quot;&gt;ME136: Introduction to Control of Unmanned Aerial Vehicles&lt;/h2&gt;
 
 &lt;p&gt;I took this course in the Fall of 2017, my junior year. When I took it, it was a new class, the first time it had been offered at Berkeley, as well as the first ever class taught by a new faculty member Mark Mueller. I recognized Professor Mueller from ETH Zurich’s Institute for Dynamic Systems and Control, the birthplace of the PX4 project and online videos like &lt;a target=&quot;_blank&quot; href=&quot;https://www.youtube.com/watch?v=3CR5y8qZf0Y&quot;&gt;this&lt;/a&gt;. I hadn’t taken any of the prerequisites for the class, but decided to go for it anyway. A number of UAVs@Berkeley personnel would be accompanying me and I assumed I could make up for a lack of prerequisite classes with my somewhat obsessive love for working on drones.&lt;/p&gt;
 
@@ -445,7 +713,22 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 &lt;p&gt;Beyond the hills being hard to conquer, the pavement in Berkeley is treacherous. Big wheels make clearing gaps and cracks in the asphalt easier and the largest, easily found longboard wheels are 90mm in diameter. I do value my physical safety, so I decided on a top speed of 20mph. Upon doing some research, I found gear reductions on electric longboards to be anywhere from 1.8 to 2.5, I went with a 3:1 gear reduction to optimize for torque rather than top speed. We do some math to find the required motor KV:&lt;/p&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/e-board/motor_math.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Desired top speed: &lt;script type=&quot;math/tex&quot;&gt;20\mathrm{mph} = 8.89\mathrm{m/s}&lt;/script&gt;&lt;/li&gt;
+  &lt;li&gt;Batrtery: 8S at &lt;script type=&quot;math/tex&quot;&gt;4.0\mathrm{V/cell} = 32\mathrm{V}&lt;/script&gt; (average voltage)&lt;/li&gt;
+  &lt;li&gt;Wheels: &lt;script type=&quot;math/tex&quot;&gt;90\mathrm{mm}&lt;/script&gt; diameter&lt;/li&gt;
+  &lt;li&gt;Wheel circumference: &lt;script type=&quot;math/tex&quot;&gt;C = 90\pi = 282.74\mathrm{mm/rev}&lt;/script&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= 0.283\mathrm{m/rev}&lt;/script&gt;
+
+&lt;p&gt;At a velocity of 8.89m/s where the wheels roll 0.283 meters per revolution, the wheels must rotate at 1886.5 rotations per minute.&lt;/p&gt;
+
+&lt;p&gt;With a reduction ratio of 3:1 (motor:wheel)&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;3 \cdot 1886.5\mathrm{rpm} = 5659.5\mathrm{rpm} \text{ at the motor shaft}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{5659.5\mathrm{rpm}}{32\mathrm{V}} = 176\mathrm{KV} \text{ motor}&lt;/script&gt;
 
 &lt;p&gt;The best brushless outrunner motor candidate I could find was &lt;a target=&quot;\_blank&quot; href=&quot;https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2&quot;&gt;this&lt;/a&gt; 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.&lt;/p&gt;
 
@@ -715,71 +998,4 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 	&lt;/table&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/drone-tx/tx_main.jpg" /></entry><entry><title type="html">FPV Racing Quadcopters</title><link href="/blog/fpv/" rel="alternate" type="text/html" title="FPV Racing Quadcopters" /><published>2015-08-01T00:00:00-07:00</published><updated>2015-08-01T00:00:00-07:00</updated><id>/blog/fpv</id><content type="html" xml:base="/blog/fpv/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-
-&lt;p&gt;During the summer of 2015, the summer before my freshmen year at Cal, I decided I wanted to take on a side project. I saw a buddy of mine had built a quadcopter from parts from photos on social media. Upon doing some research I found a large online community of hobbyists and professionals working on opensource hardware and software projects around homebuilt drones. Thousands of hours’ worth of videos and reading material is available on the internet allowing me to muster up enough information to buy parts to put together my first quadcopter running the &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/cleanflight/cleanflight&quot;&gt;Cleanflight&lt;/a&gt; flight control firmware on an STM F1 based flight controller.&lt;/p&gt;
-
-&lt;p&gt;After building my first quadcopter, videos started to surface on the internet of FPV (First Person View) flight. Basically, you mount a small camera and a video transmitter (often 5.8Ghz) on board your drone facing forward. Then you receive the video transmission in a pair of video goggles that you wear while piloting the drone. It feels like you’re flying the drone from the cockpit and it allows for much greater maneuverability in flight. I invested in everything I needed to fly FPV and mounted a camera and video transmitter on my drone that same summer. I had an awesome experience, but as soon as I showed up at Cal and met the students at UAVs@Berkeley who were pursuing the same technology, I was hooked. I’ve built many rigs over the past few years I’ve been involved in the hobby, each increasing in craftsmanship, forethought, and number of custom parts (some of which I share on &lt;a target=&quot;_blank&quot; href=&quot;https://www.thingiverse.com/tfortmuller/designs&quot;&gt;Thingiverse&lt;/a&gt;).&lt;/p&gt;
-
-&lt;h2 id=&quot;youtube-channel&quot;&gt;YouTube Channel&lt;/h2&gt;
-
-&lt;p&gt;Videos online, as is true with most FPV pilots, got me into the hobby. About a year and a half into my involvement in flying FPV quadcopters, I enjoyed the footage that I produced enough to post to my own YouTube channel. &lt;a target=&quot;_blank&quot; href=&quot;https://www.youtube.com/channel/UCdd2_nB8uUar0n4pbsSSuJw&quot;&gt;Here’s&lt;/a&gt; the link, I call the channel “Get Inverted FPV.” Here’s a recent freestyle video:&lt;/p&gt;
-
-&lt;div class=&quot;video-wrapper&quot;&gt;
-	&lt;div class=&quot;video-responsive&quot;&gt;
-		&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/uR2xS1kjnU0&quot; frameborder=&quot;0&quot; gesture=&quot;media&quot; allow=&quot;encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;first-build&quot;&gt;First Build&lt;/h2&gt;
-
-&lt;p&gt;This is the only picture I have of that first-ever quadcopter. I didn’t know what I was doing, so I bought this ridiculous frame with inverted rear motors. It’s underpowered, takes up too much space, and the power distribution board was a nonstandard size, so I had to mount above the top plate. It took me about 2 weeks to build and I was pleasantly surprised when it flew.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;zmr250-build&quot;&gt;ZMR250 Build&lt;/h2&gt;
-
-&lt;p&gt;The first quad I built at Cal, in my dorm room. I learned to fly in “rate mode” on this aircraft. Flying in rate mode means the pilot directly controls the angular velocities of the vehicle about each axis, rather than on board software leveling the quadcopter automatically. Transitioning from piloting an off-the-shelf drone (which employs a large sensor array and software stack to stabilize itself) to piloting a custom-built rig in rate mode is akin to stepping out of a Honda Civic and into a Formula One racercar. It’s difficult to learn, and there were many crashes throughout the process, but it allows for full control in acrobatic flight.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;zmr250-build-v2&quot;&gt;ZMR250 Build V2&lt;/h2&gt;
-
-&lt;p&gt;The frame is a very similar geometry from the previous build, but this frame has real 3K carbon twill. The build went through many iterations as I experimented with my first custom 3D printed parts (all PLA) for mounting components and cleaning up the build. This thing was continuously evolving, my go-to build for over a year.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv5.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;qav210-build&quot;&gt;QAV210 Build&lt;/h2&gt;
-
-&lt;p&gt;I used a knockoff QAV210 Frame for this build. Here I experienced some unwanted gyro noise propagating from the motors, the Chinese carbon wasn’t rigid enough. Although I liked the compact form factor, I quickly retired the frame.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;connex-build&quot;&gt;Connex Build&lt;/h2&gt;
-
-&lt;p&gt;At Drone Worlds Expo in San Jose in the Fall of my sophomore year, I talked to an engineer from Amimon, the manufacturer of a digital video transmitter and receiver. Rather than the analog 5.8Ghz video feed which some suffers from low resolution, noise, etc. this product offers 1080p live video with (supposed) latency on the order of an analog feed. The whole system costs over $1,300, and somehow, I talked myself onto the beta testing list for the product, and they ended up letting me keep it! I was the only beta tester looking to implement this device onto an FPV racing rig, the main demographic was cinematographers. I printed custom mounts for the massive patch antennas. and built everything on a QAV250 with arm extensions and top plate which fits the GoPro in-line with the main body of the frame. The video feed was impressive, but I was so scared of crashing this thing with so much money on board, the build wasn’t nearly as fun to fly.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/connex.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;hmb-x5-build&quot;&gt;HMB-X5 Build&lt;/h2&gt;
-
-&lt;p&gt;My main rig for the past year. Carries a GoPro Hero5 Session. A custom top plate, FPV cam mount, GoPro mount, and SMA antenna mount. The antenna mount is printed in flexible TPU so the joint simply bends rather than solder pads being ripped out. It’s the most robust quad I’ve ever built, it’s got loads of power and produces smooth footage. At one point I even had two identical copies.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/hmb.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv15.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;3inch-build&quot;&gt;3inch Build&lt;/h2&gt;
-
-&lt;p&gt;I experimented with a micro setup for the first time here. The main design criterion was to get an all-up weight of less than 250g, so the FAA (and UC Berkeley) considers it a toy. It runs 4S just like all my other racers and its got some kick. The frame is the main plate from an iFlight iX3, and I built it first as an under-slung battery build, then as a low profile top mounted build. I designed the AIO cam mount, the bottom plate, and a battery pad which traces the geometry of the frame and printed them. The bottom plate is PLA and everything else is TPU. Better yet, I traced the frame so it’s all in CAD.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/three.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;
-&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/fpv20.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;los-build&quot;&gt;LOS Build&lt;/h2&gt;
-
-&lt;p&gt;As you might imagine, I’ve got a stock pile of spare parts that frightens most everybody that walks into my apartment. I put some of those spares to good use and built up a line of sight quad (no FPV) for practicing some LOS handling. I figure it’s better to have a flying robot than parts for a flying robot. The vehicle is extremely light, built from the HMB-X5 high density rubber frame. I designed the open “pod” and printed it from TPU for protection.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/fpv/los.jpg&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">I build acrobatic FPV enabled quadcopters for racing and freestyle flight.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/fpv/fpv1.jpg" /></entry></feed>
+&lt;p&gt;&lt;span class=&quot;image main&quot;&gt;&lt;img src=&quot;/images/drone-tx/tx2.png&quot; alt=&quot;&quot; /&gt;&lt;/span&gt;&lt;/p&gt;</content><summary type="html">Part of my final project for Design Innovation 22, an Arduino driven RC Transmitter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/images/drone-tx/tx_main.jpg" /></entry></feed>

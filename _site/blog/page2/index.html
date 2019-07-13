@@ -21,6 +21,29 @@
 <link rel="stylesheet" href="/assets/css/main.css">
 <noscript><link rel="stylesheet" href="/assets/css/noscript.css"></noscript>
 
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
 
 	</head>
 	<body class="is-loading">
@@ -57,8 +80,8 @@
             <ul class="links">
   <li class=""><a href="/">Projects</a></li>
   <li class=""><a href="/about/">About</a></li>
-<!--   <li class=" active "><a href="/projects/">Projects</a></li> -->
   <li class=""><a href="/resume/">Resume</a></li>
+  <li class=""><a href="/publications/">Publications</a></li>  
 </ul>
 
 
@@ -82,6 +105,18 @@
 
 					<!-- Project tiles -->
 					<section class="posts">
+						
+							<article>
+								<header>
+									<span class="date">01 Mar 2019</span>
+									<h2><a href="/blog/me131/">Lane Keeping RC Car</a></h2>
+								</header>
+								<a href="/blog/me131/" class="image fit"><img src="/images/me131/barc.jpg" alt=""></a>
+								<p>LQR lane keeping controller and PID cruise control for a 1/10th scale vehicle, the Berkeley Autonomous Racecar (BARC).</p>
+								<ul class="actions">
+									<li><a href="/blog/me131/" class="button">View Project</a></li>
+								</ul>
+							</article>
 						
 							<article>
 								<header>
@@ -116,6 +151,18 @@
 								<p>A laser cut tool stand for quick access to the necessities.</p>
 								<ul class="actions">
 									<li><a href="/blog/tool-stand/" class="button">View Project</a></li>
+								</ul>
+							</article>
+						
+							<article>
+								<header>
+									<span class="date">15 Dec 2017</span>
+									<h2><a href="/blog/waterproof/">Waterproof Quadcopter Build</a></h2>
+								</header>
+								<a href="/blog/waterproof/" class="image fit"><img src="/images/waterproof/waterproof_main.jpg" alt=""></a>
+								<p>A waterproof quadcopter built around the crazyflie flight controller for a professor researching aquatic drone launches.</p>
+								<ul class="actions">
+									<li><a href="/blog/waterproof/" class="button">View Project</a></li>
 								</ul>
 							</article>
 						
@@ -228,7 +275,7 @@
     <!-- Location -->
     <section class="alt">
       <h3>Location</h3>
-      <p>Berkeley, CA</p>
+      <p>Orange County, CA</p>
     </section>
 
     <!-- Connect -->
