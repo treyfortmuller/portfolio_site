@@ -1,91 +1,8 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-<title>Crazyflie Flight Controls</title>
-<meta name="description" content="">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
-<link rel="manifest" href="/assets/icon/manifest.json">
-<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="/assets/icon/favicon.ico">
-<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
-<meta name="theme-color" content="#ffffff">
-
-<!-- CSS -->
-<link rel="stylesheet" href="/assets/css/main.css" />
-<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-
-<!-- MathJax -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: [
-      "MathMenu.js",
-      "MathZoom.js",
-      "AssistiveMML.js",
-      "a11y/accessibility-menu.js"
-    ],
-    jax: ["input/TeX", "output/CommonHTML"],
-    TeX: {
-      extensions: [
-        "AMSmath.js",
-        "AMSsymbols.js",
-        "noErrors.js",
-        "noUndefined.js",
-      ]
-    }
-  });
-</script>
-
-	</head>
-	<body class="is-loading">
-
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
-
-				<!-- Header -->
-        <header id="header">
-          <a href="/" class="logo">Trey Fortmuller</a>
-        </header>
-
-				<!-- Nav -->
-					<nav id="nav">
-
-            <ul class="links">
-  <li class=""><a href="/">Projects</a></li>
-  <li class=""><a href="/about/">About</a></li>
-  <li class=""><a href="/resume/">Resume</a></li>
-  <li class=""><a href="/publications/">Publications</a></li>  
-</ul>
-
-
-						<ul class="icons">
-              <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
-              <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
-              <!-- <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
-            </ul>
-					</nav>
-
-				<!-- Main -->
-				<div id="main">
-          <section class="post">
-    				<header class="major">
-      				<span class="date">06 Dec 2017</span>
-      				<h1>Crazyflie Flight Controls</h1>
-      				<p>A cascaded controller implementation for autonomous loitering with a Crazyflie quadcopter.</p>
-      			</header>
-      			<div class="image main"><img src="/images/cf-flight-controls/cf_main.jpg" alt=""></div>
-      			<p><h2 id="me136-introduction-to-control-of-unmanned-aerial-vehicles">ME136: Introduction to Control of Unmanned Aerial Vehicles</h2>
+I"8<h2 id="me136-introduction-to-control-of-unmanned-aerial-vehicles">ME136: Introduction to Control of Unmanned Aerial Vehicles</h2>
 
 <p>I took this course in the Fall of 2017, my junior year. When I took it, it was a new class, the first time it had been offered at Berkeley, as well as the first ever class taught by a new faculty member Mark Mueller. I recognized Professor Mueller from ETH Zurich’s Institute for Dynamic Systems and Control, the birthplace of the PX4 project and online videos like <a target="_blank" href="https://www.youtube.com/watch?v=3CR5y8qZf0Y">this</a>. I hadn’t taken any of the prerequisites for the class, but decided to go for it anyway. A number of UAVs@Berkeley personnel would be accompanying me and I assumed I could make up for a lack of prerequisite classes with my somewhat obsessive love for working on drones.</p>
 
-<p><span class="image right"><img src="/images/cf-flight-controls/cf2.jpg" alt="" /></span></p>
+<p><span class="image right"><img src="http://localhost:4000/images/cf-flight-controls/cf2.jpg" alt="" /></span></p>
 
 <p>The class started with a seven week long deep dive into the dynamics of multirotors in the fully abstract tensor formalism. We started with aerodynamic models for propellers and ended with a mixer matrix, the basis for our attitude controller. While the lecture of the course focused on theory and analysis in dynamics, estimation, and control, the lab section focused on implementing a hover controller from scratch. The class was split into groups of 3 or 4 and each group was given a <a target="_blank" href="https://www.bitcraze.io/crazyflie-2/">Crazyflie</a> quadcopter to implement their controller.</p>
 
@@ -107,7 +24,7 @@
 
 <p>Here is the entire quadcopter controller represented in a block diagram as provided by our professor. Red ellipses represent hardware, shaded triangles represent simple summations and multiplications, and rectangles represent system parametrization and dynamics, or estimation and control algorithms we built up in lab sections.</p>
 
-<p><span class="image main"><img src="/images/cf-flight-controls/block_diagram.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/cf-flight-controls/block_diagram.png" alt="" /></span></p>
 
 <h2 id="parameterizing-the-system">Parameterizing the System</h2>
 
@@ -121,7 +38,7 @@
 
 <p>The class didn’t have any thrust stands available, so the GSIs got creative and gave each team a lever made from laser cut acrylic that the Crazyflie could be fastened to with M2 screws. The lever was fixed to the edge of a table with tape. We commanded various propeller angular velocities (using our new PWM to angular velocity relationship) and logged the accelerometer data to find the average angle that the quadcopter arrived at. Then we solved the statics problem embodied by the free body diagram to determine the thrust force that each propeller was producing. We derived a quadratic relationship here.</p>
 
-<p><span class="image main"><img src="/images/cf-flight-controls/cf_lever.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/cf-flight-controls/cf_lever.png" alt="" /></span></p>
 
 <h2 id="state-estimation">State Estimation</h2>
 
@@ -205,7 +122,7 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 <h2 id="controller">Controller</h2>
 
-<p><span class="image left"><img src="/images/cf-flight-controls/cf1.jpg" alt="" /></span></p>
+<p><span class="image left"><img src="http://localhost:4000/images/cf-flight-controls/cf1.jpg" alt="" /></span></p>
 
 <p>I struggle with how to talk about the controller on my website in just a few paragraphs. I feel like I’d have to write a few thousand words to offer any more insight than the source code alone can provide. If staring at the source code interests you, then by all means <a target="_blank" href="https://github.com/treyfortmuller/ME136/blob/master/UserCode.cpp">check it out</a>. Basically, the controller takes our state estimation to be truth and controls around a flat, zero-velocity state for the quadcopter, i.e. hovering at about half a meter off the ground. The approach is cascaded (so rate control is more aggressive than angle control for example) and time constants are chosen so that nested controllers at each stage can be considered instantaneous.</p>
 
@@ -215,95 +132,8 @@ estPos_2 = estPos_2 + (dt * estVelocity_2);
 
 <p>My team (David, Joey, and I) was the only team to reach 90 seconds of flight and have the fan turn on. On our longest run we achieved 105 seconds of flight before crashing into the net, withstanding the fan for 15 seconds. We were excited, I wish I had video of the event, but we had pulled an all-nighter before the competition tuning and perfecting the controller and it slipped my barely functional mind at the time. There were many modifications we made to the stock controller which allowed us to achieve this performance. We eliminated small angle approximations from our estimators and controllers, we implemented position control as well as an <a target="_blank" href="https://en.wikipedia.org/wiki/Absement">absition</a> feedforward (the integral of position is called “absition” or “absement,” it’s a thing). We added height setpoint scheduling for a smooth takeoff as well as hard-coded gain scheduling on the attitude controller. These changes, along with fine tuning our time constants through many hours of flight tests, allowed us to stay in the air for longer than we expected. <a target="_blank" href="https://kittyhawk.aero/">Kitty Hawk</a> ended up sponsoring the competition with a DJI Spark drone for each member of the winning team. Here we are on zero hours of sleep, but very gratified. Left to right Professor Mueller, David, Joey, and yours truly.</p>
 
-<p><span class="image main"><img src="/images/cf-flight-controls/cf3.jpg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/cf-flight-controls/cf3.jpg" alt="" /></span></p>
 
 <p>ME136 was a challenge but cemented my interest in controls. Of all the all-nighters I’ve pulled, the one before this class competition was one of the most worthwhile.</p>
 
-</p>
-      		</section>
-
-					<!-- Footer -->
-						<footer>
-              <ul class="actions">
-                <li><a href="/projects/" class="button">Projects</a></li>
-              </ul>
-						</footer>
-					</div>
-
-				<!-- Footer -->
-        <footer id="footer">
-  <section>
-    <!-- Formspree form for adding a email form to the status site -->
-    <form method="POST" action="https://formspree.io/tfortmuller@berkeley.edu">
-      <div class="field">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" />
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" rows="3"></textarea>
-      </div>
-      <ul class="actions">
-        <li><input type="submit" value="Send Message" /></li>
-      </ul>
-    </form>
-  </section>
-
-  <!-- Contact side section -->
-  <section class="split contact">
-
-    <!-- Location -->
-    <section class="alt">
-      <h3>Location</h3>
-      <p>Orange County, CA</p>
-    </section>
-
-    <!-- Connect -->
-    <section>
-      <h3>Connect</h3>
-      <ul class="icons alt">
-        <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
-        <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
-        <!-- <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
-      </ul>
-    </section>
-    
-  </section>
-</footer>
-<!-- Copyright bottom section -->
-<div id="copyright">
-  <ul>
-      <li>&copy; 
-    2023 Trey Fortmuller </li>
-      <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li>
-    </ul>
-</div>
-
-
-			</div>
-
-      <!-- Scripts -->
-  		<!-- DYN -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery.scrollex.min.js"></script>
-<script src="/assets/js/jquery.scrolly.min.js"></script>
-<script src="/assets/js/skel.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
-
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-111812042-1');
-</script>
-
-
-	</body>
-</html>
+:ET
