@@ -1,3 +1,5 @@
 ---
-BUNDLE_PATH: "vendor/cache"
+BUNDLE_PATH: "vendor"
 BUNDLE_DISABLE_SHARED_GEMS: "true"
+BUNDLE_CACHE_ALL: "false"
+BUNDLE_NO_INSTALL: "true"

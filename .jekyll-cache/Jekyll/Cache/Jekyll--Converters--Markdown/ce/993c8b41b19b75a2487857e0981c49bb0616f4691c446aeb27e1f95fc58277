@@ -1,87 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-<title>Custom Electric Longboard</title>
-<meta name="description" content="">
-
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
-<link rel="manifest" href="/assets/icon/manifest.json">
-<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="/assets/icon/favicon.ico">
-<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
-<meta name="theme-color" content="#ffffff">
-
-<!-- CSS -->
-<link rel="stylesheet" href="/assets/css/main.css" />
-<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
-
-<!-- MathJax -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: [
-      "MathMenu.js",
-      "MathZoom.js",
-      "AssistiveMML.js",
-      "a11y/accessibility-menu.js"
-    ],
-    jax: ["input/TeX", "output/CommonHTML"],
-    TeX: {
-      extensions: [
-        "AMSmath.js",
-        "AMSsymbols.js",
-        "noErrors.js",
-        "noUndefined.js",
-      ]
-    }
-  });
-</script>
-
-	</head>
-	<body class="is-loading">
-
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
-
-				<!-- Header -->
-        <header id="header">
-          <a href="/" class="logo">Trey Fortmuller</a>
-        </header>
-
-				<!-- Nav -->
-					<nav id="nav">
-
-            <ul class="links">
-  <li class=""><a href="/">Projects</a></li>
-  <li class=""><a href="/about/">About</a></li>
-  <li class=""><a href="/resume/">Resume</a></li>
-  <li class=""><a href="/publications/">Publications</a></li>  
-</ul>
-
-
-						<ul class="icons">
-              <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
-              <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
-              <!-- <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
-            </ul>
-					</nav>
-
-				<!-- Main -->
-				<div id="main">
-          <section class="post">
-    				<header class="major">
-      				<span class="date">15 Jul 2017</span>
-      				<h1>Custom Electric Longboard</h1>
-      				<p>A custom electric longboard and handheld wireless controller.</p>
-      			</header>
-      			<div class="image main"><img src="/images/e-board/eboard_main.jpg" alt=""></div>
-      			<p><h2 id="motivation">Motivation</h2>
+I"�.<h2 id="motivation">Motivation</h2>
 
 <p>I go to school in Berkeley, CA. The campus is built on a hill, so it’s difficult to get from point A to point B if point B is East of point A. Electric vehicles are, of course, the future of personal transportation, but I’m on a budget so a Tesla isn’t an option. In fact, even a $1,400 Boosted Board is a little pricey. I decided to build my own electric longboard to get around the Berkeley hills, I wanted all the torque I could muster whilst keeping the cost down.</p>
 
@@ -92,21 +9,21 @@
 <p>Beyond the hills being hard to conquer, the pavement in Berkeley is treacherous. Big wheels make clearing gaps and cracks in the asphalt easier and the largest, easily found longboard wheels are 90mm in diameter. I do value my physical safety, so I decided on a top speed of 20mph. Upon doing some research, I found gear reductions on electric longboards to be anywhere from 1.8 to 2.5, I went with a 3:1 gear reduction to optimize for torque rather than top speed. We do some math to find the required motor KV:</p>
 
 <ul>
-  <li>Desired top speed: <script type="math/tex">20\mathrm{mph} = 8.89\mathrm{m/s}</script></li>
-  <li>Batrtery: 8S at <script type="math/tex">4.0\mathrm{V/cell} = 32\mathrm{V}</script> (average voltage)</li>
-  <li>Wheels: <script type="math/tex">90\mathrm{mm}</script> diameter</li>
-  <li>Wheel circumference: <script type="math/tex">C = 90\pi = 282.74\mathrm{mm/rev}</script></li>
+  <li>Desired top speed: \(20\mathrm{mph} = 8.89\mathrm{m/s}\)</li>
+  <li>Batrtery: 8S at \(4.0\mathrm{V/cell} = 32\mathrm{V}\) (average voltage)</li>
+  <li>Wheels: \(90\mathrm{mm}\) diameter</li>
+  <li>Wheel circumference: \(C = 90\pi = 282.74\mathrm{mm/rev}\)</li>
 </ul>
 
-<script type="math/tex; mode=display">= 0.283\mathrm{m/rev}</script>
+\[= 0.283\mathrm{m/rev}\]
 
 <p>At a velocity of 8.89m/s where the wheels roll 0.283 meters per revolution, the wheels must rotate at 1886.5 rotations per minute.</p>
 
 <p>With a reduction ratio of 3:1 (motor:wheel)</p>
 
-<script type="math/tex; mode=display">3 \cdot 1886.5\mathrm{rpm} = 5659.5\mathrm{rpm} \text{ at the motor shaft}</script>
+\[3 \cdot 1886.5\mathrm{rpm} = 5659.5\mathrm{rpm} \text{ at the motor shaft}\]
 
-<script type="math/tex; mode=display">\frac{5659.5\mathrm{rpm}}{32\mathrm{V}} = 176\mathrm{KV} \text{ motor}</script>
+\[\frac{5659.5\mathrm{rpm}}{32\mathrm{V}} = 176\mathrm{KV} \text{ motor}\]
 
 <p>The best brushless outrunner motor candidate I could find was <a target="\_blank" href="https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2">this</a> 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.</p>
 
@@ -114,31 +31,31 @@
 
 <h3 id="the-board">The Board</h3>
 
-<p><span class="image main"><img src="/images/e-board/render1.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/render1.png" alt="" /></span></p>
 
 <p>I designed the deck itself from scratch. This was an awesome excuse to get my hands dirty with a piece of fabrication equipment I had not gotten to interact with so far, the ShopBot CNC Router. This is an 8-foot by 6-foot behemoth of a CNC machine available to me in Jacobs Hall on campus at UC Berkeley. I modeled the splines of the deck after other off the shelf designs I had seen for longboards. I purchased an 8-foot by 6-foot piece of 3/4inch plywood for the project (it cost me $16) and was able to cut five decks out of it.</p>
 
 <p>My design features a divot in the underside of the deck for low profile mounting of electronics, inset mounting for the trucks, and a filleted underside edge. It took 8 hours to cut all 5 decks using 4 tool changes on the ShopBot. This was also my first experiencing generating gcode for the ShopBot in Autodesk Fusion 360’s CAM workspace. The tool path simulations and automatic collision/interference warnings were super useful, and prevented me from destroying a CNC machine worth (much) more than my car. Here’s the tool paths outlined in Fusion:</p>
 
-<p><span class="image main"><img src="/images/e-board/board_fab1.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/board_fab1.png" alt="" /></span></p>
 
-<p><span class="image main"><img src="/images/e-board/board_fab2.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/board_fab2.png" alt="" /></span></p>
 
-<p><span class="image main"><img src="/images/e-board/shopbot.jpg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/shopbot.jpg" alt="" /></span></p>
 
-<p><span class="image right"><img src="/images/e-board/cover.jpg" alt="" /></span></p>
+<p><span class="image right"><img src="http://localhost:4000/images/e-board/cover.jpg" alt="" /></span></p>
 
 <p>I designed and printed some enclosures which wrap over the divot in four pieces to protect the electronics bay from dust, debris, and water. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. There’s opportunity for improving the serviceability of the board by implementing a latch or some other mechanism to access the batteries without unscrewing the lock nuts I’ve used. I’ve kept the design simple because the pieces are large and they take a long time to print, so iterating several times on a tightly toleranced mechanism was not a high priority. My printer can print PLA the fastest of any material and each of the four pieces still took 12 hours each. With a more capable printer, Nylon or PETG would be more suited materials for their greater flexibility and robustness to vibration and shock. Below is a picture of the board fully integrated with the enclosure attached.</p>
 
-<p><span class="image main"><img src="/images/e-board/enclosure.jpg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/enclosure.jpg" alt="" /></span></p>
 
 <p>Longboards are typically made from bamboo, maple, birch, or composite materials. I made mine from a low-grade plywood without paying much attention to the load carrying capacity of my design. Upon hopping on for the first time, I felt an uneasy sinking at the center of the board under my weight rather than the springy feel of manufactured boards. I compensated with an aluminum beam spanning the electronics bay and it felt much safer.</p>
 
-<p><span class="image main"><img src="/images/e-board/board1.jpg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/board1.jpg" alt="" /></span></p>
 
 <p>I sourced a few off the shelf parts from <a target="\_blank" href="https://diyelectricskateboard.com/">DIY Electric Skateboard</a> for gears, pulleys, and a motor mount. This simplified the build, but I still had to modify my rear trucks meticulously with a file to mount the motor properly. Using the cast aluminum parts for the critical drivetrain components probably boosts my safety rating a bit.</p>
 
-<p><span class="image main"><img src="/images/e-board/motors.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/motors.png" alt="" /></span></p>
 
 <h3 id="the-handheld-remote">The Handheld Remote</h3>
 
@@ -147,18 +64,18 @@
 <div class="box alt">
 	<div class="row 50% uniform">
 		<div class="4u">
-			<span class="image fit"><img src="/images/e-board/tx_rend1.png" alt="" /></span>
+			<span class="image fit"><img src="http://localhost:4000/images/e-board/tx_rend1.png" alt="" /></span>
 		</div>
 		<div class="4u">
-			<span class="image fit"><img src="/images/e-board/tx_rend2.png" alt="" /></span>
+			<span class="image fit"><img src="http://localhost:4000/images/e-board/tx_rend2.png" alt="" /></span>
 		</div>
 		<div class="4u$">
-			<span class="image fit"><img src="/images/e-board/tx_rend3.png" alt="" /></span>
+			<span class="image fit"><img src="http://localhost:4000/images/e-board/tx_rend3.png" alt="" /></span>
 		</div>
 	</div>
 </div>
 
-<p><span class="image main"><img src="/images/e-board/tx.jpg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/tx.jpg" alt="" /></span></p>
 
 <h2 id="software-design">Software Design</h2>
 
@@ -181,7 +98,7 @@
 
 <p>Below is the receiving side Arduino and its corresponding nRF24 module, the wire wrapped in braided nylon goes to the ESC. This 3D printed mounting solution is then secured to the underside of the board, inside the enclosure, using high strength velcro. I chose the <a target="\_blank" href="http://vedder.se/2015/01/vesc-open-source-esc/">Vedder ESC (VESC)</a>, an open-source hardware and software project which is purpose built for electric longboards and other high-power applications. The VESC includes a battery eliminator circuit which sends a clean 5V to the microcontroller to power it. The VESC simplified this project in a big way. It takes care of regenerative braking and runs the motor using a simple PID current controller. The motor back-EMF is characterized in the configurator that is distributed with the VESC’s firmware.</p>
 
-<p><span class="image main"><img src="/images/e-board/rx_enclosure.jpg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/rx_enclosure.jpg" alt="" /></span></p>
 
 <h2 id="testing">Testing</h2>
 
@@ -196,91 +113,4 @@
 	</div>
 </div>
 
-</p>
-      		</section>
-
-					<!-- Footer -->
-						<footer>
-              <ul class="actions">
-                <li><a href="/projects/" class="button">Projects</a></li>
-              </ul>
-						</footer>
-					</div>
-
-				<!-- Footer -->
-        <footer id="footer">
-  <section>
-    <!-- Formspree form for adding a email form to the status site -->
-    <form method="POST" action="https://formspree.io/tfortmuller@berkeley.edu">
-      <div class="field">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" />
-      </div>
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" />
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" rows="3"></textarea>
-      </div>
-      <ul class="actions">
-        <li><input type="submit" value="Send Message" /></li>
-      </ul>
-    </form>
-  </section>
-
-  <!-- Contact side section -->
-  <section class="split contact">
-
-    <!-- Location -->
-    <section class="alt">
-      <h3>Location</h3>
-      <p>Orange County, CA</p>
-    </section>
-
-    <!-- Connect -->
-    <section>
-      <h3>Connect</h3>
-      <ul class="icons alt">
-        <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
-        <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
-        <!-- <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
-      </ul>
-    </section>
-    
-  </section>
-</footer>
-<!-- Copyright bottom section -->
-<div id="copyright">
-  <ul>
-      <li>&copy; 
-    2023 Trey Fortmuller </li>
-      <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li>
-    </ul>
-</div>
-
-
-			</div>
-
-      <!-- Scripts -->
-  		<!-- DYN -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery.scrollex.min.js"></script>
-<script src="/assets/js/jquery.scrolly.min.js"></script>
-<script src="/assets/js/skel.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
-
-			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-111812042-1');
-</script>
-
-
-	</body>
-</html>
+:ET
