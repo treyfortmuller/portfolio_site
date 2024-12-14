@@ -7,18 +7,18 @@
 <title>Lane Keeping RC Car</title>
 <meta name="description" content="">
 
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
-<link rel="manifest" href="/assets/icon/manifest.json">
-<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="/assets/icon/favicon.ico">
-<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/assets/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/assets/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/assets/icon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/assets/icon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="http://localhost:4000/assets/icon/favicon.ico">
+<meta name="msapplication-config" content="http://localhost:4000/assets/icon/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 
 <!-- CSS -->
-<link rel="stylesheet" href="/assets/css/main.css" />
-<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css" />
+<noscript><link rel="stylesheet" href="http://localhost:4000/assets/css/noscript.css" /></noscript>
 
 <!-- MathJax -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
@@ -51,24 +51,21 @@
 
 				<!-- Header -->
         <header id="header">
-          <a href="/" class="logo">Trey Fortmuller</a>
+          <a href="http://localhost:4000/" class="logo">Trey Fortmuller</a>
         </header>
 
 				<!-- Nav -->
 					<nav id="nav">
 
             <ul class="links">
-  <li class=""><a href="/">Projects</a></li>
-  <li class=""><a href="/about/">About</a></li>
-  <li class=""><a href="/resume/">Resume</a></li>
-  <li class=""><a href="/publications/">Publications</a></li>  
+  <li class=""><a href="http://localhost:4000/">Projects</a></li>
 </ul>
 
 
 						<ul class="icons">
               <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
               <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
-              <!-- <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
+              <!-- <li><a href="https://facebook.com/" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
             </ul>
 					</nav>
 
@@ -129,7 +126,7 @@
 
 <p>The Robot Operating System (ROS) is heavily used for inter-process communication onboard the BARC. ROS Kinetic is installed with the MPC lab’s distribution of Ubuntu Mate 16.04 for the Odroid. Processes are segmented into nodes which publish and/or subscribe to topics on which messages of a given data structure are communicated. Often nodes are associated with hardware interfaces, data processing, controllers, estimators, etc. The data processing, estimators, and controllers for the lane keeping system are implemented in python leveraging several open source libraries including <a href="https://opencv.org/">OpenCV</a> and <a href="https://github.com/markwmuller/controlpy">controlPy</a>.</p>
 
-<p><span class="image main"><img src="/images/me131/labeled_barc.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/me131/labeled_barc.png" alt="" /></span></p>
 
 <h2 id="lane-keeping">Lane Keeping</h2>
 
@@ -141,47 +138,47 @@
 
 <p>The longitudinal dynamics (aligned with the forward direction of the vehicle) can be expressed easily via Newton’s second law.</p>
 
-<script type="math/tex; mode=display">m\ddot{x} = F_{x_F} + F_{x_R} - F_{aero} - R_{x_F} - R_{x_R} - mg\sin{\theta}</script>
+\[m\ddot{x} = F_{x_F} + F_{x_R} - F_{aero} - R_{x_F} - R_{x_R} - mg\sin{\theta}\]
 
-<p><script type="math/tex">F_{x_F}</script> and <script type="math/tex">F_{x_R}</script> are the front and rear tire forces exerted on the vehicle to propel it forward. <script type="math/tex">F_{aero}</script> is aerodynamic drag. <script type="math/tex">R_{x_F}</script> and <script type="math/tex">R_{x_R}</script> are the front and rear tire rolling resistances. And <script type="math/tex">mg\sin{\theta}</script> is the component of gravitational acceleration pulling the vehicle down an incline of angle <script type="math/tex">\theta</script>.</p>
+<p>\(F_{x_F}\) and \(F_{x_R}\) are the front and rear tire forces exerted on the vehicle to propel it forward. \(F_{aero}\) is aerodynamic drag. \(R_{x_F}\) and \(R_{x_R}\) are the front and rear tire rolling resistances. And \(mg\sin{\theta}\) is the component of gravitational acceleration pulling the vehicle down an incline of angle \(\theta\).</p>
 
-<p>We can be more specific about <script type="math/tex">F_{aero}</script> if we like:</p>
+<p>We can be more specific about \(F_{aero}\) if we like:</p>
 
-<script type="math/tex; mode=display">F_{aero} = \frac{1}{2}\rho C_{d} A_{f} (v_{x} + v_{wind})^2</script>
+\[F_{aero} = \frac{1}{2}\rho C_{d} A_{f} (v_{x} + v_{wind})^2\]
 
 <ul>
-  <li><script type="math/tex">\rho</script> is the mass density of the air</li>
-  <li><script type="math/tex">C_d</script> is the drag coefficient of the vehicle (as determined via CFD, wind tunnel, or full scale testing)</li>
-  <li><script type="math/tex">A_F</script> is the front area of the vehicle, the area of the vehicle that the oncoming wind “sees”</li>
-  <li><script type="math/tex">v_x</script> and <script type="math/tex">v_{wind}</script> are the longitudinal velocity of the vehicle and the headwind velocity if one exists.</li>
+  <li>\(\rho\) is the mass density of the air</li>
+  <li>\(C_d\) is the drag coefficient of the vehicle (as determined via CFD, wind tunnel, or full scale testing)</li>
+  <li>\(A_F\) is the front area of the vehicle, the area of the vehicle that the oncoming wind “sees”</li>
+  <li>\(v_x\) and \(v_{wind}\) are the longitudinal velocity of the vehicle and the headwind velocity if one exists.</li>
 </ul>
 
 <h4 id="lateral-dynamics">Lateral Dynamics</h4>
 
-<p><span class="image right"><img src="/images/me131/kinematic_bike.png" alt="" /></span></p>
+<p><span class="image right"><img src="http://localhost:4000/images/me131/kinematic_bike.png" alt="" /></span></p>
 
 <p>Lateral dynamics are significantly richer than longitudinal dynamics. There’s two approaches we can take here, the more accurate but more complicated approach would be to study forces and torques on the vehicle due to tire/road interactions, assuming we have a tire model we’re comfortable with. A large simplification we can make for a limited set of driving conditions is called the “kinematic bicycle model.” This approach is “kinematic” because we’ll ignore forces and torques and use only geometric constraints to derive the equations of motion of the vehicle. Its called a “bicycle” model because we’ll combine the left and right tires into one entity each such that the vehicle has two wheels, a front and back, just like a bicycle:</p>
 
-<script type="math/tex; mode=display">\dot{x} = v\cos(\psi + \beta)</script>
+\[\dot{x} = v\cos(\psi + \beta)\]
 
-<script type="math/tex; mode=display">\dot{y} = v\sin(\psi + \beta)</script>
+\[\dot{y} = v\sin(\psi + \beta)\]
 
-<script type="math/tex; mode=display">\dot{\psi} = \frac{v}{l_r}\sin(\beta)</script>
+\[\dot{\psi} = \frac{v}{l_r}\sin(\beta)\]
 
-<script type="math/tex; mode=display">\delta_f = \tan^{-1}\bigg( \frac{l_r + l_f}{l_r}\tan{\beta} \bigg)</script>
+\[\delta_f = \tan^{-1}\bigg( \frac{l_r + l_f}{l_r}\tan{\beta} \bigg)\]
 
 <ul>
-  <li><script type="math/tex">x</script> is the inertial x coordinate</li>
-  <li><script type="math/tex">y</script> is the inertial y coordinate</li>
-  <li><script type="math/tex">v</script> is the longitudinal velocity of the vehicle</li>
-  <li><script type="math/tex">\psi</script> is the heading angle of the vehicle in the inertial frame</li>
-  <li><script type="math/tex">\delta_f</script> is the steering angle of the front wheels</li>
-  <li><script type="math/tex">l_r</script> is the distance from the vehicle’s center of mass to the rear axle</li>
-  <li><script type="math/tex">l_f</script> is the distance from the vehicle’s center of mass to the front axle</li>
-  <li><script type="math/tex">\beta</script> is the sideslip angle (the angle between the vehicle’s velocity vector and its longitudinal axis)</li>
+  <li>\(x\) is the inertial x coordinate</li>
+  <li>\(y\) is the inertial y coordinate</li>
+  <li>\(v\) is the longitudinal velocity of the vehicle</li>
+  <li>\(\psi\) is the heading angle of the vehicle in the inertial frame</li>
+  <li>\(\delta_f\) is the steering angle of the front wheels</li>
+  <li>\(l_r\) is the distance from the vehicle’s center of mass to the rear axle</li>
+  <li>\(l_f\) is the distance from the vehicle’s center of mass to the front axle</li>
+  <li>\(\beta\) is the sideslip angle (the angle between the vehicle’s velocity vector and its longitudinal axis)</li>
 </ul>
 
-<p>The state variables will be <script type="math/tex">z = [x, y, \psi]^T</script> and the inputs will be <script type="math/tex">u = [v, \delta_f]^T</script>.</p>
+<p>The state variables will be \(z = [x, y, \psi]^T\) and the inputs will be \(u = [v, \delta_f]^T\).</p>
 
 <p>We’re making two critical assumptions when we use the kinematic bicycle model.</p>
 
@@ -190,23 +187,23 @@
     <p>The velocity vectors at the front and rear tires are parallel to the direction of the tires, i.e. there are no lateral tire forces.</p>
   </li>
   <li>
-    <p>The radius of the vehicle path changes slowly such that <script type="math/tex">\dot{\psi} = \frac{v}{r}</script> holds.</p>
+    <p>The radius of the vehicle path changes slowly such that \(\dot{\psi} = \frac{v}{r}\) holds.</p>
   </li>
 </ol>
 
 <p>These assumptions make our model appropriate for slow speed driving (as in a parking lot rather than on a freeway). As a visual representation of this limitation, we can compare the open loop performance of the kinematic model to predict the motion of a vehicle to the performance of a more sophisticated dynamic model which <em>does</em> take tire forces into account. I was given differential GPS data for a vehicle performing a severe figure-8 maneuver. I implemented both the kinematic bicycle model shown above and a dynamic bicycle model in Simulink, and using the recorded longitudinal velocity and steering angle off the vehicle, simulated both models to see how quickly they diverged off the dGPS truth. Check out the code <a href="https://github.com/treyfortmuller/me131/tree/master/labs/lab8">here</a>.</p>
 
-<p><span class="image main"><img src="/images/me131/kinematic_vs_dynamic.svg" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/me131/kinematic_vs_dynamic.svg" alt="" /></span></p>
 
 <h3 id="lqr-steering-controller">LQR Steering Controller</h3>
 
-<p>The steering controller exists in a script called <script type="math/tex">\texttt{LQR_synth.py}</script> which you can find <a href="https://github.com/treyfortmuller/me131/blob/master/labs/final_proj/on_barc/LQR_synth.py">here</a>. We use a discrete-time, infinite-horizon <a href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">linear quadratic regulator</a> (LQR) approach which minimizes a cost associated with state error and control effort. The script is a ROS node which subscribes to an estimate of the track radius, a vehicle velocity estimate, the previous loop’s steering command, and the loop time <script type="math/tex">dt</script> in order to compute an LQR gain matrix <script type="math/tex">K(t)</script> at each loop. A Jacobian linearization of the nonlinear kinematic model is computed as an input to the Riccati solver in the <a href="https://github.com/markwmuller/controlpy">controlPy</a> python toolbox (controlPy was incidentally built by my old PI from the HiPeRLab). Because a new gain matrix is computed at loop rather than computing one gain matrix to use for all operating conditions, we’ll call the controller a “gain-scheduled” LQR controller.</p>
+<p>The steering controller exists in a script called \(\texttt{LQR_synth.py}\) which you can find <a href="https://github.com/treyfortmuller/me131/blob/master/labs/final_proj/on_barc/LQR_synth.py">here</a>. We use a discrete-time, infinite-horizon <a href="https://en.wikipedia.org/wiki/Linear%E2%80%93quadratic_regulator">linear quadratic regulator</a> (LQR) approach which minimizes a cost associated with state error and control effort. The script is a ROS node which subscribes to an estimate of the track radius, a vehicle velocity estimate, the previous loop’s steering command, and the loop time \(dt\) in order to compute an LQR gain matrix \(K(t)\) at each loop. A Jacobian linearization of the nonlinear kinematic model is computed as an input to the Riccati solver in the <a href="https://github.com/markwmuller/controlpy">controlPy</a> python toolbox (controlPy was incidentally built by my old PI from the HiPeRLab). Because a new gain matrix is computed at loop rather than computing one gain matrix to use for all operating conditions, we’ll call the controller a “gain-scheduled” LQR controller.</p>
 
 <p>The script then computes the optimal control output and publishes it for the Arduino to send to the actuators. The controller must be able to handle non-static setpoints (the track curvature varies unpredictably with time) so we choose a reference tracking LQR controller which brings the error between estimated and reference states to zero. We also include a feedforward steering term computed directly by the kinematic bicycle model. The full gain scheduled, reference tracking LQR lane keeping controller with feedforward can be represented as:</p>
 
-<script type="math/tex; mode=display">u(t) = -K(t)\cdot(z(t) - z_{ref}(t)) + u_{ref}(t)</script>
+\[u(t) = -K(t)\cdot(z(t) - z_{ref}(t)) + u_{ref}(t)\]
 
-<p>Where <script type="math/tex">K(t)</script> is the time varying LQR gain matrix, <script type="math/tex">z(t) - z_{ref}(t)</script> is the state error, and <script type="math/tex">u_{ref}(t)</script> is the feedforward term from the kinematic bicycle model.</p>
+<p>Where \(K(t)\) is the time varying LQR gain matrix, \(z(t) - z_{ref}(t)\) is the state error, and \(u_{ref}(t)\) is the feedforward term from the kinematic bicycle model.</p>
 
 <h2 id="demo">Demo</h2>
 
@@ -220,7 +217,7 @@
 
 <p>The problem of autonomous navigation is hard because it consists of several sub-problems which are difficult in their own right, and solutions to these problems must work in harmony to deliver a robust system. Perception, trajectory generation, and control modules must deliver simultaneously for reliable driving. Our system focused on the control aspects of the problem, and thus shortcuts were taken in the perception and trajectory generation steps which lead to most of the issues we debugged after implementing our algorithms. The lane localization system used a simple edge detection algorithm based on finding intensity gradients greater than a hard coded threshold. This approach is not robust to changes in lighting, texture, or reflectance of the driving surface. Our vehicle struggled to reliably find lanes on shiny floors so we found a large space with dark carpeting and used bright white tape as lane lines for maximum contrast which improved tracking performance.</p>
 
-<p><span class="image main"><img src="/images/me131/lane_detect.png" alt="" /></span></p>
+<p><span class="image main"><img src="http://localhost:4000/images/me131/lane_detect.png" alt="" /></span></p>
 
 <p>I’m interested in continuing to build and experiment with small RC cars. They’re a relatively cheap way to get directly involved in the technology powering a future multi-billion dollar self-driving industry.</p>
 
@@ -231,7 +228,7 @@
 					<!-- Footer -->
 						<footer>
               <ul class="actions">
-                <li><a href="/projects/" class="button">Projects</a></li>
+                <li><a href="http://localhost:4000/projects/" class="button">Projects</a></li>
               </ul>
 						</footer>
 					</div>
@@ -265,7 +262,7 @@
     <!-- Location -->
     <section class="alt">
       <h3>Location</h3>
-      <p>Orange County, CA</p>
+      <p>Seattle, WA</p>
     </section>
 
     <!-- Connect -->
@@ -274,7 +271,7 @@
       <ul class="icons alt">
         <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
         <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
-        <!-- <li><a href="https://facebook.com/trey.fortmuller" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
+        <!-- <li><a href="https://facebook.com/" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li> -->
       </ul>
     </section>
     
@@ -284,7 +281,7 @@
 <div id="copyright">
   <ul>
       <li>&copy; 
-    2023 Trey Fortmuller </li>
+    2024 Trey Fortmuller </li>
       <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li>
     </ul>
 </div>
@@ -294,12 +291,12 @@
 
       <!-- Scripts -->
   		<!-- DYN -->
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/jquery.scrollex.min.js"></script>
-<script src="/assets/js/jquery.scrolly.min.js"></script>
-<script src="/assets/js/skel.min.js"></script>
-<script src="/assets/js/util.js"></script>
-<script src="/assets/js/main.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
+<script src="http://localhost:4000/assets/js/skel.min.js"></script>
+<script src="http://localhost:4000/assets/js/util.js"></script>
+<script src="http://localhost:4000/assets/js/main.js"></script>
 
 			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
 <script>
