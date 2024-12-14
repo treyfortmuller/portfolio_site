@@ -2,6 +2,14 @@
 
 My personal website and engineering project portfolio wesbite, built with Jekyll and hosted on GitHub Pages.
 
+To hack on this, run
+
+```
+nix-shell
+
+jekyll serve --watch
+```
+
 ### Includes
 
 I've implemented several `_includes`, liquid templates for formatting images, videos, and more without writing any HTML. Examples are listed below:
