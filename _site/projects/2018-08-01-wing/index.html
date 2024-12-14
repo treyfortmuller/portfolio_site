@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<title>Autonomous Delta Wing</title>
+<meta name="description" content="">
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/assets/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/assets/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/assets/icon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/assets/icon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="http://localhost:4000/assets/icon/favicon.ico">
+<meta name="msapplication-config" content="http://localhost:4000/assets/icon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- CSS -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css" />
+<noscript><link rel="stylesheet" href="http://localhost:4000/assets/css/noscript.css" /></noscript>
+
+<!-- MathJax -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+        <header id="header">
+          <a href="http://localhost:4000/" class="logo">Trey Fortmuller</a>
+        </header>
+
+				<!-- Nav -->
+					<nav id="nav">
+
+            <ul class="links">
+  <li class=""><a href="http://localhost:4000/">Projects</a></li>
+</ul>
+
+
+						<ul class="icons">
+              <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+              <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+            </ul>
+					</nav>
+
+				<!-- Main -->
+				<div id="main">
+          <section class="post">
+    				<header class="major">
+      				<span class="date">01 Aug 2018</span>
+      				<h1>Autonomous Delta Wing</h1>
+      				<p>A small delta wing UAV capable of autonomous flight based on the PX4 flight stack.</p>
+      			</header>
+      			<div class="image main"><img src="/images/wing/part2/13_wing_main.jpg" alt=""></div>
+      			<p><h2 id="introduction">Introduction</h2>
+
+<p>When I first started getting interested in UAVs, I pursued building multirotors. Multirotors have the capability of hovering; this low speed state is a great place to start learning for an inexperienced pilot. The main disadvantage in starting with multirotors is that the richness of attitude control for an innately unstable, underactuated vehicle is usually abstracted away. When beginning to bring new UAVs@Berkeley club members up to speed on quadcopter dynamics, they are often surprised to hear that we can’t simply set the 4 motors to produce enough thrust to counteract gravity and expect to hover. Wings, on the other hand, have some minimum required forward velocity before they’re able to maintain level flight, but they can be designed to be attitude stable and don’t necessarily require any onboard control loop for a hobbyist to have fun. Compared to a multirotor, wings can also be much faster in forward flight and far more power efficient. Delta wing configurations in particular have a very low drag coefficient and very few actuators (usually just a motor for thrust and two servos for the left and right elevons - a <a href="https://en.wikipedia.org/wiki/Portmanteau">portmanteau</a> of the words “aileron” and “elevator” because elevons combine the functions of ailerons and elevators). Elevons simply deflect in opposite directions to create a roll moment on the aircraft, and deflect in unison to create a pitch moment.</p>
+
+<p>I wanted to get involved in wings in some capacity, so I decided to purchased a used RC delta wing about a year ago. I immediately crashed it (in part due to an uncalibrated center of gravity, but definitely due to pilot error), and that’s where part one of this post starts, repairing the broken wing. Part two involves the construction of a brand new wing capable of fully autonomous flight.</p>
+
+<h2 id="part-1">Part 1</h2>
+
+<p>Below is the delta wing I purchased, it’s made from a <a href="https://www.flitetest.com/articles/ft-mighty-mini-arrow-build">Flite Test Arrow</a> airframe and various off the shelf electronics. It was equipped with a live first-person-view (FPV) analog video feed transmitted over 5.8Ghz and a FrSky frequency hopping receiver at 2.4Ghz. This vehicle had no flight controller onboard, the receiver was connected straight to the servos and electronic speed controller. That means I was in full control of the vehicle with the sticks on my transmitter correlating to angular velocity about each axis.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/intro/1_first_build.jpg" alt="" /></span></p>
+
+<p>Given my experience with racing quadcopters, I expected to at least be able to bring the plane safely back to the ground after I launched it. During the maiden flight I crashed it and destroyed the center pod. Thankfully, no electronics took any damage, and the wings maintained their integrity. I removed all the undamaged components from the wreckage and disposed of the center pod. I left the field that day humbled, but at least I had the opportunity to be creative with my repairs.</p>
+
+<h3 id="center-pod-design">Center Pod Design</h3>
+
+<p>The standard Flite Test airframe is made out of folded foam board held together with hot glue. I decided to increase my chances of surviving a few more crashes in the next iteration of the build by replacing the center pod with laser-cut 1/8th-inch thick plywood. I designed the center pod to be wider than the stock version to improve serviceability and leave room for a flight controller in the future. The new pod consists of a top plate that extends to the nose, two side panels with mounting holes for antenna and M3 hardware, a bottom plate with slots for velcro-strapping a battery, and a back plate with mounting holes for a brushless motor. All the pieces would be secured together along their edges with tongue joints and wood glue. I designed the new pod in Autodesk’s Fusion 360 CAD tool, then exported a DXF to Adobe Illustrator for laser cutting. Below is the design file in Illustrator, the parts cut on the bed of the laser cutter, and the cleaned up parts ready for gluing. The original winglets for the wing were damaged in the crash, so I designed and cut some new ones from the same material.</p>
+
+<div class="box alt">
+	<div class="row 50% uniform">
+		<div class="4u">
+			<span class="image fit"><img src="http://localhost:4000/images/wing/part1/2_illustrator.png" alt="" /></span>
+		</div>
+		<div class="4u">
+			<span class="image fit"><img src="http://localhost:4000/images/wing/part1/3_laser.jpg" alt="" /></span>
+		</div>
+		<div class="4u$">
+			<span class="image fit"><img src="http://localhost:4000/images/wing/part1/4_components.jpg" alt="" /></span>
+		</div>
+	</div>
+</div>
+
+<h3 id="kerfed-nose">Kerfed Nose</h3>
+
+<p>A popular wood working technique for bending wood is called “kerfing.” Essentially one makes many small parallel cuts to allow the wood to become a shapable, living hinge. This technique becomes extremely easy to execute with accuracy when a laser-cutter is available. I included a kerfed edge along the nose of the center pod I designed to give the front-end a rounded edge similar to the stock design. The kerfed section also serves as a living hinge to open the top of the pod for battery replacement or access to the electronics. There’s a horseshoe-shaped gap towards the bottom of the kerfed section for an FPV camera to have a front facing view, but remain protected from head-on impacts. I can’t speak to the aerodynamics of the nose of the aircraft, but I was very happy with the aesthetics and hinge functionality. Below is one of the repaired wings which needed some slight modifications on the belt sander, the glued center pod ready for install, and the wings secured to the new center pod on the work bench.</p>
+
+<div class="box alt">
+	<div class="row 50% uniform">
+		<div class="4u">
+			<span class="image fit"><img src="http://localhost:4000/images/wing/part1/5_sanding.jpg" alt="" /></span>
+		</div>
+		<div class="4u">
+			<span class="image fit"><img src="http://localhost:4000/images/wing/part1/6_glued.jpg" alt="" /></span>
+		</div>
+		<div class="4u$">
+			<span class="image fit"><img src="http://localhost:4000/images/wing/part1/7_install.jpg" alt="" /></span>
+		</div>
+	</div>
+</div>
+
+<h3 id="flight-test">Flight Test</h3>
+
+<p>I didn’t get the chance to actually test fly the repaired vehicle for about six months. Once I finally did, I was much more careful to achieve the correct center of gravity. Center of gravity, and it’s position relative to the center of lift plays an important role in the flight characteristics of any plane, but it is especially critical in flying wings due to the lack of a tail. The center of lift is a function of the wing geometry, defined by the manufacturer from testing or computational fluid dynamics (CFD) simulations. Manufacturers of model aircraft frames will usually define an acceptable range for the center of gravity based on where the center of lift falls for the vehicle. For me, the CoG was in front of the CoL (a slightly nose-heavy configuration), providing passive pitch stability. Below is the final pre-flight state of the repaired wing, electronics installed and ready for round two.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part1/10_final_preflight.jpg" alt="" /></span></p>
+
+<p>I performed my first successful hand launch of a plane with this vehicle and successfully flew a few batteries worth laps around a local field via line-of-sight. I was by no means relaxed during my first few flights, but the wing performed well once I had trimmed the control surfaces and got comfortable with the nonexistent yaw authority. A few batteries in, I decided to try some low altitude, high speed passes. You guessed it, I put right into a tree at about 40mph. Below is the state of wing after about an hour of enjoying it.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part1/11_crash.jpg" alt="" /></span></p>
+
+<p>Armed with the knowledge that I’m not a particularly talented RC plane pilot, I decided the next build would be constructed from similarly low cost materials, but would also include a sensor suite and onboard flight controller allowing me to fly in assisted flight modes, as well as run completely autonomous missions.</p>
+
+<h2 id="part-2">Part 2</h2>
+
+<p>Another six months passed, another semester came to a close, and finally I had the time to get to work on a new plane. This one was built from a <a href="https://store.flitetest.com/flite-test-spear-electric-airplane-kit-1041mm-flt-1043/p673707">Flite Test Spear</a> foam board airframe. It is a very similar geometry to the Arrow used in the first build but has a massive payload bay for storing extra batteries, a GoPro, a flight controller, more sensors, etc. The airframe only took a two or three hours to fold into shape and cost about $40 USD. I transplanted the receiver, servos, and ESC from the original build then set about integrating new flight control hardware which was mostly sourced from <a href="https://store.mrobotics.io/Default.asp">mRobotics</a>. mRobotics is a relatively new spinoff from some of the <a href="http://mrobotics.io/mayan-robotics/">hardware designers</a> who were working at 3D Robotics during their development of the original Pixhawk flight controller. Below is a rough bill of materials for the vehicle along with a shot of the completed payload bay.</p>
+
+<h3 id="bill-of-materials">Bill of Materials</h3>
+<div class="table-wrapper">
+	<table>
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>LiPo battery</td>
+				<td>4S 1500mAh pack for power with an XT60 connector</td>
+			</tr>
+			<tr>
+				<td>Brushless Motor</td>
+				<td>An EMAX 2306 2300KV motor designed for racing multirotors in a pusher configuration for thurst</td>
+			</tr>
+			<tr>
+				<td>Electronic Speed Controller</td>
+				<td>A 40A ESC with a 5V battery eliminator circuit for speed control of the motor</td>
+			</tr>
+			<tr>
+				<td>Propeller</td>
+				<td>6x4.5 two-bladed propeller made from glass-nylon</td>
+			</tr>
+			<tr>
+				<td>Servos</td>
+				<td>9g hobby servos glued into the wings to actuate the elevon control surfaces</td>
+			</tr>
+			<tr>
+				<td>Flight Controller</td>
+				<td>A Pixhawk FMUv2 with an included IMU built around a 32-bit ARM Cortex M4 processor</td>
+			</tr>
+			<tr>
+				<td>Receiver</td>
+				<td>FrSky frequency-hopping spread spectrum 2.4Ghz control receiver for manual flight input</td>
+			</tr>
+			<tr>
+				<td>Pixhawk Power Module</td>
+				<td>A small module in series with the battery that includes voltage and current sensing circuits for telemetry</td>
+			</tr>
+			<tr>
+				<td>Airspeed Sensor</td>
+				<td>An mRo airspeed sensor which communicates of I2C connected to a front facing pitot tube</td>
+			</tr>
+			<tr>
+				<td>GPS</td>
+				<td>mRo GPS module with a u-Blox Neo-M8N and included compass for 3D localization tuned for GPS and GLONASS networks</td>
+			</tr>
+			<tr>
+				<td>Telemetry Radios</td>
+				<td>mRo 915Mhz SiK telemetry radios for two-way telemetry downlink and command upload from the ground control station</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part2/12_internals.jpg" alt="" /></span></p>
+
+<h3 id="px4-flight-stack">PX4 Flight Stack</h3>
+
+<p>I’ve used variants of the <a href="https://github.com/PX4/Firmware">PX4</a> open source flight control firmware before, but only for multirotors. I read through the PX4 <a href="https://docs.px4.io/en/">User Guide</a> as well as the <a href="https://dev.px4.io/en/">Dev Guide</a> in order to better understand the important differences between the vehicle architectures. Aside from the low level controllers, mixers, and flight modes, there are few differences between the fixed-wing and multirotor workflows.</p>
+
+<p>Now we can get into the good stuff: below is a block diagram for PX4’s stock fixed-wing attitude controller pulled from the dev guide. It’s a proportional attitude controller which cascades into a PI angular rates controller. The output of the controller is the desired angular acceleration, which is then translated into control surface servo position based on a priori knowledge of the vehicle - moments of inertia, area of the control surfaces, etc. These parameters can be collected from CAD or from manual test flights where the controller is turned off.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part2/controller.png" alt="" /></span></p>
+
+<p>Some points of interest on this controller: the scaler block which appears after the PI angular rates controller is a function of indicated airspeed. This is to account for the increase in control authority with increasing airspeed. Conversely, the control gains should be boosted at low airspeeds to achieve the same angular accelerations about each axis.</p>
+
+<p>Also, there’s a feedforward term that appears near the top of the diagram. This shows up to account for “aerodynamic damping.” This is a force experienced by a fixed wing aircraft, proportional to the angular rate about an axis, which resists that rotation. If you imagine pulling continuous barrel rolls in a delta wing aircraft, it’s intuitive that there’s some extra drag associated with churning the wings through the oncoming air. The feedforward term in the controller fights that damping effect.</p>
+
+<h3 id="autonomous-flight">Autonomous Flight</h3>
+
+<p>Here’s the completed wing <em>after</em> my first few test flights (you’ll notice its still in one piece).</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part2/13_wing_main.jpg" alt="" /></span></p>
+
+<p>After confirming the manual and automated control outputs deflected the elevons correctly, I flipped the flight mode to “stabilize.” This is an assisted flight mode where the controller abstracts angular rates away from the pilot, so the sticks on my transmitter correlated with pitch and roll angles. I boosted the wing up to 75% throttle and had my friend Rohan give the wing a toss. We went for the maiden flight without tuning the controller, or providing any vehicle-specific parameters to PX4 aside from the “generic delta wing” designation. The controller performed surprisingly well, there were some minor roll-axis oscillations that could be tuned out easily by creating a vehicle type specific to this wing’s geometry. After I was confident enough in the flight worthiness of the plane, I strapped my GoPro on to get some flight footage, below is a quick edit with some first person and third person views of early flights.</p>
+
+<div class="video-wrapper">
+	<div class="video-responsive">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/1Ce0zXiUjOM?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+	</div>
+</div>
+
+<p>Before the end of the day, I felt comfortable transitioning from assisted flight modes to full autonomy. I added the “loiter” flight mode to a switch on my transmitter, where the plane simply circles around a GPS waypoint at a radius and altitude configurable in the ground control station software on my laptop (I used QGroundControl). The flight consisted of a hand launch in stabilize mode followed by a few laps, then a switch to loiter, then a switch back to stabilize mode for a landing. The results are below, the entire flight path is projected onto the ground with blue the stabilized flight path and purple the fully autonomous loiter.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part2/map.png" alt="" /></span></p>
+
+<h3 id="telemetry-analysis">Telemetry Analysis</h3>
+
+<p>My favorite part of this dive into the vanilla PX4 code base was the absolutely beautiful telemetry log viewer, its called Flight Review. <a href="https://logs.px4.io/plot_app?log=49eeeb7c-ef61-4775-9a70-3fd3f24ef544">Here</a> is a sample of the interface with my actual flight data. It’s a completely web-based interface with a dead simple UI. You simply upload a log file saved to the Pixhawk’s SD card for each flight and it displays the pertinent data in an intuitive and interactive way. There’s even built-in support for a full 3D renders of flight trajectory via <a href="https://cesiumjs.org/">Cesium</a>, including real time playback. Click <a href="https://logs.px4.io/3d?log=49eeeb7c-ef61-4775-9a70-3fd3f24ef544">here</a> to check out a Cesium render of one of my autonomous test flights performing a circular loiter at 50m in altitude at a 30m radius.</p>
+
+<p>GPS altitude, barometer data, and IMU measurements contribute to the altitude estimate fused via an EKF. Below is one of the more interesting plots which shows the varying levels of noise inherent in each sensor.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part2/attitude_plot.png" alt="" /></span></p>
+
+<p>I mentioned earlier that I noticed some roll oscillations throughout the flight tests, sure enough you can see the roll estimate overshooting its setpoint continuously. Definitely room for improving upon the tuning from stock.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/wing/part2/roll_plot.png" alt="" /></span></p>
+
+<p>Next up in my fixed-wing UAV shenanigans: I’d like to build a long range vehicle with much more robust radio links and greater endurance, potentially from higher quality airframe materials. There’s a lot to be done in terms of waypoint navigation and autonomous missions. Even longer term, I would love to build up a telemetry connection to a remote vehicle over LTE. Being able to remotely monitor telemetry and upload new waypoints, regardless of my distance to the vehicle, would be an incredible capability.</p>
+
+</p>
+      		</section>
+
+					<!-- Footer -->
+						<footer>
+              <ul class="actions">
+                <li><a href="http://localhost:4000/projects/" class="button">Projects</a></li>
+              </ul>
+						</footer>
+					</div>
+
+				<!-- Footer -->
+        <footer id="footer">
+  <section>
+    <!-- Formspree form for adding a email form to the status site -->
+    <form method="POST" action="https://formspree.io/tfortmuller@berkeley.edu">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" />
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="3"></textarea>
+      </div>
+      <ul class="actions">
+        <li><input type="submit" value="Send Message" /></li>
+      </ul>
+    </form>
+  </section>
+
+  <!-- Contact side section -->
+  <section class="split contact">
+
+    <!-- Location -->
+    <section class="alt">
+      <h3>Location</h3>
+      <p>Seattle, WA</p>
+    </section>
+
+    <!-- Connect -->
+    <section>
+      <h3>Connect</h3>
+      <ul class="icons alt">
+        <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+      </ul>
+    </section>
+    
+  </section>
+</footer>
+<!-- Copyright bottom section -->
+<div id="copyright">
+  <ul>
+      <li>&copy; 
+    2024 Trey Fortmuller </li>
+      <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+</div>
+
+
+			</div>
+
+      <!-- Scripts -->
+  		<!-- DYN -->
+<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
+<script src="http://localhost:4000/assets/js/skel.min.js"></script>
+<script src="http://localhost:4000/assets/js/util.js"></script>
+<script src="http://localhost:4000/assets/js/main.js"></script>
+
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111812042-1');
+</script>
+
+
+	</body>
+</html>

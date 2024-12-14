@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<title>Custom Electric Longboard</title>
+<meta name="description" content="">
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4000/assets/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:4000/assets/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:4000/assets/icon/favicon-16x16.png">
+<link rel="manifest" href="http://localhost:4000/assets/icon/manifest.json">
+<link rel="mask-icon" href="http://localhost:4000/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="http://localhost:4000/assets/icon/favicon.ico">
+<meta name="msapplication-config" content="http://localhost:4000/assets/icon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- CSS -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css" />
+<noscript><link rel="stylesheet" href="http://localhost:4000/assets/css/noscript.css" /></noscript>
+
+<!-- MathJax -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: [
+      "MathMenu.js",
+      "MathZoom.js",
+      "AssistiveMML.js",
+      "a11y/accessibility-menu.js"
+    ],
+    jax: ["input/TeX", "output/CommonHTML"],
+    TeX: {
+      extensions: [
+        "AMSmath.js",
+        "AMSsymbols.js",
+        "noErrors.js",
+        "noUndefined.js",
+      ]
+    }
+  });
+</script>
+
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+        <header id="header">
+          <a href="http://localhost:4000/" class="logo">Trey Fortmuller</a>
+        </header>
+
+				<!-- Nav -->
+					<nav id="nav">
+
+            <ul class="links">
+  <li class=""><a href="http://localhost:4000/">Projects</a></li>
+</ul>
+
+
+						<ul class="icons">
+              <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+              <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+            </ul>
+					</nav>
+
+				<!-- Main -->
+				<div id="main">
+          <section class="post">
+    				<header class="major">
+      				<span class="date">15 Jul 2017</span>
+      				<h1>Custom Electric Longboard</h1>
+      				<p>A custom electric longboard and handheld wireless controller.</p>
+      			</header>
+      			<div class="image main"><img src="/images/e-board/eboard_main.jpg" alt=""></div>
+      			<p><h2 id="motivation">Motivation</h2>
+
+<p>I go to school in Berkeley, CA. The campus is built on a hill, so it’s difficult to get from point A to point B if point B is East of point A. Electric vehicles are, of course, the future of personal transportation, but I’m on a budget so a Tesla isn’t an option. In fact, even a $1,400 Boosted Board is a little pricey. I decided to build my own electric longboard to get around the Berkeley hills, I wanted all the torque I could muster whilst keeping the cost down.</p>
+
+<h2 id="powertrain-specification">Powertrain Specification</h2>
+
+<p>I knew I wanted to use two 4S LiPos in series to run my powertrain on 8S power because I can still use 4S batteries for other projects (flying drones, field charging other LiPos, etc.). With 8S voltage decided, what KV motor should I buy and what gear reduction should take place between the motor and the wheels?</p>
+
+<p>Beyond the hills being hard to conquer, the pavement in Berkeley is treacherous. Big wheels make clearing gaps and cracks in the asphalt easier and the largest, easily found longboard wheels are 90mm in diameter. I do value my physical safety, so I decided on a top speed of 20mph. Upon doing some research, I found gear reductions on electric longboards to be anywhere from 1.8 to 2.5, I went with a 3:1 gear reduction to optimize for torque rather than top speed. We do some math to find the required motor KV:</p>
+
+<ul>
+  <li>Desired top speed: \(20\mathrm{mph} = 8.89\mathrm{m/s}\)</li>
+  <li>Batrtery: 8S at \(4.0\mathrm{V/cell} = 32\mathrm{V}\) (average voltage)</li>
+  <li>Wheels: \(90\mathrm{mm}\) diameter</li>
+  <li>Wheel circumference: \(C = 90\pi = 282.74\mathrm{mm/rev}\)</li>
+</ul>
+
+\[= 0.283\mathrm{m/rev}\]
+
+<p>At a velocity of 8.89m/s where the wheels roll 0.283 meters per revolution, the wheels must rotate at 1886.5 rotations per minute.</p>
+
+<p>With a reduction ratio of 3:1 (motor:wheel)</p>
+
+\[3 \cdot 1886.5\mathrm{rpm} = 5659.5\mathrm{rpm} \text{ at the motor shaft}\]
+
+\[\frac{5659.5\mathrm{rpm}}{32\mathrm{V}} = 176\mathrm{KV} \text{ motor}\]
+
+<p>The best brushless outrunner motor candidate I could find was <a target="\_blank" href="https://hobbyking.com/en_us/turnigy-aerodrive-sk3-6374-192kv-brushless-outrunner-motor.html?wrh_pdp=2">this</a> 192KV Turnigy from HobbyKing. It’s got some convenient mounting holes and the stator is tall rather than wide, so it should fit nicely under the deck.</p>
+
+<h2 id="mechanical-design">Mechanical Design</h2>
+
+<h3 id="the-board">The Board</h3>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/render1.png" alt="" /></span></p>
+
+<p>I designed the deck itself from scratch. This was an awesome excuse to get my hands dirty with a piece of fabrication equipment I had not gotten to interact with so far, the ShopBot CNC Router. This is an 8-foot by 6-foot behemoth of a CNC machine available to me in Jacobs Hall on campus at UC Berkeley. I modeled the splines of the deck after other off the shelf designs I had seen for longboards. I purchased an 8-foot by 6-foot piece of 3/4inch plywood for the project (it cost me $16) and was able to cut five decks out of it.</p>
+
+<p>My design features a divot in the underside of the deck for low profile mounting of electronics, inset mounting for the trucks, and a filleted underside edge. It took 8 hours to cut all 5 decks using 4 tool changes on the ShopBot. This was also my first experiencing generating gcode for the ShopBot in Autodesk Fusion 360’s CAM workspace. The tool path simulations and automatic collision/interference warnings were super useful, and prevented me from destroying a CNC machine worth (much) more than my car. Here’s the tool paths outlined in Fusion:</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/board_fab1.png" alt="" /></span></p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/board_fab2.png" alt="" /></span></p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/shopbot.jpg" alt="" /></span></p>
+
+<p><span class="image right"><img src="http://localhost:4000/images/e-board/cover.jpg" alt="" /></span></p>
+
+<p>I designed and printed some enclosures which wrap over the divot in four pieces to protect the electronics bay from dust, debris, and water. They’re prototyped now out of PLA and are meant to be attached simply with M3 flathead screws. There’s opportunity for improving the serviceability of the board by implementing a latch or some other mechanism to access the batteries without unscrewing the lock nuts I’ve used. I’ve kept the design simple because the pieces are large and they take a long time to print, so iterating several times on a tightly toleranced mechanism was not a high priority. My printer can print PLA the fastest of any material and each of the four pieces still took 12 hours each. With a more capable printer, Nylon or PETG would be more suited materials for their greater flexibility and robustness to vibration and shock. Below is a picture of the board fully integrated with the enclosure attached.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/enclosure.jpg" alt="" /></span></p>
+
+<p>Longboards are typically made from bamboo, maple, birch, or composite materials. I made mine from a low-grade plywood without paying much attention to the load carrying capacity of my design. Upon hopping on for the first time, I felt an uneasy sinking at the center of the board under my weight rather than the springy feel of manufactured boards. I compensated with an aluminum beam spanning the electronics bay and it felt much safer.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/board1.jpg" alt="" /></span></p>
+
+<p>I sourced a few off the shelf parts from <a target="\_blank" href="https://diyelectricskateboard.com/">DIY Electric Skateboard</a> for gears, pulleys, and a motor mount. This simplified the build, but I still had to modify my rear trucks meticulously with a file to mount the motor properly. Using the cast aluminum parts for the critical drivetrain components probably boosts my safety rating a bit.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/motors.png" alt="" /></span></p>
+
+<h3 id="the-handheld-remote">The Handheld Remote</h3>
+
+<p>Inside the handheld wireless remote control, I had to fit an Arduino Nano, a 9V battery, an nRF24 transceiver module, an arming switch, and a joystick for throttle control. The arming switch is there to ensure a safe mode of “default” operation. The arming switch (also sometimes called a dead man’s switch) arms to motor so that control input is only acted upon while the momentary switch is being actively pressed. That way, if you drop the remote, or you fall off the longboard, it won’t zip away. In the mechanical design of the remote I was aiming for serviceability and access to the electronics as I was still testing the transceiver’s performance and tuning parameters in the transmitter’s software while the remote was put together. Ideally, the case would be relatively ergonomic and comfortable to hold as well. Ergonomics are certainly not my specialty, so I found open design files for a pistol grip online and modified it to mount the joystick and dead man’s switch, leaving a large open space for quick access to the electronics, which are held in place with industrial strength doubled-sided foam tape for now. Doubled-sided foam is quick, reliable, doesn’t leave a mess, and it’s not permanent so I use it all the side a temporary fastening method. Below are some renders of the remote and its physical incarnation after 3D printing the grip and integration of the electronics.</p>
+
+<div class="box alt">
+	<div class="row 50% uniform">
+		<div class="4u">
+			<span class="image fit"><img src="http://localhost:4000/images/e-board/tx_rend1.png" alt="" /></span>
+		</div>
+		<div class="4u">
+			<span class="image fit"><img src="http://localhost:4000/images/e-board/tx_rend2.png" alt="" /></span>
+		</div>
+		<div class="4u$">
+			<span class="image fit"><img src="http://localhost:4000/images/e-board/tx_rend3.png" alt="" /></span>
+		</div>
+	</div>
+</div>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/tx.jpg" alt="" /></span></p>
+
+<h2 id="software-design">Software Design</h2>
+
+<p>The code for both the receiving (on the longboard itself) and transmitting (inside the remote) Arduinos is available in <a target="\_blank" href="https://github.com/treyfortmuller/eboard">my GitHub repo</a> for the longboard. My buddy David and I had plans that got canceled due to weather, so I roped him into the project and we hacked through all the Arduino code in a single afternoon.</p>
+
+<p>The transmitting Arduino inside the remote takes of care:</p>
+<ul>
+  <li>Reading the state of the joystick and arming switch</li>
+  <li>Averaging a time series of the throttle input for smoother acceleration and braking</li>
+  <li>Packaging the smoothed throttle output and arming switch state into a transmittable data structure</li>
+  <li>Transmitting packets to the receiving nRF24 module</li>
+</ul>
+
+<p>The receiving Arduino inside the electronics enclosure on the longboard is tasked with:</p>
+<ul>
+  <li>Receiving packets from the transmitting nRF24 module</li>
+  <li>Unpacking the data</li>
+  <li>Generating a PWM throttle signal to send to the electronic speed controller (ESC) for the motor</li>
+</ul>
+
+<p>Below is the receiving side Arduino and its corresponding nRF24 module, the wire wrapped in braided nylon goes to the ESC. This 3D printed mounting solution is then secured to the underside of the board, inside the enclosure, using high strength velcro. I chose the <a target="\_blank" href="http://vedder.se/2015/01/vesc-open-source-esc/">Vedder ESC (VESC)</a>, an open-source hardware and software project which is purpose built for electric longboards and other high-power applications. The VESC includes a battery eliminator circuit which sends a clean 5V to the microcontroller to power it. The VESC simplified this project in a big way. It takes care of regenerative braking and runs the motor using a simple PID current controller. The motor back-EMF is characterized in the configurator that is distributed with the VESC’s firmware.</p>
+
+<p><span class="image main"><img src="http://localhost:4000/images/e-board/rx_enclosure.jpg" alt="" /></span></p>
+
+<h2 id="testing">Testing</h2>
+
+<p>I tuned some of the ESC’s parameters in the <a target="\_blank" href="https://diyelectricskateboard.com/blogs/electric-skateboard/vesc-bldc-tool-download-link">BLDC Tool</a>, a configurator for the the VESC’s firmware. I adjusted the PWM signal range, throttle deadband, and minimum duty cycle. I spun up the motor for the first time and tested the wireless controllers reliability. Upon confirming the implemented software failsafes (arming switch functionality, ESC behavior in case of a lost wireless connection, battery undervoltage, etc.), it was time to hop on.</p>
+
+<p>The board delivered some excellent uphill acceleration and braking power shown in the video below. The remote control was easy to use on the board and the wireless connection never faltered. My only complaint so far is the occasional motor glitches at very slow speeds with high throttle setpoints. Providing data from a Hall effect sensor or visual motor encoder would allow the VESC to more accurately control slow speeds for smoother power delivery. I haven’t done any extensive testing to characterize the range or all out top speed yet. I need some more practice first, or some kneepads.</p>
+
+<!-- A video goes here! -->
+<div class="video-wrapper">
+	<div class="video-responsive">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/KJxlBvzlVTY?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+	</div>
+</div>
+
+</p>
+      		</section>
+
+					<!-- Footer -->
+						<footer>
+              <ul class="actions">
+                <li><a href="http://localhost:4000/projects/" class="button">Projects</a></li>
+              </ul>
+						</footer>
+					</div>
+
+				<!-- Footer -->
+        <footer id="footer">
+  <section>
+    <!-- Formspree form for adding a email form to the status site -->
+    <form method="POST" action="https://formspree.io/tfortmuller@berkeley.edu">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" />
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="3"></textarea>
+      </div>
+      <ul class="actions">
+        <li><input type="submit" value="Send Message" /></li>
+      </ul>
+    </form>
+  </section>
+
+  <!-- Contact side section -->
+  <section class="split contact">
+
+    <!-- Location -->
+    <section class="alt">
+      <h3>Location</h3>
+      <p>Seattle, WA</p>
+    </section>
+
+    <!-- Connect -->
+    <section>
+      <h3>Connect</h3>
+      <ul class="icons alt">
+        <li><a href="https://www.linkedin.com/in/trey-fortmuller" class="icon fa-linkedin" rel="nofollow"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://github.com/treyfortmuller" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+      </ul>
+    </section>
+    
+  </section>
+</footer>
+<!-- Copyright bottom section -->
+<div id="copyright">
+  <ul>
+      <li>&copy; 
+    2024 Trey Fortmuller </li>
+      <li> Based on a Design by <a href="https://html5up.net">HTML5 UP</a></li>
+    </ul>
+</div>
+
+
+			</div>
+
+      <!-- Scripts -->
+  		<!-- DYN -->
+<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
+<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
+<script src="http://localhost:4000/assets/js/skel.min.js"></script>
+<script src="http://localhost:4000/assets/js/util.js"></script>
+<script src="http://localhost:4000/assets/js/main.js"></script>
+
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111812042-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111812042-1');
+</script>
+
+
+	</body>
+</html>
