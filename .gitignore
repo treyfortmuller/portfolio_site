@@ -1,5 +1,4 @@
 .DS_Store
-_site
 _site/ # the directory where compiled sites reside
 
 # don't upload videos
